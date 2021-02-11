@@ -18,6 +18,8 @@ class Upload extends Model
         'user_id',
         'admin_id',
         'images',
+        'youtube_id',
+        'logline',
         'price',
         'latitude',
         'longitude',

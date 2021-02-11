@@ -17,7 +17,9 @@ class CreateUploadsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable(true)->default(null);
             $table->unsignedBigInteger('admin_id');
-            $table->string('images');
+            $table->string('images')->nullable(true);
+            $table->string('youtube_id')->nullable(true)->default(null);
+            $table->text('logline');
             $table->integer('price')->index();
             $table->float('latitude', 10, 6);
             $table->float('longitude', 10, 6);
