@@ -15,14 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route to the landing page
 Route::get('/', [PagesController::class, 'index']);
 
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/upload', 'UploadController@create');
+Route::post('/upload', 'UploadController@store')->name('upload.store');
