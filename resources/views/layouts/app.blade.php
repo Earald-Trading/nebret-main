@@ -22,7 +22,8 @@
 <body class="antialiased">
     <div class="relative flex" id="app">
         @include('inc.navbar')
-        <main class="">
+
+        <main>
 
             @include('inc.messages')
 
