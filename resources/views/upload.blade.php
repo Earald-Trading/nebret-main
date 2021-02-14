@@ -72,6 +72,10 @@
                     <div class="row">
                         <div class="form-check form-switch my-3 col">
                             <input class="form-check-input" type="checkbox" name="featured" id="id_featured">
+                            <label class="form-label">Selling</label>
+                        </div>
+                        <div class="form-check form-switch my-3 col">
+                            <input class="form-check-input" type="checkbox" name="featured" id="id_featured">
                             <label class="form-label">Featured</label>
                         </div>
                     </div>

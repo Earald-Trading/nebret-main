@@ -27,6 +27,7 @@ class CreateUploadsTable extends Migration
             $table->string('wereda');
             $table->string('houseno');
             $table->boolean('featured')->default(false);
+            $table->boolean('selling')->default(false);
             $table->timestamps();
         });
     }
