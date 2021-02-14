@@ -11,24 +11,24 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
-        <div class="carousel-item active" style="background-image: url('https://source.unsplash.com/LAaSoL0LrYs/1920x1080')">
+        <div class="carousel-item active" style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2019/07/September2017-54-1600x1279.jpg')">
             <div class="carousel-caption d-none d-md-block">
-                <h2 class="display-4">First Slide</h2>
-                <p class="lead">This is a description for the first slide.</p>
+                <h2 class="display-4">Find Your Dream Home</h2>
+                <p class="lead">Use our easy-to-use platform and realize your dream, all without the hustle.</p>
             </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('https://source.unsplash.com/bF2vsubyHcQ/1920x1080')">
+        <div class="carousel-item" style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2017/10/cam-01-1600x888.jpg')">
             <div class="carousel-caption d-none d-md-block">
-                <h2 class="display-4">Second Slide</h2>
-                <p class="lead">This is a description for the second slide.</p>
+                <h2 class="display-4">Secure Your Property</h2>
+                <p class="lead">We take all burden from you and manage your property as ours.</p>
             </div>
         </div>
         <!-- Slide Three - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('https://source.unsplash.com/szFUQoyvrxM/1920x1080')">
+        <div class="carousel-item" style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2017/08/dsc7241l-1600x1068.jpg')">
             <div class="carousel-caption d-none d-md-block">
-                <h2 class="display-4">Third Slide</h2>
-                <p class="lead">This is a description for the third slide.</p>
+                <h2 class="display-4">Sell! And Easily Restock</h2>
+                <p class="lead">Use our platform to sell or rent your place. Get direct contact to your clients.</p>
             </div>
         </div>
     </div>
@@ -51,7 +51,7 @@
                 <span class="badge badge-success position-absolute mt-2 ml-2" style="width: auto !important;">UploadTime</span>
                 <span class="card-title position-absolute ml-2 h2" style="color: rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
                 <div class="card-body">
-                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i>    <b>0</b> <i>Bath Size</i>    <b>0</b> <i>footprint</i></div>
+                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
                     <div class="card-text">Location
                         <span class="float float-right">
                             <!--Must include the listingId as a param-->
@@ -67,7 +67,7 @@
                 <span class="badge badge-success position-absolute mt-2 ml-2" style="width: auto !important;">UploadTime</span>
                 <span class="card-title position-absolute ml-2 h2" style="color:rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
                 <div class="card-body">
-                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i>    <b>0</b> <i>Bath Size</i>    <b>0</b> <i>footprint</i></div>
+                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
                     <div class="card-text">Location
                         <span class="float float-right">
                             <!--Must include the listingId as a param-->
@@ -83,7 +83,7 @@
                 <span class="badge badge-success position-absolute mt-2 ml-2" style="width: auto !important;">UploadTime</span>
                 <span class="card-title position-absolute ml-2 h2" style="color: rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
                 <div class="card-body">
-                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i>    <b>0</b> <i>Bath Size</i>    <b>0</b> <i>footprint</i></div>
+                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
                     <div class="card-text">Location
                         <span class="float float-right">
                             <!--Must include the listingId as a param-->

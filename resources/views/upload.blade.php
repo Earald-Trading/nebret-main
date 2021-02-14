@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="mx-5 my-5">
-        <div class="row full-width">
+        <div class="row" style="width: 60% !important; margin: auto !important; padding: 25px !important; position: relative !important;">
             <form method="POST" action="{{ route('upload.store') }}" enctype="multipart/form-data">
                 <div class="col">
                     <div class="text text-secondary text-left lead text-capitalize text-uppercase row">Miscelinious</div>

@@ -7,7 +7,7 @@
                     <!--About AFMA-->
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="widget subscribe no-box">
-                            <h5 class="widget-title font-weight-bold my-0 py-0">Alatinos Ethiopian Filmmakers' Association<span></span></h5>
+                            <h5 class="widget-title font-weight-bold my-0 py-0">AMTES Asset Management<span></span></h5>
                             <hr class="footer-horizontal-break mt-0 pt-0 ml-0">
                             <p>About the company, little discription will goes here.. </p>
                         </div>
@@ -24,7 +24,7 @@
                                 <div div id="map-container-google-9" class="z-depth-1-half map-container-5" style="height: 200px">
 
                                     <!--Embedded Map Tag-->
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.344953741935!2d38.747410214276556!3d9.032263391426033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85f721e32cdd%3A0xa97917b43251d08a!2sRussian%20Center%20for%20Science%20and%20Culture!5e0!3m2!1sen!2set!4v1584728767976!5m2!1sen!2set" width="400" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d801.7153240633711!2d38.80386512915229!3d9.009714024154114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b853f49c530fd%3A0x546428bb5e749d4f!2sSunmate%20Furniture!5e1!3m2!1sen!2set!4v1613325177005!5m2!1sen!2set" width="400" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                                 </div>
                             </div>
                         </div>
@@ -33,13 +33,13 @@
                     <!--Affiliate Links-->
                     <div class="col-xs-12 col-sm-6 col-md-3 mt-3">
                         <div class="widget no-box">
-                            <h5 class="widget-title my-0 py-0">Affiliate Links<span></span></h5>
+                            <h5 class="widget-title my-0 py-0">Site Map<span></span></h5>
                             <hr class="footer-horizontal-break mt-0 pt-0 w-50 ml-0">
                             <ul class="thumbnail-widget list-unstyled">
                                 <li>
-                                    <div class="thumb-content"><a href="#.">Get Started</a></div>
+                                    <div class="thumb-content"><a href="#.">Lisings</a></div>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <div class="thumb-content"><a href="#.">Top Leaders</a></div>
                                 </li>
                                 <li>
@@ -53,7 +53,7 @@
                                 </li>
                                 <li>
                                     <div class="thumb-content"><a href="#.">Lifestyle</a></div>
-                                </li>
+                                </li> --}}
                                 <li>
                                     <div class="thumb-content"><a href="#.">About</a></div>
                                 </li>
@@ -84,7 +84,7 @@
                 <div class="row">
                     <hr class="footer-horizontal-break w-75 text-center">
                     <div class="col-md-12 text-center mb-0 pb-0">
-                        <p class="text-small">Copyright. <i class="font-weight-bold">Alatinos Ethiopian Filmmakers' Association</i> © 2020. All rights reserved.</p>
+                        <p class="text-small">Developed by: <i class="font-weight-bold">EARALD Trading and Technologies PLC.</i> © 2021. All rights reserved.</p>
                     </div>
                 </div>
             </div>

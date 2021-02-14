@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" style="padding: 10rem !important">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="h3 text-center" style="color: red !important; width: 100% !important; margin: auto !important; padding-top: 15px !important;">MENORIYA</div>
+                <div class="card-header text-center h4 font-weight-bold">{{ __('Login') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -62,6 +63,11 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12 text-center" style="width: 60% !important; margin: auto !important;">
+                                <a class="btn btn-link btn-sm" href="./register">{{ __('Don\'t have an account yet? Create here...') }}</a>
                             </div>
                         </div>
                     </form>
