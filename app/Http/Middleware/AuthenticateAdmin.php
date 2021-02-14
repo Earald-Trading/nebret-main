@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,13 +14,17 @@ class AuthenticateAdmin
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     * @param  array  $guards
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next,...$guards)
     {
         if (Auth::guard('api')->check() && $request->user()->is_admin == true) {
             return $next($request);
         }
-        return route('login');
+
+        throw new AuthenticationException( 
+            'Unauthenticated.', $guards, route('login')
+        );
     }
 }
