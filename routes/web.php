@@ -21,5 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/upload', 'UploadController@create');
-Route::post('/upload', 'UploadController@store')->name('upload.store');
+Route::middleware('auth.admin')->group(function () {
+    Route::get('/upload', 'UploadController@create')->name('upload.create');
+    Route::post('/upload', 'UploadController@store')->name('upload.store');
+});
