@@ -1,5 +1,13 @@
 @extends('layouts.app')
-
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 @section('content')
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
@@ -75,44 +83,44 @@
                     <div class="row">
                         <div class="input-group mt-3 mb-2 row">
                             <input type="file" class="custom-file-input mt-2 form-control" placeholder="Listing Image 1"
-                                aria-label="Listing Image 1" aria-describedby="images1" name="images[]">
+                                aria-label="Listing Image 1" aria-describedby="images1" name="images[]" id="images1">
                             <div class="input-group-append">
-                                <span class="btn btn-outline-primary" id="images1">Choose File</span>
+                                <button class="btn btn-outline-primary" onclick="document.getElementById('images1').click()" type="button">Choose File</button>
                             </div>
                         </div>
                         <div class="input-group my-2 row">
                             <input type="file" class="custom-file-input mt-2 form-control" placeholder="Listing Image 1"
-                                aria-label="Listing Image 2" aria-describedby="images2" name="images[]">
+                                aria-label="Listing Image 2" aria-describedby="images2" name="images[]" id="images2">
                             <div class="input-group-append">
-                                <span class="btn btn-outline-primary" id="images2">Choose File</span>
+                                <button class="btn btn-outline-primary"onclick="document.getElementById('images2').click()" type="button">Choose File</button>
                             </div>
                         </div>
                         <div class="input-group my-2 row">
                             <input type="file" class="custom-file-input mt-2 form-control" placeholder="Listing Image 3"
-                                aria-label="Listing Image 3" aria-describedby="images3" name="images[]">
+                                aria-label="Listing Image 3" aria-describedby="images3" name="images[]" id="images3">
                             <div class="input-group-append">
-                                <span class="btn btn-outline-primary" id="images3">Choose File</span>
+                                <button class="btn btn-outline-primary"onclick="document.getElementById('images3').click()"  id="images3" type="button">Choose File</button>
                             </div>
                         </div>
                         <div class="input-group my-2 row">
                             <input type="file" class="custom-file-input mt-2 form-control" placeholder="Listing Image 4"
-                                aria-label="Listing Image 4" aria-describedby="images4" name="images[]">
+                                aria-label="Listing Image 4" aria-describedby="images4" name="images[]" id="images4">
                             <div class="input-group-append">
-                                <span class="btn btn-outline-primary" id="images4">Choose File</span>
+                                <button class="btn btn-outline-primary"onclick="document.getElementById('images4').click()" type="button">Choose File</button>
                             </div>
                         </div>
                         <div class="input-group my-2 row">
                             <input type="file" class="custom-file-input mt-2 form-control" placeholder="Listing Image 5"
-                                aria-label="Listing Image 5" aria-describedby="images5" name="images[]">
+                                aria-label="Listing Image 5" aria-describedby="images5" name="images[]" id="images5">
                             <div class="input-group-append">
-                                <span class="btn btn-outline-primary" id="images5">Choose File</span>
+                                <button class="btn btn-outline-primary"onclick="document.getElementById('images5').click()" type="button">Choose File</button>
                             </div>
                         </div>
                         <div class="input-group my-2 row">
                             <input type="file" class="custom-file-input mt-2 form-control" placeholder="Listing Image 6"
-                                aria-label="Listing Image 6" aria-describedby="images6" name="images[]">
+                                aria-label="Listing Image 6" aria-describedby="images6" name="images[]" id="images6">
                             <div class="input-group-append">
-                                <span class="btn btn-outline-primary" id="images6">Choose File</span>
+                                <button class="btn btn-outline-primary" onclick="document.getElementById('images6').click()" type="button">Choose File</button>
                             </div>
                         </div>
                     </div>
@@ -123,3 +131,4 @@
         </div>
     </div>
 @endsection
+

@@ -26,7 +26,7 @@ class CreateUploadsTable extends Migration
             $table->string('subcity')->index();
             $table->string('wereda');
             $table->string('houseno');
-            $table->boolean('featured');
+            $table->boolean('featured')->default(false);
             $table->timestamps();
         });
     }
