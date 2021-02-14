@@ -64,7 +64,7 @@ class UploadController extends Controller
 
         $images = $request->file('images');
         for($i = 0; $i < 6; ++$i) {
-            $images[$i]->storeAs($folder_name, strval($i+1) . $images[$i]->getClientOriginalExtension());
+            $images[$i]->storeAs($folder_name, strval($i+1) . '.' .$images[$i]->getClientOriginalExtension());
         }
 
         $upload = new Upload($request->only(
@@ -72,8 +72,8 @@ class UploadController extends Controller
             'subcity', 'wereda', 'houseno', 'featured', 'selling'
         ));
         $upload->admin_id = $request->user()->id;
-        $upload->images = storage_path($folder_name);
-        $upload->user_id = $User::where('email', $request['user_email'])->first()->id;
+        $upload->images = $folder_name;
+        $upload->user_id = User::where('email', $request['user_email'])->first()->id;
         $upload->price = (int)((float)$request['price'] * 100);
         $upload->save();
 
