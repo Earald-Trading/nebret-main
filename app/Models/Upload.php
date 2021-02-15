@@ -26,7 +26,8 @@ class Upload extends Model
         'subcity',
         'wereda',
         'houseno',
-        'featured'
+        'featured',
+        'selling'
     ];
 
     /**

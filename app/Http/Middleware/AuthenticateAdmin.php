@@ -19,11 +19,11 @@ class AuthenticateAdmin
      */
     public function handle(Request $request, Closure $next,...$guards)
     {
-        if (Auth::guard('api')->check() && $request->user()->is_admin == true) {
+        if (Auth::check() && $request->user()->is_admin == true) {
             return $next($request);
         }
 
-        throw new AuthenticationException( 
+        throw new AuthenticationException(
             'Unauthenticated.', $guards, route('login')
         );
     }

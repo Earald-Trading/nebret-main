@@ -15,12 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PagesController::class, 'index']);
+Route::get('/', 'PageController@index');
+Route::get('/images/{id}/{number}', 'PagesController@image');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::middleware('auth')->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+});
 Route::middleware('auth.admin')->group(function () {
     Route::get('/upload', 'UploadController@create')->name('upload.create');
     Route::post('/upload', 'UploadController@store')->name('upload.store');

@@ -11,8 +11,7 @@ class UploadController extends Controller
     protected function validateStore(Request $request)
     {
         $request->validate([
-            'user_email' => 'required|string|email',
-            'images' => 'required|file',
+            'user_email' => 'required|string|email|exists:users,email',
             'price' => 'required|numeric',
             'logline' => 'required|string',
             'youtube_id' => 'required|string|size:11',
@@ -23,7 +22,8 @@ class UploadController extends Controller
             'subcity' => 'required|string',
             'wereda' => 'required|integer',
             'houseno' => 'required|string',
-            'featured' => 'boolean'
+            'featured' => 'boolean',
+            'selling' => 'boolean'
         ]);
     }
 
@@ -57,22 +57,23 @@ class UploadController extends Controller
     {
         $this->validateStore($request);
 
-        $user = User::where('email', $request['user_email'])->first();
-        if (!$user) {
-            return view('upload');
-        }
-
-        $folder_name = hash('sha256', "{$request['logline']} {$request['latitude']} {$request['longtiude']} {$request['houseno']}");
+        $folder_name = hash(
+            'sha256',
+            "{$request['logline']} {$request['latitude']} {$request['longtiude']} {$request['houseno']}"
+        );
 
         $images = $request->file('images');
         for($i = 0; $i < 6; ++$i) {
-            $images[$i]->storeAs($folder_name, strval($i+1) . $images[$i]->getClientOriginalExtension());
+            $images[$i]->storeAs($folder_name, strval($i+1) . '.' .$images[$i]->getClientOriginalExtension());
         }
 
-        $upload = new Upload($request->only('logline', 'youtube_id', 'latitude','longitude', 'subcity', 'wereda', 'houseno', 'featured'));
+        $upload = new Upload($request->only(
+            'logline', 'youtube_id', 'latitude','longitude',
+            'subcity', 'wereda', 'houseno', 'featured', 'selling'
+        ));
         $upload->admin_id = $request->user()->id;
-        $upload->images = storage_path($folder_name);
-        $upload->user_id = $user->id;
+        $upload->images = $folder_name;
+        $upload->user_id = User::where('email', $request['user_email'])->first()->id;
         $upload->price = (int)((float)$request['price'] * 100);
         $upload->save();
 
