@@ -21,29 +21,44 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/about">ABOUT US</a>
                         </li>
-                    @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="/listings">HOME</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/listings">AVAILABLE LISTINGS</a>
-                        </li>
-                        <li class="nav-item">
-                            <!-- Needs to have a parameter, request-type, 'sell', along with userId -->
-                            <a class="nav-link" href="/request-upload">SELL</a>
-                        </li>
-                        <li class="nav-item">
-                            <!-- Needs to have a parameter, request-type, 'rent', along with userId -->
-                            <a class="nav-link" href="/request-listing">RENT</a>
-                        </li>
-                        <li class="nav-item">
-                            <!-- Needs to have the userId passed as a param -->
-                            <a class="nav-link" href="/dashboard">MY LISTINGS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/about">ABOUT US</a>
-                        </li>
                     @endguest
+                    @if (Auth::user()->is_admin)
+                            <li class="nav-item">
+                                <a class="nav-link" href="/listings">HOME</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/listings">AVAILABLE LISTINGS</a>
+                            </li>
+                            <li class="nav-item">
+                                <!-- Needs to have a parameter, request-type, 'rent', along with userId -->
+                                <a class="nav-link" href="/upload">UPLOAD</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/about">ABOUT US</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="/listings">HOME</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/listings">AVAILABLE LISTINGS</a>
+                            </li>
+                            <li class="nav-item">
+                                <!-- Needs to have a parameter, request-type, 'sell', along with userId -->
+                                <a class="nav-link" href="/request-upload">SELL</a>
+                            </li>
+                            <li class="nav-item">
+                                <!-- Needs to have a parameter, request-type, 'rent', along with userId -->
+                                <a class="nav-link" href="/request-listing">RENT</a>
+                            </li>
+                            <li class="nav-item">
+                                <!-- Needs to have the userId passed as a param -->
+                                <a class="nav-link" href="/dashboard">MY LISTINGS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/about">ABOUT US</a>
+                            </li>
+                        @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
