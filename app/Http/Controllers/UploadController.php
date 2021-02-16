@@ -2,12 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\State;
 use App\Models\Upload;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
+use ZipArchive;
 
 class UploadController extends Controller
 {
+    /**
+     * Validate request for store
+     *
+     * @param \Illuminate\Http\Request $request
+     * @throws \Illuminate\Validation\ValidationException
+     * @return void
+     */
     protected function validateStore(Request $request)
     {
         $request->validate([
@@ -15,16 +27,42 @@ class UploadController extends Controller
             'price' => 'required|numeric',
             'logline' => 'required|string',
             'youtube_id' => 'required|string|size:11',
-            'images' => 'required|array|size:6',
-            'images.*' => 'required|image',
+            'images' => 'required|file|mimes:zip',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
-            'subcity' => 'required|string',
+            'subcity' => 'required|string|exists:states,name',
             'wereda' => 'required|integer',
             'houseno' => 'required|string',
             'featured' => 'boolean',
             'selling' => 'boolean'
         ]);
+    }
+
+    /**
+     * Validate uploaded zip file
+     *
+     * @param Illuminate\Http\UploadedFile $file
+     * @throws \Illuminate\Validation\ValidationException
+     * @return ZipArchive
+     */
+    protected function validateZip($file)
+    {
+        $images = new ZipArchive;
+        $images->open($file->path());
+        $names = [];
+
+        for($i = 0; $i < $images->numFiles; ++$i) {
+            $name[] = $images->getNameIndex($i);
+        }
+
+        $validator = Validator::make($names, [
+            '*' => 'required|string|extension:jpg,jpeg,png'
+        ]);
+        if ($validator->fails()) {
+            throw new ValidationException($validator);
+        }
+
+        return $images;
     }
 
     /**
@@ -56,24 +94,27 @@ class UploadController extends Controller
     public function store(Request $request)
     {
         $this->validateStore($request);
+        $images = $this->validateZip($request->file('images'));
 
         $folder_name = hash(
             'sha256',
             "{$request['logline']} {$request['latitude']} {$request['longtiude']} {$request['houseno']}"
         );
 
-        $images = $request->file('images');
-        for($i = 0; $i < 6; ++$i) {
-            $images[$i]->storeAs($folder_name, strval($i+1) . '.' .$images[$i]->getClientOriginalExtension());
+        for($i = 0; $i < $images->numFiles; ++$i) {
+            $extension = pathinfo($images->getNameIndex($i), PATHINFO_EXTENSION);
+            $contents = $images->getFromIndex($i);
+            Storage::put("{$folder_name}/{$i}.{$extension}", $contents);
         }
 
         $upload = new Upload($request->only(
             'logline', 'youtube_id', 'latitude','longitude',
-            'subcity', 'wereda', 'houseno', 'featured', 'selling'
+            'wereda', 'houseno', 'featured', 'selling'
         ));
         $upload->admin_id = $request->user()->id;
         $upload->images = $folder_name;
         $upload->user_id = User::where('email', $request['user_email'])->first()->id;
+        $upload->subcity = State::where('name', $request['subcity'])->first()->id;
         $upload->price = (int)((float)$request['price'] * 100);
         $upload->save();
 

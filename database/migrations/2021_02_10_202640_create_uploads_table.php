@@ -23,12 +23,14 @@ class CreateUploadsTable extends Migration
             $table->integer('price')->index();
             $table->float('latitude', 10, 6);
             $table->float('longitude', 10, 6);
-            $table->string('subcity')->index();
+            $table->unsignedMediumInteger('subcity');
             $table->string('wereda');
             $table->string('houseno');
             $table->boolean('featured')->default(false);
             $table->boolean('selling')->default(false);
             $table->timestamps();
+
+            $table->foreign('subcity')->references('id')->on('states');
         });
     }
 

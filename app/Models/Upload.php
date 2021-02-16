@@ -45,4 +45,15 @@ class Upload extends Model
     {
         return $this->belongsTo(User::class, 'admin_id');
     }
+
+    /**
+     * Scope a query to join and include subcity
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    function scopeSubcity($query)
+    {
+        return $query->join('states', 'uploads.subcity', '=', 'states.id');
+    }
 }
