@@ -15,8 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'PageController@index');
+Route::get('/', 'PagesController@index');
 Route::get('/images/{id}/{number}', 'PagesController@image');
+
+// Temporary
+Route::get('/showListing', 'PagesController@showListing');
 
 Auth::routes();
 

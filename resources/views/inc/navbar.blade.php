@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}" style="color: red !important;">
-                {{ config('app.name', 'MENORIYA') }}
+                {{ config('app.name', 'NEBRET') }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
@@ -21,8 +21,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/about">ABOUT US</a>
                         </li>
-                    @endguest
-                    @if (Auth::user()->is_admin)
+                        @else
+                        @if (Auth::user()->is_admin)
                             <li class="nav-item">
                                 <a class="nav-link" href="/listings">HOME</a>
                             </li>
@@ -59,6 +59,7 @@
                                 <a class="nav-link" href="/about">ABOUT US</a>
                             </li>
                         @endif
+                    @endguest
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -78,7 +79,7 @@
                         @endif
                     @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link  nav-link-auth dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
 
                             </a>

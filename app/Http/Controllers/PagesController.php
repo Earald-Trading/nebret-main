@@ -13,6 +13,11 @@ class PagesController extends Controller
         return view('welcome');
     }
 
+    //Temporary method
+    public function showListing(){
+        return view('listings.showListing');
+    }
+
     public function image($id, $number)
     {
         $upload = Upload::find($id);

@@ -11,21 +11,21 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
-        <div class="carousel-item active" style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2019/07/September2017-54-1600x1279.jpg')">
+        <div class="carousel-item carousel-item-landing active" style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2019/07/September2017-54-1600x1279.jpg')">
             <div class="carousel-caption d-none d-md-block">
                 <h2 class="display-4">Find Your Dream Home</h2>
                 <p class="lead">Use our easy-to-use platform and realize your dream, all without the hustle.</p>
             </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2017/10/cam-01-1600x888.jpg')">
+        <div class="carousel-item carousel-item-landing" style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2017/10/cam-01-1600x888.jpg')">
             <div class="carousel-caption d-none d-md-block">
                 <h2 class="display-4">Secure Your Property</h2>
                 <p class="lead">We take all burden from you and manage your property as ours.</p>
             </div>
         </div>
         <!-- Slide Three - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2017/08/dsc7241l-1600x1068.jpg')">
+        <div class="carousel-item carousel-item-landing" style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2017/08/dsc7241l-1600x1068.jpg')">
             <div class="carousel-caption d-none d-md-block">
                 <h2 class="display-4">Sell! And Easily Restock</h2>
                 <p class="lead">Use our platform to sell or rent your place. Get direct contact to your clients.</p>

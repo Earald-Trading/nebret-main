@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="h3 text-center" style="color: red !important; width: 100% !important; margin: auto !important; padding-top: 15px !important;">MENORIYA</div>
+                <div class="h3 text-center" style="color: red !important; width: 100% !important; margin: auto !important; padding-top: 15px !important;">{{ config('app.name', 'NEBRET') }}</div>
                 <div class="card-header text-center h4 font-weight-bold">{{ __('Login') }}</div>
 
                 <div class="card-body">
