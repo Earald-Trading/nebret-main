@@ -28,4 +28,6 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth.admin')->group(function () {
     Route::get('/upload', 'UploadController@create')->name('upload.create');
     Route::post('/upload', 'UploadController@store')->name('upload.store');
+    Route::get('/listing/{id}/edit', 'UploadController@edit')->name('upload.edit');
+    Route::post('/listing/{id}/edit', 'UploadController@update')->name('upload.update');
 });

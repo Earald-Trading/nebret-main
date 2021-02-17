@@ -17,33 +17,44 @@ class UploadController extends Controller
      * Validate request for store
      *
      * @param \Illuminate\Http\Request $request
+     * @param bool $required
      * @throws \Illuminate\Validation\ValidationException
      * @return void
      */
-    protected function validateStore(Request $request)
+    protected function validateRequest(Request $request, $required = true)
     {
+        $required_rule = $required ? 'required|' : '';
+
         $request->validate([
-            'user_email' => 'required|string|email|exists:users,email',
-            'price' => 'required|numeric',
-            'logline' => 'required|string',
-            'youtube_id' => 'required|string|size:11',
-            'images' => 'required|file|mimes:zip',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
-            'subcity' => 'required|string|exists:states,name',
-            'wereda' => 'required|integer',
-            'houseno' => 'required|string',
-            'featured' => 'boolean',
-            'selling' => 'boolean'
+            'user_email' => "{$required_rule}string|email|exists:users,email",
+            'price' => "{$required_rule}numeric",
+            'logline' => "{$required_rule}string",
+            'youtube_id' => "{$required_rule}string|size:11",
+            'images' => "{$required_rule}file|mimes:zip",
+            'latitude' => "{$required_rule}numeric",
+            'longitude' => "{$required_rule}numeric",
+            'subcity' => "{$required_rule}string|exists:states,name",
+            'wereda' => "{$required_rule}integer",
+            'houseno' => "{$required_rule}string",
+            'featured' => 'in:on,1,true',
+            'selling' => 'in:on,1,true'
         ]);
+
+        if (isset($request['featured'])) {
+            $request['featured'] = true;
+        }
+
+        if (isset($request['selling'])) {
+            $request['selling'] = true;
+        }
     }
 
     /**
      * Validate uploaded zip file
      *
-     * @param Illuminate\Http\UploadedFile $file
+     * @param \Illuminate\Http\UploadedFile $file
      * @throws \Illuminate\Validation\ValidationException
-     * @return ZipArchive
+     * @return \ZipArchive
      */
     protected function validateZip($file)
     {
@@ -51,7 +62,7 @@ class UploadController extends Controller
         $images->open($file->path());
         $names = [];
 
-        for($i = 0; $i < $images->numFiles; ++$i) {
+        for ($i = 0; $i < $images->numFiles; ++$i) {
             $name[] = $images->getNameIndex($i);
         }
 
@@ -63,6 +74,65 @@ class UploadController extends Controller
         }
 
         return $images;
+    }
+
+    /**
+     * Stores images in storage
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \ZipArchive|null $images
+     * @param \App\Models\Upload $upload
+     *
+     * @return string
+     */
+    protected function storeImages(Request $request, $images, Upload $upload = null)
+    {
+        $folder_name = hash(
+            'sha256',
+            "{$request['logline']} {$request['latitude']} {$request['longtiude']} {$request['houseno']}"
+        );
+
+        if (isset($request['images'])) {
+            for ($i = 0; $i < $images->numFiles; ++$i) {
+                $extension = pathinfo($images->getNameIndex($i), PATHINFO_EXTENSION);
+                $contents = $images->getFromIndex($i);
+                Storage::put("{$folder_name}/{$i}.{$extension}", $contents);
+            }
+        } else {
+            Storage::move($upload->images, $folder_name);
+        }
+
+        return $folder_name;
+    }
+
+    /**
+     * Make collection to fill the upload model
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param string $folder_name
+     *
+     * @return \App\Models\Upload
+     */
+
+    protected function makeUpload(Request $request, $folder_name)
+    {
+        return collect($request->only(
+            'logline',
+            'youtube_id',
+            'latitude',
+            'longitude',
+            'wereda',
+            'houseno',
+            'featured',
+            'selling'
+        ))->merge([
+            'admin_id' => $request->user()->id,
+            'images' => $folder_name,
+            'user_id' => user::where('email', $request['user_email'])->first()->id,
+            'subcity' => state::where('name', $request['subcity'])->first()->id,
+            'price' => (int)((float)$request['price'] * 100)
+        ]);
+
     }
 
     /**
@@ -82,7 +152,12 @@ class UploadController extends Controller
      */
     public function create()
     {
-        return view('upload');
+        return view('upload', [
+            'title' => 'Upload',
+            'header' => 'Upload Listing',
+            'description' => 'Here you upload a listing by request of user.',
+            'subcity' => State::select('name')->get()
+        ]);
     }
 
     /**
@@ -93,32 +168,13 @@ class UploadController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validateStore($request);
+        $this->validateRequest($request);
         $images = $this->validateZip($request->file('images'));
+        $folder_name = $this->storeImages($request, $images);
 
-        $folder_name = hash(
-            'sha256',
-            "{$request['logline']} {$request['latitude']} {$request['longtiude']} {$request['houseno']}"
-        );
+        Upload::create($this->makeUpload($request, $folder_name)->all());
 
-        for($i = 0; $i < $images->numFiles; ++$i) {
-            $extension = pathinfo($images->getNameIndex($i), PATHINFO_EXTENSION);
-            $contents = $images->getFromIndex($i);
-            Storage::put("{$folder_name}/{$i}.{$extension}", $contents);
-        }
-
-        $upload = new Upload($request->only(
-            'logline', 'youtube_id', 'latitude','longitude',
-            'wereda', 'houseno', 'featured', 'selling'
-        ));
-        $upload->admin_id = $request->user()->id;
-        $upload->images = $folder_name;
-        $upload->user_id = User::where('email', $request['user_email'])->first()->id;
-        $upload->subcity = State::where('name', $request['subcity'])->first()->id;
-        $upload->price = (int)((float)$request['price'] * 100);
-        $upload->save();
-
-        return view('upload');
+        return $this->create();
     }
 
     /**
@@ -140,7 +196,36 @@ class UploadController extends Controller
      */
     public function edit($id)
     {
-        //
+        $upload = Upload::subcity()
+            ->select(
+                'user_id',
+                'price',
+                'logline',
+                'youtube_id',
+                'images',
+                'latitude',
+                'longitude',
+                'states.name as subcity',
+                'wereda',
+                'houseno',
+                'featured',
+                'selling'
+            )
+            ->find($id);
+
+        if (!$upload) {
+            abort(404);
+        }
+
+        $upload['user_email'] = $upload->user->email;
+
+        return view('upload', [
+            'title' => 'Edit',
+            'header' => 'Edit Listing.',
+            'description' => 'Here you edit a previously uploaded listing.',
+            'subcity' => State::select('name')->get(),
+            'data' => $upload
+        ]);
     }
 
     /**
@@ -152,7 +237,23 @@ class UploadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $upload = Upload::find($id);
+
+        if (!$upload) {
+            abort(404);
+        }
+
+        $this->validateRequest($request, false);
+
+        $images = null;
+        if (isset($request['images'])) {
+            $images = $this->validateZip($request->file('images'));
+        }
+        $folder_name = $this->storeImages($request, $images, $upload);
+
+        $upload->update($this->makeUpload($request, $folder_name)->all());
+
+        return $this->edit($upload->id);
     }
 
     /**

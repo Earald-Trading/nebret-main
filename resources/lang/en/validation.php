@@ -118,7 +118,7 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
-    'extension' => 'The file extension must be in :params'
+    'extension' => 'The file extension must be in :params',
 
     /*
     |--------------------------------------------------------------------------
