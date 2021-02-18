@@ -20,6 +20,12 @@ class Upload extends Model
         'images',
         'youtube_id',
         'logline',
+        'type',
+        'beds',
+        'baths',
+        'footprint',
+        'lot',
+        'year',
         'price',
         'latitude',
         'longitude',
@@ -27,7 +33,9 @@ class Upload extends Model
         'wereda',
         'houseno',
         'featured',
-        'selling'
+        'openhouse',
+        'newconstruction',
+        'foreclosure'
     ];
 
     /**
