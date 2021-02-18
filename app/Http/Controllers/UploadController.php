@@ -28,6 +28,12 @@ class UploadController extends Controller
         $request->validate([
             'user_email' => "{$required_rule}string|email|exists:users,email",
             'price' => "{$required_rule}numeric",
+            'type' =>  "{$required_rule}string",
+            'beds' => "{$required_rule}integer",
+            'baths' => "{$required_rule}integer",
+            'footprint' => "{$required_rule}integer",
+            'lot' => "{$required_rule}integer",
+            'year' => "{$required_rule}integer",
             'logline' => "{$required_rule}string",
             'youtube_id' => "{$required_rule}string|size:11",
             'images' => "{$required_rule}file|mimes:zip",
@@ -36,17 +42,17 @@ class UploadController extends Controller
             'subcity' => "{$required_rule}string|exists:states,name",
             'wereda' => "{$required_rule}integer",
             'houseno' => "{$required_rule}string",
+            'purchase_status' => "{$required_rule}in:sale,rent,foreclosure",
             'featured' => 'in:on,1,true',
-            'selling' => 'in:on,1,true'
+            'openhouse' => 'in:on,1,true',
+            'newconstruction' => 'in:on,1,true'
         ]);
 
-        if (isset($request['featured'])) {
-            $request['featured'] = true;
-        }
+        isset($request['featured']) ? $request['featured'] = true : $request['featured'] = false;
 
-        if (isset($request['selling'])) {
-            $request['selling'] = true;
-        }
+        isset($request['openhouse']) ? $request['openhouse'] = true : $request['openhouse'] = false;
+
+        isset($request['newconstruction']) ? $request['newconstruction'] = true : $request['newconstruction'] = false;
     }
 
     /**
@@ -98,7 +104,7 @@ class UploadController extends Controller
                 $contents = $images->getFromIndex($i);
                 Storage::put("{$folder_name}/{$i}.{$extension}", $contents);
             }
-        } else {
+        } else if ($upload->images !== $folder_name) {
             Storage::move($upload->images, $folder_name);
         }
 
@@ -116,23 +122,42 @@ class UploadController extends Controller
 
     protected function makeUpload(Request $request, $folder_name)
     {
-        return collect($request->only(
+        $collection = collect($request->only(
+            'type',
+            'beds',
+            'baths',
+            'footprint',
+            'lot',
+            'year',
             'logline',
             'youtube_id',
             'latitude',
             'longitude',
             'wereda',
             'houseno',
+            'purchase_status',
             'featured',
-            'selling'
+            'openhouse',
+            'newconstruction',
         ))->merge([
             'admin_id' => $request->user()->id,
-            'images' => $folder_name,
-            'user_id' => user::where('email', $request['user_email'])->first()->id,
-            'subcity' => state::where('name', $request['subcity'])->first()->id,
-            'price' => (int)((float)$request['price'] * 100)
+            'images' => $folder_name
         ]);
 
+        if (isset($request['user_email'])) {
+            $collection['user_id'] = User::where('email', $request['user_email'])->first()->id;
+        }
+
+        if (isset($request['price'])) {
+            $collection['price'] =  (int)((float)$request['price'] * 100);
+        }
+
+        if (isset($request['subcity'])) {
+            $collection['subcity'] =  State::where('name', $request['subcity'])->first()->id;
+        }
+
+
+        return $collection;
     }
 
     /**
@@ -200,16 +225,24 @@ class UploadController extends Controller
             ->select(
                 'user_id',
                 'price',
+                'type',
+                'beds',
+                'baths',
+                'footprint',
+                'lot',
+                'year',
                 'logline',
-                'youtube_id',
                 'images',
+                'youtube_id',
                 'latitude',
                 'longitude',
                 'states.name as subcity',
                 'wereda',
                 'houseno',
+                'purchase_status',
                 'featured',
-                'selling'
+                'openhouse',
+                'newconstruction',
             )
             ->find($id);
 
