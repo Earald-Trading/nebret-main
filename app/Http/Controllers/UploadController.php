@@ -218,7 +218,7 @@ class UploadController extends Controller
             'purchase_status', 'featured', 'openhouse', 'newconstruction'
         ]);
 
-        if (Auth::user() && Auth::user()->is_admin) {
+        if (Auth::is_admin()) {
             $fields = $fields->merge(['user_id', 'latitude', 'longitude', 'wereda', 'houseno']);
         }
         $upload = Upload::subcity()->select($fields->all())->find($id);
@@ -226,7 +226,7 @@ class UploadController extends Controller
             abort(404);
         }
 
-        if (Auth::user() && Auth::user()->is_admin) {
+        if (Auth::is_admin()) {
             $upload['user_email'] = $upload->user->email;
         }
 
