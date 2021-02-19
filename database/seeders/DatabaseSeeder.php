@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
             'footprint' => 125,
             'lot' => 300,
             'year' => 2001,
-            'price' => 40000,
+            'price' => 40000*100,
             'latitude' => 9.00611,
             'longitude' =>  38.75471,
             'subcity' => 9, // 'Lideta'
