@@ -6,6 +6,7 @@ use App\Models\State;
 use App\Models\Upload;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
@@ -210,7 +211,28 @@ class UploadController extends Controller
      */
     public function show($id)
     {
-        //
+        $fields = collect([
+            'uploads.id as id', 'price', 'type', 'beds', 'baths', 'footprint',
+            'lot', 'year', 'logline', 'images', 'youtube_id',
+            'states.name as subcity',
+            'purchase_status', 'featured', 'openhouse', 'newconstruction'
+        ]);
+
+        if (Auth::user() && Auth::user()->is_admin) {
+            $fields = $fields->merge(['user_id', 'latitude', 'longitude', 'wereda', 'houseno']);
+        }
+        $upload = Upload::subcity()->select($fields->all())->find($id);
+        if (!$upload) {
+            abort(404);
+        }
+
+        if (Auth::user() && Auth::user()->is_admin) {
+            $upload['user_email'] = $upload->user->email;
+        }
+
+        $upload['images'] = count(Storage::allFiles($upload['images']));
+
+        return view('listings.show', $upload);
     }
 
     /**

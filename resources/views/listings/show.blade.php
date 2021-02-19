@@ -31,15 +31,10 @@
                                     @endguest
                                 </div>
                                 <div class="carousel-inner">
-                                    <div class="carousel-item img img-fluid listing-img-carousel active"
-                                        style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2019/07/September2017-54-1600x1279.jpg')">
-                                    </div>
-                                    <div class="carousel-item img img-fluid listing-img-carousel"
-                                        style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2017/10/cam-01-1600x888.jpg')">
-                                    </div>
-                                    <div class="carousel-item img img-fluid listing-img-carousel"
-                                        style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2017/08/dsc7241l-1600x1068.jpg')">
-                                    </div>
+                                    @for($i = 0; $i < $images; ++$i)
+                                        <div class="carousel-item img img-fluid listing-img-carousel @if ($i == 0) active @endif"
+                                             style="background-image: url('{{ route('images', ['id' => $id, 'number' => $i]) }}')"></div>
+                                    @endfor
                                 </div>
                                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
                                     data-slide="prev">
@@ -61,28 +56,26 @@
                             <div class="text text-left font-weight-bolder h3 my-3">Condo</div>
                             <div class="row">
                                 <div class="col-3">
-                                    <div class="text text-left text-info lead"><b class="font-weight-bold">0 </b>Beds</div>
+                                    <div class="text text-left text-info lead"><b class="font-weight-bold">{{ $beds }} </b>Beds</div>
                                 </div>
                                 <div class="col">
-                                    <div class="text text-left text-info lead"><b class="font-weight-bold">0 </b>Baths</div>
+                                    <div class="text text-left text-info lead"><b class="font-weight-bold">{{ $baths }} </b>Baths</div>
                                 </div>
                             </div>
                             <div class="row my-4">
                                 <div class="col">
-                                    <div class="text text-left text-info lead"><b class="h5 font-weight-bold">0 </b>sqmr -
-                                        footprint</div>
+                                    <div class="text text-left text-info lead"><b class="h5 font-weight-bold"> {{ $footprint }} </b>sqmr - footprint</div>
                                 </div>
                                 <div class="col">
-                                    <div class="text text-left text-info lead"><b class="h5 font-weight-bold">0 </b>acre -
-                                        lot</div>
+                                    <div class="text text-left text-info lead"><b class="h5 font-weight-bold"> {{ $lot }} </b>sqmr - lot</div>
                                 </div>
                             </div>
                             @guest
-                                <div class="row h6 lead text text-info">Addis Ababa, Arada, ...</div>
+                                <div class="row h6 lead text text-info">Addis Ababa, {{ $subcity }}</div>
                             @else
-                                <div class="row h6 lead text text-info ml-1">Addis Ababa, Arada, Woreda</div>
+                                <div class="row h6 lead text text-info ml-1">Addis Ababa, {{ $subcity }}</div>
                             @endguest
-                            <div class="text text-left text-secondary h1 mt-4 pt-2">000,000 ETB</div>
+                            <div class="text text-left text-secondary h1 mt-4 pt-2">{{ $price / 100 }} ETB</div>
                         </div>
                     </div>
                 </div>
@@ -90,18 +83,11 @@
                     style="width: 100% !important; margin: 0 !important; background: white !important;">
                     <hr />
                     <div class="row">
-                        <div class="text text-justify" style="width: 62% !important; margin-left: 2rem !important;"><span
-                                class="open-quote"></span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                            convallis ornare justo, non lobortis nunc lobortis finibus. Quisque pretium dapibus sapien nec
-                            tempus. Vestibulum ut turpis id urna placerat sagittis sed sed arcu. Aenean luctus dui eu dui
-                            faucibus, sed consectetur lectus aliquam. Aliquam arcu eros, sollicitudin non commodo quis,
-                            tincidunt a purus. Sed nunc orci, consequat et lectus quis, bibendum eleifend nulla. Class
-                            aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam nec
-                            porta dolor, sit amet pulvinar nunc. Curabitur commodo iaculis mi, eget consequat sapien lacinia
-                            at. Phasellus maximus vulputate eros quis vehicula. Sed congue convallis aliquam. Orci varius
-                            natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam id lorem ante.
-                            Aenean lobortis sed dui eu condimentum. Maecenas mollis lectus mauris, ac varius leo dignissim
-                            sit amet.<span class="close-quote"></span></div>
+                        <div class="text text-justify" style="width: 62% !important; margin-left: 2rem !important;">
+                            <span class="open-quote"></span>
+                            {{ $logline }}
+                            <span class="close-quote"></span>
+                        </div>
                     </div>
                     <div class="col">
                         <div class="row my-3">
@@ -109,7 +95,7 @@
                                 <span class="text text-secondary font-weight-light">Property Type</span>
                             </div>
                             <div class="col-4 text lead">
-                                <span class="text text-secondary font-weight-bold">Condo</span>
+                                <span class="text text-secondary font-weight-bold">{{ $type }}</span>
                             </div>
                         </div>
                         <div class="row my-3">
@@ -117,7 +103,7 @@
                                 <span class="text text-secondary font-weight-light">Year Built</span>
                             </div>
                             <div class="col-4 text lead">
-                                <span class="text text-secondary font-weight-bold">1234</span>
+                                <span class="text text-secondary font-weight-bold">{{ $year }}</span>
                             </div>
                         </div>
                     </div>
@@ -127,7 +113,7 @@
                                 <span class="text text-secondary font-weight-light">Price per sqmr</span>
                             </div>
                             <div class="col-4 text lead">
-                                <span class="text text-secondary font-weight-bold">1000 ETB</span>
+                                <span class="text text-secondary font-weight-bold">{{ $price / 100 / $footprint }} ETB</span>
                             </div>
                         </div>
                         <div class="row my-3">
@@ -135,7 +121,7 @@
                                 <span class="text text-secondary font-weight-light">Status</span>
                             </div>
                             <div class="col-4 text lead">
-                                <span class="text text-secondary font-weight-bold">For sell</span>
+                                <span class="text text-secondary font-weight-bold">For {{ $purchase_status }}</span>
                             </div>
                         </div>
                     </div>
@@ -159,7 +145,7 @@
                             <span class="lead">Video Footage</span>
                         </div>
                         <div class="card-body">
-                            <iframe width="1090" height="409" src="https://www.youtube.com/embed/videoseries?list=mBCPEoSrL-Y"
+                            <iframe width="1090" height="409" src="https://www.youtube.com/embed/{{ $youtube_id }}"
                                 frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </div>
                     </div>
@@ -169,7 +155,7 @@
                             <span class="lead">Video Footage</span>
                         </div>
                         <div class="card-body">
-                            <iframe width="1090" height="409" src="https://www.youtube.com/embed/videoseries?list=mBCPEoSrL-Y"
+                            <iframe width="1090" height="409" src="https://www.youtube.com/embed/{{ $youtube_id }}"
                                 frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </div>
                     </div>

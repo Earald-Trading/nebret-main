@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PagesController@index');
-Route::get('/images/{id}/{number}', 'PagesController@image');
+Route::get('/images/{id}/{number}', 'PagesController@image')->name('images');
 
 // Temporary
-Route::get('/showListing', 'PagesController@showListing');
+Route::get('/listing/{id}', 'UploadController@show');
 
 Auth::routes();
 
