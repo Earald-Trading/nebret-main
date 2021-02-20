@@ -35,6 +35,17 @@ body {
     text-decoration: none !important;
 }
 
+.nav-link-browse {
+    color: rgba(rgb(17, 15, 15), .9);
+    text-decoration: none !important;
+}
+
+.nav-link-browse:hover {
+    color: rgba(rgb(85, 25, 23), .9) !important;
+    text-shadow: 0px 1px 5px rgba(rgb(46, 45, 45), .3) !important;
+    text-decoration: none !important;
+}
+
 .listing-card:hover {
     box-shadow: 1px 2px 5px rgba(rgb(46, 45, 45), .3) !important;
 }

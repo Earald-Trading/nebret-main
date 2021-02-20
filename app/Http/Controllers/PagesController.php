@@ -13,10 +13,20 @@ class PagesController extends Controller
         return view('welcome');
     }
 
-    //Temporary method
+    /**
+     * Temporary Methods
+     *
+     */
     public function showListing(){
         return view('listings.showListing');
     }
+    public function listing(){
+        return view('listings.listings');
+    }
+    /**
+     * End Temoprary Methods
+     *
+     */
 
     public function image($id, $number)
     {
