@@ -19,7 +19,7 @@ Route::get('/images/{id}/{number}', 'PagesController@image')->name('images');
 
 // Temporary
 Route::get('/showListing', 'PagesController@showListing');
-// Route::get('/listings', 'PagesController@listing');
+Route::get('/listings', 'PagesController@listing');
 Route::get('/listing/{id}', 'UploadController@show');
 
 Auth::routes();
