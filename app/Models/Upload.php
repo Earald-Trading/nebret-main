@@ -20,6 +20,12 @@ class Upload extends Model
         'images',
         'youtube_id',
         'logline',
+        'type',
+        'beds',
+        'baths',
+        'footprint',
+        'lot',
+        'year',
         'price',
         'latitude',
         'longitude',
@@ -27,7 +33,9 @@ class Upload extends Model
         'wereda',
         'houseno',
         'featured',
-        'selling'
+        'openhouse',
+        'newconstruction',
+        'foreclosure'
     ];
 
     /**
@@ -44,5 +52,16 @@ class Upload extends Model
     public function admin()
     {
         return $this->belongsTo(User::class, 'admin_id');
+    }
+
+    /**
+     * Scope a query to join and include subcity
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    function scopeSubcity($query)
+    {
+        return $query->join('states', 'uploads.subcity', '=', 'states.id');
     }
 }

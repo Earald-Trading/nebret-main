@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,11 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PagesController@index');
-Route::get('/images/{id}/{number}', 'PagesController@image');
+Route::get('/images/{id}/{number}', 'PagesController@image')->name('images');
 
 // Temporary
 Route::get('/showListing', 'PagesController@showListing');
-Route::get('/listings', 'PagesController@listing');
+// Route::get('/listings', 'PagesController@listing');
+Route::get('/listing/{id}', 'UploadController@show');
 
 Auth::routes();
 
@@ -30,4 +30,6 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth.admin')->group(function () {
     Route::get('/upload', 'UploadController@create')->name('upload.create');
     Route::post('/upload', 'UploadController@store')->name('upload.store');
+    Route::get('/listing/{id}/edit', 'UploadController@edit')->name('upload.edit');
+    Route::post('/listing/{id}/edit', 'UploadController@update')->name('upload.update');
 });

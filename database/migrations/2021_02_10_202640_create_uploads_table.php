@@ -14,21 +14,41 @@ class CreateUploadsTable extends Migration
     public function up()
     {
         Schema::create('uploads', function (Blueprint $table) {
+            // ids
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable(true)->default(null);
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('admin_id');
-            $table->string('images')->nullable(true);
-            $table->string('youtube_id')->nullable(true)->default(null);
+
+            // images
+            $table->string('images', 64);
+            $table->string('youtube_id', 20)->nullable(true)->default(null);
+
+            // description
             $table->text('logline');
-            $table->integer('price')->index();
+            $table->string('type', 20);
+            $table->unsignedTinyInteger('beds');
+            $table->unsignedTinyInteger('baths');
+            $table->unsignedSmallInteger('footprint');
+            $table->unsignedSmallInteger('lot');
+            $table->unsignedSmallInteger('year');
+            $table->unsignedInteger('price')->index();
+
+            // location
             $table->float('latitude', 10, 6);
             $table->float('longitude', 10, 6);
-            $table->string('subcity')->index();
-            $table->string('wereda');
-            $table->string('houseno');
+            $table->unsignedTinyInteger('subcity');
+            $table->unsignedTinyInteger('wereda');
+            $table->string('houseno', 10);
+
+            // misc
             $table->boolean('featured')->default(false);
-            $table->boolean('selling')->default(false);
+            $table->boolean('openhouse')->default(false);
+            $table->boolean('newconstruction')->default(false);
+            $table->enum('purchase_status', ['sale', 'rent', 'foreclosure']);
+
             $table->timestamps();
+
+            $table->foreign('subcity')->references('id')->on('states');
         });
     }
 
