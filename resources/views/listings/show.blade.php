@@ -5,9 +5,6 @@
         style="padding-top: 3rem !important; padding-left: 0.2rem !important; padding-right: 0.2rem !important;">
         <div class="row">
             <div class="col-md-12">
-                <div>
-                    <span class="text text-sm font-smaller">Presented By: <b>username</b></span>
-                </div>
                 <div class="card">
                     <div class="row">
                         <div class="col-md-8">
