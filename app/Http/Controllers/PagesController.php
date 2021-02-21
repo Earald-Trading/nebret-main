@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Upload;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -22,6 +23,17 @@ class PagesController extends Controller
     }
     public function listing(){
         return view('listings.listings');
+    }
+    public function showUser($id){
+        $user = User::select('first_name', 'last_name', 'email', 'is_admin')->find($id);
+        return view('users.showUser')->with('user', $user);
+    }
+    public function user(){
+        $users = User::latest()->paginate(10);
+        return view('users.users')->with('users', $users);
+    }
+    public function editUser(){
+        return view('users.editUser');
     }
     /**
      * End Temoprary Methods

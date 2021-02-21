@@ -22,6 +22,14 @@ Route::get('/showListing', 'PagesController@showListing');
 Route::get('/listings', 'PagesController@listing');
 Route::get('/listing/{id}', 'UploadController@show');
 
+Route::get('/users', 'PagesController@user');
+Route::get('/users/edit', 'PagesController@editUser');
+Route::get('/users/{id}', 'PagesController@showUser');
+
+// For use in Yajra Data-table
+// Route::get('/users', 'UserController@viewUsers');
+// Route::get('/users/list', 'UserController@getUsers')->name('users.list');
+
 Auth::routes();
 
 Route::middleware('auth')->group(function () {

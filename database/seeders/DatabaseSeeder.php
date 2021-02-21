@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Upload;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -58,5 +60,18 @@ This immaculately presented apartment is set amongst manicured grounds within a 
 The floorplan incorporates 2 bedrooms, the main with built-in robe and ensuite, a study nook, modern kitchen with quality appliances, luxurious bathroom, a cleverly concealed laundry, and a spacious living/dining area. The generously proportioned interior flows effortlessly from the open-plan living space to the private covered balcony from which you can admire the views of the garden and beyond.
 EOL
         ]);
+        $faker = Faker::create();
+        $gender = $faker->randomElement(['male', 'female']);
+
+        foreach(range(1, 200) as $index){
+            DB::table('users')->insert([
+                'first_name' => $faker->firstName($gender),
+                'last_name' => $faker->lastName($gender),
+                'email' => $faker->email,
+                // 'phone_number' => $faker->phoneNumber,
+                'password' => Hash::make($faker->word),
+                'is_admin' => $faker->boolean
+            ]);
+        }
     }
 }

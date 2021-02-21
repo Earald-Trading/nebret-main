@@ -75,15 +75,8 @@ body {
 
 .carousel-caption-listing {
     position: absolute !important;
-    // height: auto !important;
-    // width: fit-content !important;
     margin-left: 0 !important;
-    // padding-top: 0 !important;
-    // padding-right: 1px !important;
-    // padding-bottom: 0 !important;
     padding-left: 0 !important;
-    // margin-top: 0 !important;
-    // padding-top: 1 !important;
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
 }
@@ -101,4 +94,11 @@ body {
 .link:checked {
     fill: rgb(211, 6, 6) !important;
     transition: cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
 }
