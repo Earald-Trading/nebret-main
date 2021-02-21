@@ -18,22 +18,19 @@ class PagesController extends Controller
      * Temporary Methods
      *
      */
-    public function showListing(){
-        return view('listings.showListing');
-    }
     public function listing(){
         return view('listings.listings');
     }
     public function showUser($id){
         $user = User::select('first_name', 'last_name', 'email', 'is_admin')->find($id);
-        return view('users.showUser')->with('user', $user);
+        return view('users.show')->with('user', $user);
     }
     public function user(){
         $users = User::latest()->paginate(10);
         return view('users.users')->with('users', $users);
     }
     public function editUser(){
-        return view('users.editUser');
+        return view('users.edit');
     }
     /**
      * End Temoprary Methods
