@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'phone',
         'password',
-        'is_admin'
+        'role'
     ];
 
     /**
@@ -43,4 +43,48 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Is this user an admin
+     *
+     * @param string value
+     * @return bool
+     */
+    public function getIsAdminAttribute()
+    {
+        return $this->role == 'admin';
+    }
+
+    /**
+     * Set this user as admin
+     *
+     * @param bool $value
+     * @return void
+     */
+    public function setIsAdminAttribute()
+    {
+        $this->role = 'admin';
+    }
+
+    /**
+     * Is this user an agent
+     *
+     * @param string value
+     * @return bool
+     */
+    public function getIsAgentAttribute()
+    {
+        return $this->role == 'agent';
+    }
+
+    /**
+     * Set this user as agent
+     *
+     * @param bool $value
+     * @return void
+     */
+    public function setIsAgentAttribute()
+    {
+        $this->role = 'admin';
+    }
 }

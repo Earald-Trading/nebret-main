@@ -22,8 +22,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/about">ABOUT US</a>
                         </li>
-                        @else
-                        @if (Auth::user()->is_admin)
+                    @else
+                        @if (Auth::is_admin())
                             <li class="nav-item">
                                 <a class="nav-link" href="/listings">HOME</a>
                             </li>

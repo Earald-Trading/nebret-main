@@ -178,7 +178,7 @@ class UploadController extends Controller
      */
     public function create()
     {
-        return view('upload', [
+        return view('listings.add', [
             'title' => 'Upload',
             'header' => 'Upload Listing',
             'description' => 'Here you upload a listing by request of user.',
@@ -274,7 +274,7 @@ class UploadController extends Controller
 
         $upload['user_email'] = $upload->user->email;
 
-        return view('upload', [
+        return view('listings.add', [
             'title' => 'Edit',
             'header' => 'Edit Listing.',
             'description' => 'Here you edit a previously uploaded listing.',
@@ -309,16 +309,5 @@ class UploadController extends Controller
         $upload->update($this->makeUpload($request, $folder_name)->all());
 
         return $this->edit($upload->id);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
