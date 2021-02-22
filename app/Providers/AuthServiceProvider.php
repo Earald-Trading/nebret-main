@@ -29,5 +29,8 @@ class AuthServiceProvider extends ServiceProvider
         SessionGuard::macro('is_admin', function() {
             return (Auth::user() && Auth::user()->is_admin);
         });
+        SessionGuard::macro('is_agent', function() {
+            return Auth::is_admin() || (Auth::user() && Auth::user()->is_agent);
+        });
     }
 }
