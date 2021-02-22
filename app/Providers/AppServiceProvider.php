@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
@@ -28,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(191);
+
         Validator::extend('extension', function ($attribute, $value, $parameters, $validator){
             $validator->addReplacer('strip_param', function($message, $attribute, $rule, $parameters) {
                 return str_replace([':param'], implode(', ', $parameters), $message);
@@ -36,5 +38,14 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Paginator::useBootstrap();
+
+        // debug blade by seeing the variables
+        Blade::directive('vars', function() {
+            if (config('app.debug')) {
+                return '<?php dump($__data) ?>';
+            } else {
+                return '';
+            }
+        });
     }
 }
