@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PagesController@index');
 Route::get('/images/{id}/{number}', 'PagesController@image')->name('images');
 
+Route::get('/survey', 'PagesController@survey');
+
 // Temporary
 Route::get('/showListing', 'PagesController@showListing');
 Route::get('/listings', 'PagesController@listing');

@@ -63,7 +63,7 @@
             <div class="row">
                 <div class="my-3 col">
                     <label class="form-label">Description</label>
-                    <textarea name="logline" class="form-control" id="id_logline" required>{{ $data['logline'] ?? '' }}</textarea>
+                    <textarea name="logline" class="ckeditor form-control" id="id_logline" required>{{ $data['logline'] ?? '' }}</textarea>
                 </div>
             </div>
             <div class="row">

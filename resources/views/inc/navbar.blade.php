@@ -1,5 +1,6 @@
 <header role="banner">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <span class="position-absolute trigger"><!-- hidden trigger to apply 'stuck' styles --></span>
+    <nav class="navbar sticky-top navbar-expand-md navbar-light shadow-sm" id="navbar">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}" style="color: red !important;">
                 {{ config('app.name', 'NEBRET') }}

@@ -1,6 +1,7 @@
 @charset "UTF-8";
 body {
-  background-image: linear-gradient(145deg, rgba(214, 211, 247, 0.651), rgba(236, 212, 212, 0.199));
+  background-image: linear-gradient(135deg, #cdf3f2, #e9f7f6f3);
+  color: #112d32 !important;
 }
 
 .carousel-item-landing {
@@ -10,41 +11,53 @@ body {
   background-size: cover;
 }
 
+.navbar .navbar-light {
+  background: #254e56fb !important;
+  box-shadow: 5px 10px #3b3a3ab9 !important;
+  color: #4f4a41 !important;
+}
+
 .nav-link {
-  color: rgba(0, 0, 0, 0.9);
+  color: #4f4a41 !important;
   text-decoration: none !important;
 }
 
 .nav-link:hover {
-  color: rgba(168, 9, 4, 0.9) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
   text-shadow: 0px 1px 5px rgba(46, 45, 45, 0.3) !important;
   -webkit-text-decoration-line: underline !important;
           text-decoration-line: underline !important;
-  text-decoration-thickness: 2px !important;
-  -webkit-text-decoration-color: rgba(168, 9, 4, 0.9) !important;
-          text-decoration-color: rgba(168, 9, 4, 0.9) !important;
+  text-decoration-thickness: 1px !important;
+  -webkit-text-decoration-color: rgba(255, 255, 255, 0.9) !important;
+          text-decoration-color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .nav-link-auth {
-  color: rgba(0, 0, 0, 0.9);
+  color: #4f4a41 !important;
   text-decoration: none !important;
 }
 
 .nav-link-auth:hover {
-  color: rgba(168, 9, 4, 0.9) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
   text-shadow: 0px 1px 5px rgba(46, 45, 45, 0.3) !important;
   text-decoration: none !important;
 }
 
 .nav-link-browse {
-  color: rgba(17, 15, 15, 0.9);
+  color: #4f4a41 !important;
   text-decoration: none !important;
 }
 
 .nav-link-browse:hover {
-  color: rgba(85, 25, 23, 0.9) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
   text-shadow: 0px 1px 5px rgba(46, 45, 45, 0.3) !important;
   text-decoration: none !important;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .listing-card:hover {
@@ -98,9 +111,41 @@ body {
 
 .avatar {
   vertical-align: middle;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
+}
+
+input.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #26404b;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+/* Mark the active step: */
+.step.active {
+  background-color: #301a12;
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4CAF50;
 }
 
 /*!

@@ -14,6 +14,10 @@ class PagesController extends Controller
         return view('welcome');
     }
 
+    public function survey()
+    {
+        return view('survey');
+    }
     /**
      * Temporary Methods
      *
