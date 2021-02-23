@@ -9,20 +9,21 @@
 
     <title>{{ config('app.name', 'Nibret') }}</title>
 
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Icon Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @if(View::hasSection('style'))
+        @yield('style')
+    @endif
 </head>
 <body class="antialiased">
+    <script src="{{ asset('js/app.js') }}"></script>
+
     <div class="relative flex" id="app">
         @include('inc.navbar')
 
@@ -36,8 +37,5 @@
 
         @include('inc.footer')
     </div>
-
-    <script src="{{ asset('js/app.js') }}"></script>
-
 </body>
 </html>

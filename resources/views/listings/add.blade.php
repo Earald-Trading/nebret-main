@@ -8,6 +8,10 @@
     </ul>
 </div>
 @endif
+@section('style')
+    <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+@endsection
+
 @section('content')
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
@@ -16,7 +20,7 @@
     </div>
 </div>
 <div class="container row m-auto p-auto card col-md-7">
-    <form method="POST" action="{{ Request::url() }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ Request::url() }}" enctype="multipart/form-data" id="form">
         <div class="col">
             <div class="row">
                 <div class="my-3 col-8">
@@ -61,11 +65,19 @@
                 </div>
             </div>
             <div class="row">
-                <div class="my-3 col">
+                <div class="my-3 pb-5 col">
                     <label class="form-label">Description</label>
-                    <textarea name="logline" class="ckeditor form-control" id="id_logline" required>{{ $data['logline'] ?? '' }}</textarea>
+                    <textarea name="logline" class="form-control d-none" id="id_logline" required></textarea>
+                    @include('layouts.editor', [
+                        'toolbar' => 'toolbar',
+                        'editor' => 'editor',
+                        'form' => 'form',
+                        'textarea' => 'id_logline',
+                        'class' => 'form-control'
+                    ])
                 </div>
             </div>
+            <div class="row my-3"></div>
             <div class="row">
                 <div class="my-3 col">
                     <label class="form-label">Youtube Video id</label>
@@ -142,11 +154,4 @@
         <button type="submit" class="col mt-5 my-3 btn btn-primary">Submit</button>
     </form>
 </div>
-<!-- Ckeditor 4.16.0 -->
-<script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.ckeditor').ckeditor();
-    });
-</script>
 @endsection
