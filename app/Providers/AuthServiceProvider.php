@@ -30,7 +30,7 @@ class AuthServiceProvider extends ServiceProvider
             return (Auth::user() && Auth::user()->is_admin);
         });
         SessionGuard::macro('is_agent', function() {
-            return Auth::is_admin() || (Auth::user() && Auth::user()->is_agent);
+            return (Auth::user() && Auth::user()->is_agent);
         });
     }
 }

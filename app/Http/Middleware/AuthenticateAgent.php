@@ -7,7 +7,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AuthenticateAdmin
+class AuthenticateAgent
 {
     /**
      * Handle an incoming request.
@@ -19,7 +19,7 @@ class AuthenticateAdmin
      */
     public function handle(Request $request, Closure $next,...$guards)
     {
-        if (Auth::is_admin()) {
+        if (Auth::is_agent()) {
             return $next($request);
         }
 

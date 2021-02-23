@@ -4,9 +4,84 @@ namespace App\Http\Controllers;
 
 Use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    /**
+     * Validate the update method
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param bool $prefs
+     * @throws \Illuminate\Validation\ValidationException
+     * @return void
+     */
+    protected function validateUpdate(Request $request, $prefs = false)
+    {
+        if ($prefs) {
+            $rules = [
+                'first_name'   => 'string|max:255',
+                'last_name'    => 'string|max:255',
+                'email'        => 'string|email|max:255|unique:users',
+                'phone'        => 'numeric|nullable|unique:users|digits:9',
+            ];
+        } else {
+            $rules = [
+                'make_admin'   => 'required_without_all:make_agent,verify_email',
+                'make_agent'   => 'required_without_all:make_admin,verify_email',
+                'verify_email' => 'required_without_all:make_agent,make_admin',
+            ];
+        }
+
+        $request->validate($rules);
+    }
+
+    /**
+     * Update preferences
+     *
+     * @param \Illuminate\Http\Request
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\Response
+     */
+    protected function updatePreferences(Request $request, User $user)
+    {
+        if (isset($request['email']) && $user->email == $request['email']) {
+            unset($request['email']);
+        }
+
+        $this->validateUpdate($request, true);
+
+        $user->update($request->only('first_name', 'last_name', 'email', 'phone'));
+        return redirect()->route('user.profile');
+    }
+
+    /**
+     * Edit User
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\Response
+     */
+    protected function editUser(Request $request, User $user)
+    {
+        if (!$user) {
+            abort(404);
+        }
+
+        $this->validateUpdate($request);
+
+        if (isset($request['make_admin'])) {
+            $user->is_admin = true;
+        } else if(isset($request['make_agent'])) {
+            $user->is_agent = true;
+        } else {
+            $user->email_verified_at = now();
+        }
+
+        $user->save();
+
+        return redirect()->route('users.show', ['id' => $user->id]);
+    }
 
     /**
      * Display a listing of the resource.
@@ -15,7 +90,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.search');
+        $users = User::paginate(10);
+        return view('users.users')->with('users', $users);
     }
 
     /**
@@ -24,8 +100,28 @@ class UserController extends Controller
      * @param  string  $email
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function profile()
     {
+        $user = Auth::user();
+
+        if (!$user) {
+            abort(404);
+        }
+        return view('users.show', $user);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  string  $email
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id = null)
+    {
+        if (Auth::user()->id == $id) {
+            return redirect()->route('user.profile');
+        }
+
         $user = User::find($id);
 
         if (!$user) {
@@ -41,19 +137,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id = null)
     {
-        //
+        if (Auth::user()->id == $id || $id == null) {
+            return $this->updatePreferences($request, Auth::user());
+        } else {
+            $user = User::find($id);
+            return $this->editUser($request, $user);
+        }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function edit()
     {
-        //
+        return view('users.edit', Auth::user());
     }
 }

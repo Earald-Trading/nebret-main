@@ -25,9 +25,6 @@
                     <th scope="col">Phone Number</th>
                     <th scope="col">Type</th>
                     <th scope="col"></th>
-                    {{-- @if (Auth::user()->is_admin) --}}
-                        <th scope="col"></th>
-                    {{-- @endif --}}
                 </tr>
             </thead>
             <tbody>
@@ -38,11 +35,8 @@
                         <td>{{$user->first_name}} {{$user->last_name}}</td>
                         <td>{{$user->email}}</td>
                         <td>--</td>
-                        <td class="text-info">@if($user->is_admin) Admin @else User @endif</td>
+                        <td class="text-info">@if($user->is_admin) Admin @elseif ($user->is_agent) Agent @else User @endif</td>
                         <td><a href="/users/{{$user->id}}">View Detail</a></td>
-                        {{-- @if (Auth::user()->id) --}}
-                            <td><button class="btn btn-sm btn-outline-danger">Delete</button></td>
-                        {{-- @endif --}}
                     </tr>
                     @endforeach
                 @endif
