@@ -12,24 +12,35 @@ body {
 }
 
 .navbar .navbar-light {
-  background: #254e56fb !important;
-  box-shadow: 5px 10px #3b3a3ab9 !important;
+  background-color: #fffffffb !important;
+  box-shadow: 5px 10px rgba(46, 45, 45, 0.3) !important;
   color: #4f4a41 !important;
 }
 
 .nav-link {
-  color: #4f4a41 !important;
+  color: #112d32 !important;
   text-decoration: none !important;
 }
 
 .nav-link:hover {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: #4f4a41 !important;
   text-shadow: 0px 1px 5px rgba(46, 45, 45, 0.3) !important;
   -webkit-text-decoration-line: underline !important;
           text-decoration-line: underline !important;
   text-decoration-thickness: 1px !important;
-  -webkit-text-decoration-color: rgba(255, 255, 255, 0.9) !important;
-          text-decoration-color: rgba(255, 255, 255, 0.9) !important;
+  -webkit-text-decoration-color: #4f4a41 !important;
+          text-decoration-color: #4f4a41 !important;
+  font-weight: bold !important;
+}
+
+.nav-link:active {
+  color: #705843 !important;
+  -webkit-text-decoration-line: underline !important;
+          text-decoration-line: underline !important;
+  text-decoration-thickness: 1px !important;
+  -webkit-text-decoration-color: #705843 !important;
+          text-decoration-color: #705843 !important;
+  font-weight: bold !important;
 }
 
 .nav-link-auth {
@@ -38,9 +49,10 @@ body {
 }
 
 .nav-link-auth:hover {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: #4f4a41 !important;
   text-shadow: 0px 1px 5px rgba(46, 45, 45, 0.3) !important;
   text-decoration: none !important;
+  font-weight: bold !important;
 }
 
 .nav-link-browse {
@@ -49,15 +61,10 @@ body {
 }
 
 .nav-link-browse:hover {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: #4f4a41 !important;
   text-shadow: 0px 1px 5px rgba(46, 45, 45, 0.3) !important;
   text-decoration: none !important;
-}
-
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
+  font-weight: bold !important;
 }
 
 .listing-card:hover {

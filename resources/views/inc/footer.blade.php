@@ -4,8 +4,8 @@
             <div class="container">
                 <div class="row">
 
-                    <!--About AFMA-->
-                    <div class="col-xs-12 col-sm-6 col-md-3">
+                    <!--About AMTES-->
+                    <div class="col-xs-12 col-sm-6 col-md-3 mt-3">
                         <div class="widget subscribe no-box">
                             <h5 class="widget-title font-weight-bold my-0 py-0">AMTES Asset Management<span></span></h5>
                             <hr class="footer-horizontal-break mt-0 pt-0 ml-0">
@@ -37,7 +37,7 @@
                             <hr class="footer-horizontal-break mt-0 pt-0 w-50 ml-0">
                             <ul class="thumbnail-widget list-unstyled">
                                 <li>
-                                    <div class="thumb-content"><a href="#.">Lisings</a></div>
+                                    <div class="thumb-content"><a href="#.">Listings</a></div>
                                 </li>
                                 {{-- <li>
                                     <div class="thumb-content"><a href="#.">Top Leaders</a></div>
@@ -66,6 +66,9 @@
                         <div class="widget no-box">
                             <h5 class="widget-title my-0 py-0">Connect with Us<span></span></h5>
                             <hr class="footer-horizontal-break mt-0 pt-0 w-75 ml-0">
+                            <p class="w-100 mb-4">If you have any property to sell or rent, contact us with the following ...</p>
+                            <p class="mt-1 mb-0">(+251) 912-140-906</p>
+                            <p class="mt-1 mb-2">(+251) 921-161-210</p>
                             <p><a href="mailto:info@domain.com" title="glorythemes">info@domain.com</a></p>
                             <ul class="social-footer list-inline ml-3">
                                 <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank" title="Facebook" class="fa fa-facebook button button-primary"></a></li>

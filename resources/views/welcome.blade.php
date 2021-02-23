@@ -2,6 +2,11 @@
 
 @section('content')
 
+<div class="row">
+    <div class="navbar navbar-expand w-100 text-center" style="background: #c1c4db !important;">
+        <span style="width: fit-content !important; margin: auto !important;">We are collecting a survey to help us understand more about you, our customers. And we would highly appreciate it, if you would fill you the form in <a href="/survey"> this link</a>. Thank you and keep safe!</span>
+    </div>
+</div>
 <!-- Carousel Section -->
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
