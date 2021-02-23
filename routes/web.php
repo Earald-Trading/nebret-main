@@ -20,26 +20,26 @@ Route::get('/images/{id}/{number}', 'PagesController@image')->name('images');
 Route::get('/survey', 'PagesController@survey');
 
 // Temporary
-Route::get('/showListing', 'PagesController@showListing');
-Route::get('/listings', 'PagesController@listing');
-Route::get('/listing/{id}', 'UploadController@show');
-
-Route::get('/users', 'PagesController@user');
-Route::get('/users/edit', 'PagesController@editUser');
-Route::get('/users/{id}', 'PagesController@showUser');
-
-// For use in Yajra Data-table
-// Route::get('/users', 'UserController@viewUsers');
-// Route::get('/users/list', 'UserController@getUsers')->name('users.list');
+Route::get('/listings', 'UploadController@index');
+Route::get('/listings/{id}', 'UploadController@show');
 
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/preferences', 'UserController@edit')->name('user.edit');
+    Route::post('/preferences', 'UserController@update')->name('user.update');
+    Route::get('/profile', 'UserController@profile')->name('user.profile');
 });
+
 Route::middleware('auth.admin')->group(function () {
+    Route::get('/users', 'UserController@index');
+    Route::get('/users/{id}', 'UserController@show')->name('users.show');
+    Route::post('/users/{id}/edit', 'UserController@update')->name('users.update');
+
     Route::get('/upload', 'UploadController@create')->name('upload.create');
     Route::post('/upload', 'UploadController@store')->name('upload.store');
-    Route::get('/listing/{id}/edit', 'UploadController@edit')->name('upload.edit');
-    Route::post('/listing/{id}/edit', 'UploadController@update')->name('upload.update');
+
+    Route::get('/listings/{id}/edit', 'UploadController@edit')->name('upload.edit');
+    Route::post('/listings/{id}/edit', 'UploadController@update')->name('upload.update');
 });

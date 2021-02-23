@@ -45,6 +45,16 @@ class User extends Authenticatable
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'is_admin',
+        'is_agent'
+    ];
+
+    /**
      * Is this user an admin
      *
      * @param string value
@@ -74,7 +84,7 @@ class User extends Authenticatable
      */
     public function getIsAgentAttribute()
     {
-        return $this->role == 'agent';
+        return $this->is_admin || $this->role == 'agent';
     }
 
     /**
@@ -85,6 +95,6 @@ class User extends Authenticatable
      */
     public function setIsAgentAttribute()
     {
-        $this->role = 'admin';
+        $this->role = 'agent';
     }
 }

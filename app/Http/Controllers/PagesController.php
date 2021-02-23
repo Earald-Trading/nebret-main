@@ -18,29 +18,14 @@ class PagesController extends Controller
     {
         return view('survey');
     }
-    /**
-     * Temporary Methods
-     *
-     */
-    public function listing(){
-        return view('listings.listings');
-    }
-    public function showUser($id){
-        $user = User::select('first_name', 'last_name', 'email', 'is_admin')->find($id);
-        return view('users.show')->with('user', $user);
-    }
-    public function user(){
-        $users = User::latest()->paginate(10);
-        return view('users.users')->with('users', $users);
-    }
-    public function editUser(){
-        return view('users.edit');
-    }
-    /**
-     * End Temoprary Methods
-     *
-     */
 
+    /**
+     * Get images form storage
+     *
+     * @param int $id
+     * @param int $number
+     * @return \Illuminate\Http\Response
+     */
     public function image($id, $number)
     {
         $upload = Upload::find($id);

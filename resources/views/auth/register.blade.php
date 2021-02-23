@@ -62,7 +62,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">+251</span>
                                 </div>
-                                <input id="email" type="numeric" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="Phone number (optional)" autocomplete="email">
+                                <input id="phone" type="numeric" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="Phone number (optional)">
 
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">

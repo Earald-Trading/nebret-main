@@ -19,7 +19,7 @@ class AuthenticateAdmin
      */
     public function handle(Request $request, Closure $next,...$guards)
     {
-        if (Auth::check() && $request->user()->is_admin == true) {
+        if (Auth::is_admin()) {
             return $next($request);
         }
 
