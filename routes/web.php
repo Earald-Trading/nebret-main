@@ -32,14 +32,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', 'UserController@profile')->name('user.profile');
 });
 
-Route::middleware('auth.admin')->group(function () {
-    Route::get('/users', 'UserController@index');
-    Route::get('/users/{id}', 'UserController@show')->name('users.show');
-    Route::post('/users/{id}/edit', 'UserController@update')->name('users.update');
-
+Route::middleware('auth.agent')->group(function() {
     Route::get('/upload', 'UploadController@create')->name('upload.create');
     Route::post('/upload', 'UploadController@store')->name('upload.store');
 
     Route::get('/listings/{id}/edit', 'UploadController@edit')->name('upload.edit');
     Route::post('/listings/{id}/edit', 'UploadController@update')->name('upload.update');
+});
+
+Route::middleware('auth.admin')->group(function () {
+    Route::get('/users', 'UserController@index');
+    Route::get('/users/{id}', 'UserController@show')->name('users.show');
+    Route::post('/users/{id}/edit', 'UserController@update')->name('users.update');
 });
