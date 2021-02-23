@@ -142,4 +142,11 @@
         <button type="submit" class="col mt-5 my-3 btn btn-primary">Submit</button>
     </form>
 </div>
+<!-- Ckeditor 4.16.0 -->
+<script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.ckeditor').ckeditor();
+    });
+</script>
 @endsection
