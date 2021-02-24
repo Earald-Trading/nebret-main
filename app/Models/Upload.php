@@ -19,8 +19,10 @@ class Upload extends Model
         'admin_id',
         'images',
         'youtube_id',
-        'logline',
-        'type',
+        'description',
+        'comparative_analysis',
+        'house_type',
+        'listing_type',
         'beds',
         'baths',
         'footprint',
@@ -35,7 +37,8 @@ class Upload extends Model
         'featured',
         'openhouse',
         'newconstruction',
-        'foreclosure'
+        'reduced_price',
+        'job_finished'
     ];
 
     /**
@@ -52,16 +55,5 @@ class Upload extends Model
     public function admin()
     {
         return $this->belongsTo(User::class, 'admin_id');
-    }
-
-    /**
-     * Scope a query to join and include subcity
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    function scopeSubcity($query)
-    {
-        return $query->join('states', 'uploads.subcity', '=', 'states.id');
     }
 }

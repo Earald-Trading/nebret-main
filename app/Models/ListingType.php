@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class State extends Model
+class ListingType extends Model
 {
     /**
      * Indicates if the model should be timestamped.
@@ -18,7 +18,7 @@ class State extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'state';
+    protected $primaryKey = 'type';
 
     /**
      * The "type" of the primary key ID.

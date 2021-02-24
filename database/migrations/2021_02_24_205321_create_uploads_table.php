@@ -24,8 +24,10 @@ class CreateUploadsTable extends Migration
             $table->string('youtube_id', 20)->nullable(true)->default(null);
 
             // description
-            $table->text('logline');
-            $table->string('type', 20);
+            $table->text('description');
+            $table->text('comparative_analysis');
+            $table->string('house_type', 25);
+            $table->string('listing_type', 25);
             $table->unsignedTinyInteger('beds');
             $table->unsignedTinyInteger('baths');
             $table->unsignedSmallInteger('footprint');
@@ -36,7 +38,7 @@ class CreateUploadsTable extends Migration
             // location
             $table->float('latitude', 10, 6);
             $table->float('longitude', 10, 6);
-            $table->unsignedTinyInteger('subcity');
+            $table->string('subcity', 25);
             $table->unsignedTinyInteger('wereda');
             $table->string('houseno', 10);
 
@@ -44,11 +46,14 @@ class CreateUploadsTable extends Migration
             $table->boolean('featured')->default(false);
             $table->boolean('openhouse')->default(false);
             $table->boolean('newconstruction')->default(false);
-            $table->enum('purchase_status', ['sale', 'rent', 'foreclosure']);
+            $table->boolean('reduced_price')->default(false);
+            $table->boolean('job_finished')->default(false);
 
             $table->timestamps();
 
-            $table->foreign('subcity')->references('id')->on('states');
+            $table->foreign('subcity')->references('state')->on('states');
+            $table->foreign('listing_type')->references('type')->on('listing_types');
+            $table->foreign('house_type')->references('type')->on('house_types');
         });
     }
 

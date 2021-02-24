@@ -15,22 +15,21 @@ class CreateStatesTable extends Migration
     public function up()
     {
         Schema::create('states', function (Blueprint $table) {
-            $table->tinyIncrements('id');
-            $table->string('name', 25)->unique();
+            $table->string('state', 25)->primary();
         });
 
         DB::table('states')->insert([
-            ['name' => 'Addis Ketema'],
-            ['name' => 'Akaky Kaliti'],
-            ['name' => 'Arada'],
-            ['name' => 'Bole'],
-            ['name' => 'Gullele'],
-            ['name' => 'Kirkos'],
-            ['name' => 'Kolfe Keranio'],
-            ['name' => 'Lemi Kura'],
-            ['name' => 'Lideta'],
-            ['name' => 'Nifas Silk-Lafto'],
-            ['name' => 'Yeka']
+            ['state' => 'Addis Ketema'],
+            ['state' => 'Akaky Kaliti'],
+            ['state' => 'Arada'],
+            ['state' => 'Bole'],
+            ['state' => 'Gullele'],
+            ['state' => 'Kirkos'],
+            ['state' => 'Kolfe Keranio'],
+            ['state' => 'Lemi Kura'],
+            ['state' => 'Lideta'],
+            ['state' => 'Nifas Silk-Lafto'],
+            ['state' => 'Yeka']
         ]);
     }
 
