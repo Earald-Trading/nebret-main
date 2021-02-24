@@ -14,7 +14,7 @@ body {
 
 .navbar .navbar-light {
     background-color: #fffffffb !important;
-    box-shadow: 5px 10px rgba(rgb(46, 45, 45), .3) !important;
+    box-shadow: 5px 10px rgba(rgb(46, 45, 45), 0.3) !important;
     color: #4f4a41 !important;
 }
 
@@ -31,7 +31,7 @@ body {
 
 .nav-link:hover {
     color: #4f4a41 !important;
-    text-shadow: 0px 1px 5px rgba(rgb(46, 45, 45), .3) !important;
+    text-shadow: 0px 1px 5px rgba(rgb(46, 45, 45), 0.3) !important;
     text-decoration-line: underline !important;
     text-decoration-thickness: 1px !important;
     text-decoration-color: #4f4a41 !important;
@@ -53,7 +53,7 @@ body {
 
 .nav-link-auth:hover {
     color: #4f4a41 !important;
-    text-shadow: 0px 1px 5px rgba(rgb(46, 45, 45), .3) !important;
+    text-shadow: 0px 1px 5px rgba(rgb(46, 45, 45), 0.3) !important;
     text-decoration: none !important;
     font-weight: bold !important;
 }
@@ -65,7 +65,7 @@ body {
 
 .nav-link-browse:hover {
     color: #4f4a41 !important;
-    text-shadow: 0px 1px 5px rgba(rgb(46, 45, 45), .3) !important;
+    text-shadow: 0px 1px 5px rgba(rgb(46, 45, 45), 0.3) !important;
     text-decoration: none !important;
     font-weight: bold !important;
 }
@@ -77,20 +77,22 @@ body {
 // }
 
 .listing-card:hover {
-    box-shadow: 1px 2px 5px rgba(rgb(46, 45, 45), .3) !important;
+    box-shadow: 1px 2px 5px rgba(rgb(46, 45, 45), 0.3) !important;
 }
 
-.map-container-5{overflow:hidden;
-    padding-bottom:56.25%;
-    position:relative;
-    height:0;
+.map-container-5 {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
 }
 
-.map-container-5 iframe{left:0;
-    top:0;
-    height:100%;
-    width:100%;
-    position:absolute;
+.map-container-5 iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
 }
 
 .listing-img-carousel {
@@ -135,15 +137,15 @@ body {
 
 input.invalid {
     background-color: #ffdddd;
-  }
+}
 
-  /* Hide all steps by default: */
-  .tab {
+/* Hide all steps by default: */
+.tab {
     display: none;
-  }
+}
 
-  /* Make circles that indicate the steps of the form: */
-  .step {
+/* Make circles that indicate the steps of the form: */
+.step {
     height: 15px;
     width: 15px;
     margin: 0 2px;
@@ -152,15 +154,15 @@ input.invalid {
     border-radius: 50%;
     display: inline-block;
     opacity: 0.5;
-  }
+}
 
-  /* Mark the active step: */
-  .step.active {
+/* Mark the active step: */
+.step.active {
     background-color: #301a12;
     opacity: 1;
-  }
+}
 
-  /* Mark the steps that are finished and valid: */
-  .step.finish {
-    background-color: #4CAF50;
-  }
+/* Mark the steps that are finished and valid: */
+.step.finish {
+    background-color: #4caf50;
+}

@@ -4,7 +4,7 @@
     <div class="container" style="width: 90% !important; margin: auto !important;">
         <div class="row justify-content-center my-4">
             <img src="https://cdn.pixabay.com/photo/2014/03/24/17/19/teacher-295387_960_720.png" alt="Avatar"
-                                                                                                 class="avatar">
+                class="avatar">
         </div>
         <div class="text-center mt-5 mb-1 h3">{{ $first_name }} {{ $last_name }}</div>
         <div class="text-center lead mt-0 mb-3">

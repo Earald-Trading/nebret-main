@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', 'UserController@profile')->name('user.profile');
 });
 
-Route::middleware('auth.agent')->group(function() {
+Route::middleware('auth.agent')->group(function () {
     Route::get('/upload', 'UploadController@create')->name('upload.create');
     Route::post('/upload', 'UploadController@store')->name('upload.store');
 

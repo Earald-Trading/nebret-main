@@ -87,15 +87,18 @@
     Quill.register(SizeStyle, true);
     Quill.register(fontSizeStyle, true);
     var editor = new Quill('#{{ $editor }}', {
-            modules: { toolbar: '#{{ $toolbar }}' },
-            theme: 'snow',
-            formats: formats
+        modules: {
+            toolbar: '#{{ $toolbar }}'
+        },
+        theme: 'snow',
+        formats: formats
     });
 
     $('#{{ $form }}').submit(function(e) {
-            var myEditor = document.querySelector('#editor')
-            var html = myEditor.children[0].innerHTML
-            $('#{{ $textarea }}').value = html;
-            return true;
+        var myEditor = document.querySelector('#editor')
+        var html = myEditor.children[0].innerHTML
+        $('#{{ $textarea }}').value = html;
+        return true;
     });
+
 </script>

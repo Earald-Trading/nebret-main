@@ -28,9 +28,10 @@
                                     @endguest
                                 </div>
                                 <div class="carousel-inner">
-                                    @for($i = 0; $i < $images; ++$i)
-                                        <div class="carousel-item img img-fluid listing-img-carousel @if ($i == 0) active @endif"
-                                             style="background-image: url('{{ route('images', ['id' => $id, 'number' => $i]) }}')"></div>
+                                    @for ($i = 0; $i < $images; ++$i)
+                                        <div class="carousel-item img img-fluid listing-img-carousel @if ($i==0) active @endif"
+                                            style="background-image: url('{{ route('images', ['id' => $id, 'number' => $i]) }}')">
+                                        </div>
                                     @endfor
                                 </div>
                                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
@@ -53,18 +54,22 @@
                             <div class="text text-left font-weight-bolder h3 my-3">Condo</div>
                             <div class="row">
                                 <div class="col-3">
-                                    <div class="text text-left text-info lead"><b class="font-weight-bold">{{ $beds }} </b>Beds</div>
+                                    <div class="text text-left text-info lead"><b
+                                            class="font-weight-bold">{{ $beds }} </b>Beds</div>
                                 </div>
                                 <div class="col">
-                                    <div class="text text-left text-info lead"><b class="font-weight-bold">{{ $baths }} </b>Baths</div>
+                                    <div class="text text-left text-info lead"><b
+                                            class="font-weight-bold">{{ $baths }} </b>Baths</div>
                                 </div>
                             </div>
                             <div class="row my-4">
                                 <div class="col">
-                                    <div class="text text-left text-info lead"><b class="h5 font-weight-bold"> {{ $footprint }} </b>sqmr - footprint</div>
+                                    <div class="text text-left text-info lead"><b class="h5 font-weight-bold">
+                                            {{ $footprint }} </b>sqmr - footprint</div>
                                 </div>
                                 <div class="col">
-                                    <div class="text text-left text-info lead"><b class="h5 font-weight-bold"> {{ $lot }} </b>sqmr - lot</div>
+                                    <div class="text text-left text-info lead"><b class="h5 font-weight-bold">
+                                            {{ $lot }} </b>sqmr - lot</div>
                                 </div>
                             </div>
                             @guest
@@ -110,7 +115,8 @@
                                 <span class="text text-secondary font-weight-light">Price per sqmr</span>
                             </div>
                             <div class="col-4 text lead">
-                                <span class="text text-secondary font-weight-bold">{{ $price / 100 / $footprint }} ETB</span>
+                                <span class="text text-secondary font-weight-bold">{{ $price / 100 / $footprint }}
+                                    ETB</span>
                             </div>
                         </div>
                         <div class="row my-3">

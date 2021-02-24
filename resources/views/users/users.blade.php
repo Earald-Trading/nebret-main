@@ -28,16 +28,19 @@
                 </tr>
             </thead>
             <tbody>
-                @if(count($users) > 0 && isset($users))
+                @if (count($users) > 0 && isset($users))
                     @foreach ($users as $user)
-                    <tr>
-                        <th scope="row">{{$user->id}}</th>
-                        <td>{{$user->first_name}} {{$user->last_name}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>--</td>
-                        <td class="text-info">@if($user->is_admin) Admin @elseif ($user->is_agent) Agent @else User @endif</td>
-                        <td><a href="/users/{{$user->id}}">View Detail</a></td>
-                    </tr>
+                        <tr>
+                            <th scope="row">{{ $user->id }}</th>
+                            <td>{{ $user->first_name }} {{ $user->last_name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>--</td>
+                            <td class="text-info">
+                            @if ($user->is_admin) Admin @elseif ($user->is_agent) Agent
+                                @else User @endif
+                            </td>
+                            <td><a href="/users/{{ $user->id }}">View Detail</a></td>
+                        </tr>
                     @endforeach
                 @endif
             </tbody>
