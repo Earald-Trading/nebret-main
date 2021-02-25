@@ -19,6 +19,10 @@ class PagesController extends Controller
         return view('survey');
     }
 
+    public function about()
+    {
+        return view('about');
+    }
     /**
      * Get images form storage
      *

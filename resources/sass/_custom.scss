@@ -1,5 +1,5 @@
 body {
-    background-image: linear-gradient(135deg, #cdf3f2, #e9f7f6f3);
+    background-image: linear-gradient(135deg, #e2f8f7, #fffffff3);
     color: #112d32 !important;
 }
 .carousel-item-landing {
@@ -17,12 +17,6 @@ body {
     box-shadow: 5px 10px rgba(rgb(46, 45, 45), .3) !important;
     color: #4f4a41 !important;
 }
-
-// .bg-light {
-//     background-color: #254e56 !important;
-//     box-shadow: 5px 10px #3b3a3ab9 !important;
-//     color: #4f4a41 !important;
-// }
 
 .nav-link {
     color: #112d32 !important;
@@ -69,12 +63,6 @@ body {
     text-decoration: none !important;
     font-weight: bold !important;
 }
-
-// .sticky {
-//     position: fixed;
-//     top: 0;
-//     width: 100%;
-// }
 
 .listing-card:hover {
     box-shadow: 1px 2px 5px rgba(rgb(46, 45, 45), .3) !important;
@@ -132,35 +120,3 @@ body {
     height: 150px;
     border-radius: 50%;
 }
-
-input.invalid {
-    background-color: #ffdddd;
-  }
-
-  /* Hide all steps by default: */
-  .tab {
-    display: none;
-  }
-
-  /* Make circles that indicate the steps of the form: */
-  .step {
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #26404b;
-    border: none;
-    border-radius: 50%;
-    display: inline-block;
-    opacity: 0.5;
-  }
-
-  /* Mark the active step: */
-  .step.active {
-    background-color: #301a12;
-    opacity: 1;
-  }
-
-  /* Mark the steps that are finished and valid: */
-  .step.finish {
-    background-color: #4CAF50;
-  }

@@ -19,6 +19,8 @@ Route::get('/images/{id}/{number}', 'PagesController@image')->name('images');
 
 Route::get('/survey', 'PagesController@survey');
 
+Route::get('/about', 'PagesController@about');
+
 // Temporary
 Route::get('/listings', 'UploadController@index');
 Route::get('/listings/{id}', 'UploadController@show');
