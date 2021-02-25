@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-Use App\Models\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -72,7 +72,7 @@ class UserController extends Controller
 
         if (isset($request['make_admin'])) {
             $user->is_admin = true;
-        } else if(isset($request['make_agent'])) {
+        } else if (isset($request['make_agent'])) {
             $user->is_agent = true;
         } else {
             $user->email_verified_at = now();

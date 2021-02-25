@@ -26,10 +26,10 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        SessionGuard::macro('is_admin', function() {
+        SessionGuard::macro('is_admin', function () {
             return (Auth::user() && Auth::user()->is_admin);
         });
-        SessionGuard::macro('is_agent', function() {
+        SessionGuard::macro('is_agent', function () {
             return (Auth::user() && Auth::user()->is_agent);
         });
     }

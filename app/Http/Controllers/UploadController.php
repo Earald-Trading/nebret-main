@@ -29,21 +29,22 @@ class UploadController extends Controller
         $request->validate([
             'user_email' => "{$required_rule}string|email|exists:users,email",
             'price' => "{$required_rule}numeric",
-            'type' =>  "{$required_rule}string",
+            'house_type' =>  "{$required_rule}string|exists:house_types,type",
             'beds' => "{$required_rule}integer",
             'baths' => "{$required_rule}integer",
             'footprint' => "{$required_rule}integer",
             'lot' => "{$required_rule}integer",
             'year' => "{$required_rule}integer",
-            'logline' => "{$required_rule}string",
+            'description' => "{$required_rule}string",
+            'comparative_analysis' => "{$required_rule}string",
             'youtube_id' => "{$required_rule}string|size:11",
             'images' => "{$required_rule}file|mimes:zip",
             'latitude' => "{$required_rule}numeric",
             'longitude' => "{$required_rule}numeric",
-            'subcity' => "{$required_rule}string|exists:states,name",
+            'subcity' => "{$required_rule}string|exists:states,state",
             'wereda' => "{$required_rule}integer",
             'houseno' => "{$required_rule}string",
-            'purchase_status' => "{$required_rule}in:sale,rent,foreclosure",
+            'listing_type' => "{$required_rule}string|exists:listing_types,type",
             'featured' => 'in:on,1,true',
             'openhouse' => 'in:on,1,true',
             'newconstruction' => 'in:on,1,true'
@@ -124,19 +125,21 @@ class UploadController extends Controller
     protected function makeUpload(Request $request, $folder_name)
     {
         $collection = collect($request->only(
-            'type',
+            'house_type',
             'beds',
             'baths',
             'footprint',
             'lot',
             'year',
-            'logline',
+            'description',
+            'comparative_analysis',
             'youtube_id',
             'latitude',
             'longitude',
+            'subcity',
             'wereda',
             'houseno',
-            'purchase_status',
+            'listing_type',
             'featured',
             'openhouse',
             'newconstruction',
@@ -152,11 +155,6 @@ class UploadController extends Controller
         if (isset($request['price'])) {
             $collection['price'] =  (int)((float)$request['price'] * 100);
         }
-
-        if (isset($request['subcity'])) {
-            $collection['subcity'] =  State::where('name', $request['subcity'])->first()->id;
-        }
-
 
         return $collection;
     }
@@ -182,7 +180,6 @@ class UploadController extends Controller
             'title' => 'Upload',
             'header' => 'Upload Listing',
             'description' => 'Here you upload a listing by request of user.',
-            'subcity' => State::select('name')->get()
         ]);
     }
 
@@ -194,13 +191,14 @@ class UploadController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->input());
         $this->validateRequest($request);
         $images = $this->validateZip($request->file('images'));
         $folder_name = $this->storeImages($request, $images);
 
-        Upload::create($this->makeUpload($request, $folder_name)->all());
+        $upload = Upload::create($this->makeUpload($request, $folder_name)->all());
 
-        return $this->create();
+        return redirect()->route('listings.show', ['id', $upload->id]);
     }
 
     /**
@@ -212,21 +210,26 @@ class UploadController extends Controller
     public function show($id)
     {
         $fields = collect([
-            'uploads.id as id', 'price', 'type', 'beds', 'baths', 'footprint',
-            'lot', 'year', 'logline', 'images', 'youtube_id',
-            'states.name as subcity',
-            'purchase_status', 'featured', 'openhouse', 'newconstruction'
+            'id', 'images', 'youtube_id', 'description', 'house_type',
+            'listing_type', 'beds', 'baths', 'footprint', 'lot',
+            'year', 'price', 'subcity', 'featured', 'openhouse',
+            'newconstruction', 'reduced_price', 'job_finished', 'updated_at'
         ]);
 
-        if (Auth::is_admin()) {
-            $fields = $fields->merge(['user_id', 'latitude', 'longitude', 'wereda', 'houseno']);
+        if (Auth::user()) {
+            $fields = $fields->merge(['comparative_analysis', 'latitude', 'longitude']);
         }
-        $upload = Upload::subcity()->select($fields->all())->find($id);
+
+        if (Auth::is_agent()) {
+            $fields = $fields->merge(['user_id', 'wereda', 'houseno']);
+        }
+
+        $upload = Upload::select($fields->all())->find($id);
         if (!$upload) {
             abort(404);
         }
 
-        if (Auth::is_admin()) {
+        if (Auth::is_agent()) {
             $upload['user_email'] = $upload->user->email;
         }
 
@@ -243,28 +246,30 @@ class UploadController extends Controller
      */
     public function edit($id)
     {
-        $upload = Upload::subcity()
-            ->select(
+        $upload = Upload::select(
                 'user_id',
-                'price',
-                'type',
+                'images',
+                'youtube_id',
+                'description',
+                'comparative_analysis',
+                'house_type',
+                'listing_type',
                 'beds',
                 'baths',
                 'footprint',
                 'lot',
                 'year',
-                'logline',
-                'images',
-                'youtube_id',
+                'price',
                 'latitude',
                 'longitude',
-                'states.name as subcity',
+                'subcity',
                 'wereda',
                 'houseno',
-                'purchase_status',
                 'featured',
                 'openhouse',
                 'newconstruction',
+                'reduced_price',
+                'job_finished'
             )
             ->find($id);
 
@@ -278,8 +283,8 @@ class UploadController extends Controller
             'title' => 'Edit',
             'header' => 'Edit Listing.',
             'description' => 'Here you edit a previously uploaded listing.',
-            'subcity' => State::select('name')->get(),
-            'data' => $upload
+            'data' => $upload,
+            'route' => route('listings.update', ['id' => $id])
         ]);
     }
 

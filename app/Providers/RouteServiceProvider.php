@@ -47,6 +47,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
+        if(app('request')->secure() || app('request')->header('x-forwarded-proto') == 'https') {
+            app('url')->forceScheme('https');
+        }
     }
 
     /**

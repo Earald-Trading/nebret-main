@@ -22,8 +22,8 @@ Route::get('/survey', 'PagesController@survey');
 Route::get('/about', 'PagesController@about');
 
 // Temporary
-Route::get('/listings', 'UploadController@index');
-Route::get('/listings/{id}', 'UploadController@show');
+Route::get('/listings', 'UploadController@index')->name('listings');
+Route::get('/listings/{id}', 'UploadController@show')->name('listings.show');
 
 Auth::routes();
 
@@ -34,12 +34,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', 'UserController@profile')->name('user.profile');
 });
 
-Route::middleware('auth.agent')->group(function() {
-    Route::get('/upload', 'UploadController@create')->name('upload.create');
-    Route::post('/upload', 'UploadController@store')->name('upload.store');
+Route::middleware('auth.agent')->group(function () {
+    Route::get('/upload', 'UploadController@create')->name('listings.create');
+    Route::post('/upload', 'UploadController@store')->name('listings.store');
 
-    Route::get('/listings/{id}/edit', 'UploadController@edit')->name('upload.edit');
-    Route::post('/listings/{id}/edit', 'UploadController@update')->name('upload.update');
+    Route::get('/listings/{id}/edit', 'UploadController@edit')->name('listings.edit');
+    Route::post('/listings/{id}/edit', 'UploadController@update')->name('listings.update');
 });
 
 Route::middleware('auth.admin')->group(function () {

@@ -34,13 +34,12 @@ class PagesController extends Controller
     {
         $upload = Upload::find($id);
 
-        if (!$upload)
-        {
+        if (!$upload) {
             abort(404);
         }
 
         $images = storage_path("app/{$upload->images}");
-        foreach(glob("{$images}/{$number}.*") as $image) {
+        foreach (glob("{$images}/{$number}.*") as $image) {
             return response()->file($image);
         }
         abort(404);

@@ -17,14 +17,16 @@ class AuthenticateAdmin
      * @param  array  $guards
      * @return mixed
      */
-    public function handle(Request $request, Closure $next,...$guards)
+    public function handle(Request $request, Closure $next, ...$guards)
     {
         if (Auth::is_admin()) {
             return $next($request);
         }
 
         throw new AuthenticationException(
-            'Unauthenticated.', $guards, route('login')
+            'Unauthenticated.',
+            $guards,
+            route('login')
         );
     }
 }
