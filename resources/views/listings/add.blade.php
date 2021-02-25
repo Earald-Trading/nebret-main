@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="container row m-auto p-auto card col-md-7">
-        <form method="POST" action="{{ Request::url() }}" enctype="multipart/form-data" id="form">
+        <form method="POST" action="{{ $route ?? route('listings.store') }}" enctype="multipart/form-data" id="form">
             <div class="col">
                 <div class="row">
                     <div class="my-3 col-8">
@@ -41,7 +41,12 @@
                 <div class="row">
                     <div class="my-3 col">
                         <label class="form-label">House type</label>
-                        <input class="form-control" name="type" id="id_type" required value={{ $data['type'] ?? '' }}>
+                        <select class="custom-select" name="house_type" id="id_house_type" required>
+                            <option selected disabled hidden>Choose House Type</option>
+                            @foreach (\App\Models\HouseType::all() as $h)
+                                <option value="{{ $h['type'] }}" @if (isset($data['house_type']) && $data['house_type'] == $h['type']) selected @endif>{{ $h['type'] }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="my-3 col">
                         <label class="form-label">Beds</label>
@@ -56,12 +61,12 @@
                 </div>
                 <div class="row">
                     <div class="my-3 col">
-                        <label class="form-label">Footprint</label>
+                        <label class="form-label">House Area</label>
                         <input class="form-control" type="number" name="footprint" id="id_footprint" required
                             value={{ $data['footprint'] ?? '' }}>
                     </div>
                     <div class="my-3 col">
-                        <label class="form-label">Lot</label>
+                        <label class="form-label">Total Area</label>
                         <input class="form-control" type="number" name="lot" id="id_lot" required
                             value={{ $data['lot'] ?? '' }}>
                     </div>
@@ -72,16 +77,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="my-3 pb-5 col">
+                    <div class="my-3 col">
                         <label class="form-label">Description</label>
-                        <textarea name="logline" class="form-control d-none" id="id_logline" required></textarea>
-                        @include('layouts.editor', [
-                        'toolbar' => 'toolbar',
-                        'editor' => 'editor',
-                        'form' => 'form',
-                        'textarea' => 'id_logline',
-                        'class' => 'form-control'
-                        ])
+                        <textarea name="description" class="ckeditor form-control" id="id_description" required>{{ $data['description'] ?? '' }}</textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="my-3 col">
+                        <label class="form-label">Comparative Analysis</label>
+                        <textarea name="comparative_analysis" class="ckeditor form-control" id="id_comparative_analysis" required>{{ $data['comparative_analysis'] ?? '' }}</textarea>
                     </div>
                 </div>
                 <div class="row my-3"></div>
@@ -110,17 +114,17 @@
                     </div>
                     <div class="my-3 col">
                         <label class="form-label">Longitude</label>
-                        <input class="form-control" type="number" step=any name="longitude" id="id_longtiude" required
+                        <input class="form-control" type="number" step=any name="longitude" id="id_longitude" required
                             value={{ $data['longitude'] ?? '' }}>
                     </div>
                 </div>
                 <div class="row">
                     <div class="my-3 col">
-                        <label class="form-label">Sub City</label>
+                        <label class="form-label">Subcity</label>
                         <select class="custom-select" name="subcity" id="id_subcity" required>
                             <option selected disabled hidden>Choose subcity</option>
-                            @foreach ($subcity as $s)
-                                <option value="{{ $s['name'] }}" @if (isset($data['subcity']) && $data['subcity'] == $s['name']) selected @endif>{{ $s['name'] }}</option>
+                            @foreach (\App\Models\State::all() as $s)
+                                <option value="{{ $s['state'] }}" @if (isset($data['subcity']) && $data['subcity'] == $s['state']) selected @endif>{{ $s['state'] }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -139,12 +143,12 @@
                 <div class="text text-secondary text-left lead text-capitalize text-uppercase row">Miscellaneous</div>
                 <div class="row">
                     <div class="form-check form-switch my-3 col">
-                        <label class="form-label">Purchase Type</label>
-                        <select class="custom-select" name="purchase_status" id="id_purchase_status" required>
-                            <option selected disabled hidden>Choose purchase type</option>
-                            <option value="sale" @if (isset($data['purchase_status']) && $data['purchase_status'] == 'sale') selected @endif>Selling</option>
-                            <option value="rent" @if (isset($data['purchase_status']) && $data['purchase_status'] == 'rent') selected @endif>Renting</option>
-                            <option value="foreclosure" @if (isset($data['purchase_status']) && $data['purchase_status'] == 'foreclosure') selected @endif>Foreclosure</option>
+                        <label class="form-label">Listing Type</label>
+                        <select class="custom-select" name="listing_type" id="id_listing_type" required>
+                            <option selected disabled hidden>Choose Listing type</option>
+                            @foreach (\App\Models\ListingType::all() as $l)
+                                <option value="{{ $l['type'] }}" @if (isset($data['listing_type']) && $data['listing_type'] == $l['type']) selected @endif>{{ $l['type'] }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -163,8 +167,14 @@
                     </div>
                 </div>
             </div>
-            <input name="_token" type="hidden" value="{{ csrf_token() }}" />
+            @csrf
             <button type="submit" class="col mt-5 my-3 btn btn-primary">Submit</button>
         </form>
     </div>
+    <script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.ckeditor').ckeditor();
+        });
+    </script>
 @endsection
