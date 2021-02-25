@@ -97,4 +97,12 @@ class User extends Authenticatable
     {
         $this->role = 'agent';
     }
+
+    /**
+     * Get the likes of the user
+     */
+    public function likes()
+    {
+        $this->hasMany(Like::class, 'user_id');
+    }
 }

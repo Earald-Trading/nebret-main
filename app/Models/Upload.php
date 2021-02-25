@@ -56,4 +56,12 @@ class Upload extends Model
     {
         return $this->belongsTo(User::class, 'admin_id');
     }
+
+    /**
+     * Get the likes of this upload
+     */
+    public function likes()
+    {
+        return $this->hasMany(Like::class, 'upload_id');
+    }
 }
