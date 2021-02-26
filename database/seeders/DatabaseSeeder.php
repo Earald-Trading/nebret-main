@@ -37,39 +37,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('secret'),
         ]);
 
-        Upload::create([
-            'user_id' => User::where('email', 'u@menoriya.com')->first()->id,
-            'admin_id' => User::where('email', 'a@menoriya.com')->first()->id,
-            'images' => '37f2ac7b9c11c994008753ef70b7ebd3f42f4b63f0123da7e14fd8cd6da7dddd',
-            'youtube_id' => 'jM3GvD3DKbw',
-            'house_type' => HouseType::inRandomOrder()->first()->type,
-            'beds' => 3,
-            'baths' => 2,
-            'footprint' => 125,
-            'lot' => 300,
-            'year' => 2001,
-            'price' => 40000 * 100,
-            'latitude' => 9.00611,
-            'longitude' =>  38.75471,
-            'subcity' => State::inRandomOrder()->first()->state,
-            'wereda' => 4,
-            'houseno' => 'New',
-            'featured' => 1,
-            'openhouse' => 1,
-            'newconstruction' => 0,
-            'listing_type' => ListingType::inRandomOrder()->first()->type,
-            'description' => <<<EOL
-This immaculately presented apartment is set amongst manicured grounds within a private and secure complex. As a resident, you will have access to lifestyle amenities including a lap pool, gymnasium, communal terraces, concierge service and basement parking.
-
-The floorplan incorporates 2 bedrooms, the main with built-in robe and ensuite, a study nook, modern kitchen with quality appliances, luxurious bathroom, a cleverly concealed laundry, and a spacious living/dining area. The generously proportioned interior flows effortlessly from the open-plan living space to the private covered balcony from which you can admire the views of the garden and beyond.
-EOL,
-            'comparative_analysis' => <<<EOL
-This immaculately presented apartment is set amongst manicured grounds within a private and secure complex. As a resident, you will have access to lifestyle amenities including a lap pool, gymnasium, communal terraces, concierge service and basement parking.
-
-The floorplan incorporates 2 bedrooms, the main with built-in robe and ensuite, a study nook, modern kitchen with quality appliances, luxurious bathroom, a cleverly concealed laundry, and a spacious living/dining area. The generously proportioned interior flows effortlessly from the open-plan living space to the private covered balcony from which you can admire the views of the garden and beyond.
-EOL
-        ]);
-
         User::factory()->count(200)->create();
+        Upload::factory()->count(100)->create();
     }
 }
