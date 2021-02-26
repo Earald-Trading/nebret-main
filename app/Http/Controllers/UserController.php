@@ -91,7 +91,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::paginate(10);
-        return view('users.users')->with('users', $users);
+        return view('users.users', ['users' => $users]);
     }
 
     /**

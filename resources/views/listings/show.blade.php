@@ -11,16 +11,25 @@
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 <div
                                     class="carousel-caption carousel-caption-listing position-absolute ml-0 left-align align-content-start justify-content-start">
-                                    <span class="badge badge-success">{{ $updated_at }}</span>
-                                    <span class="badge badge-primary">@if($job_finished)Not @endif Active</span>
-                                    @if($reduced_price)
-                                        <span class="badge badge-info">Reduced price</span>
+                                    @if ($reduced_price)
+                                        <span class="badge badge-danger">
+                                            Reduced Price
+                                        </span>
                                     @endif
+                                    @php $updated_at = \Carbon\Carbon::parse($updated_at) @endphp
+                                    <span class="badge badge-success">
+                                        Listed
+                                        @if ($updated_at->diffInDays() > 30)
+                                            on - {{ $updated_at->format('d, M Y') }}
+                                        @else
+                                            {{ $updated_at->diffForHumans() }}
+                                        @endif
+                                    </span>
+                                    <span class="badge badge-primary">@if($job_finished)Not @endif Active</span>
                                     @auth
                                         <!-- Script on the like button does not work -->
                                         <span>
-                                            <i id="like_button" class="fa fa-thumbs-up btn btn-sm btn-outline-secondary"
-                                                style="border: 0 0 0 !important;"
+                                            <i id="like_button" class="fa fa-thumbs-up btn btn-sm btn-primary"
                                                 onclick="getElementById('like_button').style.cssText = 'background-color: red !important; fill: red !important;'"></i>
                                         </span>
                                     @endauth
@@ -62,23 +71,20 @@
                                             class="font-weight-bold">{{ $baths }} </b>Baths</div>
                                 </div>
                             </div>
-                            <div class="row my-4">
-                                <div class="col">
-                                    <div class="text text-left text-info lead">
-                                        <b class="h5 font-weight-bold">House Area - {{ $footprint }}</b>sqmr
-                                    </div>
+                            <div class="my-4">
+                                <div class="row text text-left text-info lead">
+                                    <b class="h5 font-weight-bold">House Area - {{ $footprint }}</b>sqmr
                                 </div>
-                                <div class="col">
-                                    <div class="text text-left text-info lead">
-                                        <b class="h5 font-weight-bold">Total Area - {{ $lot }}</b>sqmr
-                                    </div>
+                                <div class="row text text-left text-info lead">
+                                    <b class="h5 font-weight-bold">Total Area - {{ $lot }}</b>sqmr
                                 </div>
                             </div>
-                            @guest
-                                <div class="row h6 lead text text-info">Addis Ababa, {{ $subcity }}</div>
-                            @else
-                                <div class="row h6 lead text text-info ml-1">Addis Ababa, {{ $subcity }}</div>
-                            @endguest
+                            <div class="row h6 lead text text-info">
+                                Addis Ababa, {{ $subcity }}
+                                @agent
+                                    , Wereda {{ $wereda }}, {{ $houseno }}
+                                @endagent
+                            </div>
                             <div class="text text-left text-secondary h1 mt-4 pt-2">{{ $price / 100 }} ETB</div>
                         </div>
                     </div>
@@ -106,19 +112,18 @@
                     </div>
                     <div class="col">
                         <div class="row my-3">
-                            <div class="col-8 text lead">
+                            <div class="col-7 text lead">
                                 <span class="text text-secondary font-weight-light">Price per sqmr</span>
                             </div>
-                            <div class="col-4 text lead">
-                                <span class="text text-secondary font-weight-bold">{{ $price / 100 / $footprint }}
-                                    ETB</span>
+                            <div class="col-5 text lead">
+                                <span class="text text-secondary font-weight-bold">{{ number_format(($price / 100 / $footprint), 2) }} ETB</span>
                             </div>
                         </div>
                         <div class="row my-3">
-                            <div class="col-8 text lead">
+                            <div class="col-7 text lead">
                                 <span class="text text-secondary font-weight-light">Status</span>
                             </div>
-                            <div class="col-4 text lead">
+                            <div class="col-5 text lead">
                                 <span class="text text-secondary font-weight-bold">{{ $listing_type }}</span>
                             </div>
                         </div>
@@ -126,14 +131,16 @@
                     @guest
                         <div class="col col-auto align-self-center justify-content-center">
                             <a href="./login">
-                                <button class="btn btn-lg btn-danger" style="width: fit-content !important;" type="button">Login
-                                    First to Contact Agent</button>
+                                <button class="btn btn-lg btn-danger" style="width: fit-content !important;" type="button">
+                                    Login to see comparative analysis
+                                </button>
                             </a>
                         </div>
                     @else
                         <div class="col col-auto align-self-center justify-content-center">
-                            <button class="btn btn-lg btn-primary" style="width: fit-content !important;">Contact Agent for
-                                More</button>
+                            <button class="btn btn-lg btn-primary" style="width: fit-content !important;">
+                                Contact Agent for More
+                            </button>
                         </div>
                     @endguest
                 </div>
@@ -162,17 +169,19 @@
                         <div class="card-body">
                             {!! $comparative_analysis !!}
                             <br />
-                            <hr />
-                            <div style="width: 100% !important; margin: auto !important;">
-                                <div class="h5 font-weight-light">Areal Location in Google Maps</div>
-                                <div>
-                                    {{--This requires google api key see https://developers.google.com/maps/documentation/embed/embedding-map#view_mode--}}
-                                    <iframe
-                                        src="https://maps.google.com/maps?q={{ $latitude }},{{ $longitude }}&z=15&output=embed"
-                                        width="800" height="360" frameborder="0" style="border:0;" allowfullscreen=""
-                                        aria-hidden="false" tabindex="0"></iframe>
+                            @agent
+                                <hr />
+                                <div style="width: 100% !important; margin: auto !important;">
+                                    <div class="h5 font-weight-light">Areal Location in Google Maps</div>
+                                    <div>
+                                        {{--This requires google api key see https://developers.google.com/maps/documentation/embed/embedding-map#view_mode--}}
+                                        <iframe
+                                            src="https://maps.google.com/maps?q={{ $latitude }},{{ $longitude }}&z=15&output=embed"
+                                            width="800" height="360" frameborder="0" style="border:0;" allowfullscreen=""
+                                            aria-hidden="false" tabindex="0"></iframe>
+                                    </div>
                                 </div>
-                            </div>
+                            @endagent
                         </div>
                     </div>
                 @endguest

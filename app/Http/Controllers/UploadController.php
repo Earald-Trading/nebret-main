@@ -198,7 +198,7 @@ class UploadController extends Controller
 
         $upload = Upload::create($this->makeUpload($request, $folder_name)->all());
 
-        return redirect()->route('listings.show', ['id', $upload->id]);
+        return redirect()->route('listings.show', ['id' => $upload->id]);
     }
 
     /**
@@ -247,30 +247,30 @@ class UploadController extends Controller
     public function edit($id)
     {
         $upload = Upload::select(
-                'user_id',
-                'images',
-                'youtube_id',
-                'description',
-                'comparative_analysis',
-                'house_type',
-                'listing_type',
-                'beds',
-                'baths',
-                'footprint',
-                'lot',
-                'year',
-                'price',
-                'latitude',
-                'longitude',
-                'subcity',
-                'wereda',
-                'houseno',
-                'featured',
-                'openhouse',
-                'newconstruction',
-                'reduced_price',
-                'job_finished'
-            )
+            'user_id',
+            'images',
+            'youtube_id',
+            'description',
+            'comparative_analysis',
+            'house_type',
+            'listing_type',
+            'beds',
+            'baths',
+            'footprint',
+            'lot',
+            'year',
+            'price',
+            'latitude',
+            'longitude',
+            'subcity',
+            'wereda',
+            'houseno',
+            'featured',
+            'openhouse',
+            'newconstruction',
+            'reduced_price',
+            'job_finished'
+        )
             ->find($id);
 
         if (!$upload) {
@@ -311,8 +311,16 @@ class UploadController extends Controller
         }
         $folder_name = $this->storeImages($request, $images, $upload);
 
-        $upload->update($this->makeUpload($request, $folder_name)->all());
+        $upload_collection = $this->makeUpload($request, $folder_name)->all();
 
-        return $this->edit($upload->id);
+        if ($upload_collection['price'] < $upload->price) {
+            $upload_collection['reduced_price'] = true;
+        } else {
+            $upload_collection['reduced_price'] = false;
+        }
+
+        $upload->update($upload_collection);
+
+        return redirect()->route('listings.show', ['id' => $upload->id]);
     }
 }
