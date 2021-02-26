@@ -126,11 +126,11 @@
                             <div class="card listing-card" style="width: 20rem !important;">
                                 <img class="relative card-img"
                                     src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                                    style="object-fit: cover !important;">
+                                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
                                 <span class="badge badge-success position-absolute mt-2 ml-2"
                                     style="width: auto !important;">UploadTime</span>
                                 <span class="card-title position-absolute ml-2 h2"
-                                    style="color:rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
+                                    style="color:rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
                                 <div class="card-body">
                                     <div class="card-text text-small"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath
                                             Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
@@ -147,14 +147,14 @@
                             <div class="card listing-card" style="width: 20rem !important;">
                                 <img class="relative card-img"
                                     src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                                    style="object-fit: cover !important;">
+                                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
                                 <span class="badge badge-success position-absolute mt-2 ml-2"
                                     style="width: auto !important;">UploadTime</span>
                                 <span class="card-title position-absolute ml-2 h2"
-                                    style="color:rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
+                                    style="color:rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
                                 <div class="card-body">
-                                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i>
-                                        &#x0009 <b>0</b> <i>footprint</i></div>
+                                    <div class="card-text text-small"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath
+                                            Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
                                     <div class="card-text">Location
                                         <span class="float float-right">
                                             <!--Must include the listingId as a param-->
@@ -168,79 +168,14 @@
                             <div class="card listing-card" style="width: 20rem !important;">
                                 <img class="relative card-img"
                                     src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                                    style="object-fit: cover !important;">
+                                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
                                 <span class="badge badge-success position-absolute mt-2 ml-2"
                                     style="width: auto !important;">UploadTime</span>
                                 <span class="card-title position-absolute ml-2 h2"
-                                    style="color:rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
+                                    style="color:rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
                                 <div class="card-body">
-                                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i>
-                                        &#x0009 <b>0</b> <i>footprint</i></div>
-                                    <div class="card-text">Location
-                                        <span class="float float-right">
-                                            <!--Must include the listingId as a param-->
-                                            <a href="/listings/{{ 0 }}">View Details</a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row my-5">
-                        <div class="col">
-                            <div class="card listing-card" style="width: 20rem !important;">
-                                <img class="relative card-img"
-                                    src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                                    style="object-fit: cover !important;">
-                                <span class="badge badge-success position-absolute mt-2 ml-2"
-                                    style="width: auto !important;">UploadTime</span>
-                                <span class="card-title position-absolute ml-2 h2"
-                                    style="color:rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
-                                <div class="card-body">
-                                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i>
-                                        &#x0009 <b>0</b> <i>footprint</i></div>
-                                    <div class="card-text">Location
-                                        <span class="float float-right">
-                                            <!--Must include the listingId as a param-->
-                                            <a href="/listings/{{ 0 }}">View Details</a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card listing-card" style="width: 20rem !important;">
-                                <img class="relative card-img"
-                                    src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                                    style="object-fit: cover !important;">
-                                <span class="badge badge-success position-absolute mt-2 ml-2"
-                                    style="width: auto !important;">UploadTime</span>
-                                <span class="card-title position-absolute ml-2 h2"
-                                    style="color:rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
-                                <div class="card-body">
-                                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i>
-                                        &#x0009 <b>0</b> <i>footprint</i></div>
-                                    <div class="card-text">Location
-                                        <span class="float float-right">
-                                            <!--Must include the listingId as a param-->
-                                            <a href="/listings/{{ 0 }}">View Details</a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card listing-card" style="width: 20rem !important;">
-                                <img class="relative card-img"
-                                    src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                                    style="object-fit: cover !important;">
-                                <span class="badge badge-success position-absolute mt-2 ml-2"
-                                    style="width: auto !important;">UploadTime</span>
-                                <span class="card-title position-absolute ml-2 h2"
-                                    style="color:rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
-                                <div class="card-body">
-                                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i>
-                                        &#x0009 <b>0</b> <i>footprint</i></div>
+                                    <div class="card-text text-small"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath
+                                            Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
                                     <div class="card-text">Location
                                         <span class="float float-right">
                                             <!--Must include the listingId as a param-->
@@ -256,14 +191,14 @@
                             <div class="card listing-card" style="width: 20rem !important;">
                                 <img class="relative card-img"
                                     src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                                    style="object-fit: cover !important;">
+                                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
                                 <span class="badge badge-success position-absolute mt-2 ml-2"
                                     style="width: auto !important;">UploadTime</span>
                                 <span class="card-title position-absolute ml-2 h2"
-                                    style="color:rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
+                                    style="color:rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
                                 <div class="card-body">
-                                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i>
-                                        &#x0009 <b>0</b> <i>footprint</i></div>
+                                    <div class="card-text text-small"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath
+                                            Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
                                     <div class="card-text">Location
                                         <span class="float float-right">
                                             <!--Must include the listingId as a param-->
@@ -277,14 +212,14 @@
                             <div class="card listing-card" style="width: 20rem !important;">
                                 <img class="relative card-img"
                                     src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                                    style="object-fit: cover !important;">
+                                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
                                 <span class="badge badge-success position-absolute mt-2 ml-2"
                                     style="width: auto !important;">UploadTime</span>
                                 <span class="card-title position-absolute ml-2 h2"
-                                    style="color:rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
+                                    style="color:rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
                                 <div class="card-body">
-                                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i>
-                                        &#x0009 <b>0</b> <i>footprint</i></div>
+                                    <div class="card-text text-small"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath
+                                            Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
                                     <div class="card-text">Location
                                         <span class="float float-right">
                                             <!--Must include the listingId as a param-->
@@ -298,79 +233,14 @@
                             <div class="card listing-card" style="width: 20rem !important;">
                                 <img class="relative card-img"
                                     src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                                    style="object-fit: cover !important;">
+                                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
                                 <span class="badge badge-success position-absolute mt-2 ml-2"
                                     style="width: auto !important;">UploadTime</span>
                                 <span class="card-title position-absolute ml-2 h2"
-                                    style="color:rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
+                                    style="color:rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
                                 <div class="card-body">
-                                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i>
-                                        &#x0009 <b>0</b> <i>footprint</i></div>
-                                    <div class="card-text">Location
-                                        <span class="float float-right">
-                                            <!--Must include the listingId as a param-->
-                                            <a href="/listings/{{ 0 }}">View Details</a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row my-5">
-                        <div class="col">
-                            <div class="card listing-card" style="width: 20rem !important;">
-                                <img class="relative card-img"
-                                    src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                                    style="object-fit: cover !important;">
-                                <span class="badge badge-success position-absolute mt-2 ml-2"
-                                    style="width: auto !important;">UploadTime</span>
-                                <span class="card-title position-absolute ml-2 h2"
-                                    style="color:rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
-                                <div class="card-body">
-                                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i>
-                                        &#x0009 <b>0</b> <i>footprint</i></div>
-                                    <div class="card-text">Location
-                                        <span class="float float-right">
-                                            <!--Must include the listingId as a param-->
-                                            <a href="/listings/{{ 0 }}">View Details</a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card listing-card" style="width: 20rem !important;">
-                                <img class="relative card-img"
-                                    src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                                    style="object-fit: cover !important;">
-                                <span class="badge badge-success position-absolute mt-2 ml-2"
-                                    style="width: auto !important;">UploadTime</span>
-                                <span class="card-title position-absolute ml-2 h2"
-                                    style="color:rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
-                                <div class="card-body">
-                                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i>
-                                        &#x0009 <b>0</b> <i>footprint</i></div>
-                                    <div class="card-text">Location
-                                        <span class="float float-right">
-                                            <!--Must include the listingId as a param-->
-                                            <a href="/listings/{{ 0 }}">View Details</a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card listing-card" style="width: 20rem !important;">
-                                <img class="relative card-img"
-                                    src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                                    style="object-fit: cover !important;">
-                                <span class="badge badge-success position-absolute mt-2 ml-2"
-                                    style="width: auto !important;">UploadTime</span>
-                                <span class="card-title position-absolute ml-2 h2"
-                                    style="color:rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
-                                <div class="card-body">
-                                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i>
-                                        &#x0009 <b>0</b> <i>footprint</i></div>
+                                    <div class="card-text text-small"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath
+                                            Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
                                     <div class="card-text">Location
                                         <span class="float float-right">
                                             <!--Must include the listingId as a param-->
@@ -386,14 +256,14 @@
                             <div class="card listing-card" style="width: 20rem !important;">
                                 <img class="relative card-img"
                                     src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                                    style="object-fit: cover !important;">
+                                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
                                 <span class="badge badge-success position-absolute mt-2 ml-2"
                                     style="width: auto !important;">UploadTime</span>
                                 <span class="card-title position-absolute ml-2 h2"
-                                    style="color:rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
+                                    style="color:rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
                                 <div class="card-body">
-                                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i>
-                                        &#x0009 <b>0</b> <i>footprint</i></div>
+                                    <div class="card-text text-small"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath
+                                            Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
                                     <div class="card-text">Location
                                         <span class="float float-right">
                                             <!--Must include the listingId as a param-->
@@ -407,14 +277,14 @@
                             <div class="card listing-card" style="width: 20rem !important;">
                                 <img class="relative card-img"
                                     src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                                    style="object-fit: cover !important;">
+                                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
                                 <span class="badge badge-success position-absolute mt-2 ml-2"
                                     style="width: auto !important;">UploadTime</span>
                                 <span class="card-title position-absolute ml-2 h2"
-                                    style="color:rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
+                                    style="color:rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
                                 <div class="card-body">
-                                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i>
-                                        &#x0009 <b>0</b> <i>footprint</i></div>
+                                    <div class="card-text text-small"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath
+                                            Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
                                     <div class="card-text">Location
                                         <span class="float float-right">
                                             <!--Must include the listingId as a param-->
@@ -428,14 +298,144 @@
                             <div class="card listing-card" style="width: 20rem !important;">
                                 <img class="relative card-img"
                                     src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                                    style="object-fit: cover !important;">
+                                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
                                 <span class="badge badge-success position-absolute mt-2 ml-2"
                                     style="width: auto !important;">UploadTime</span>
                                 <span class="card-title position-absolute ml-2 h2"
-                                    style="color:rgb(20, 20, 20) !important; margin-top: 56% !important;"><b>Bunglo</b></span>
+                                    style="color:rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
                                 <div class="card-body">
-                                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i>
-                                        &#x0009 <b>0</b> <i>footprint</i></div>
+                                    <div class="card-text text-small"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath
+                                            Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
+                                    <div class="card-text">Location
+                                        <span class="float float-right">
+                                            <!--Must include the listingId as a param-->
+                                            <a href="/listings/{{ 0 }}">View Details</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-5">
+                        <div class="col">
+                            <div class="card listing-card" style="width: 20rem !important;">
+                                <img class="relative card-img"
+                                    src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
+                                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
+                                <span class="badge badge-success position-absolute mt-2 ml-2"
+                                    style="width: auto !important;">UploadTime</span>
+                                <span class="card-title position-absolute ml-2 h2"
+                                    style="color:rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
+                                <div class="card-body">
+                                    <div class="card-text text-small"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath
+                                            Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
+                                    <div class="card-text">Location
+                                        <span class="float float-right">
+                                            <!--Must include the listingId as a param-->
+                                            <a href="/listings/{{ 0 }}">View Details</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card listing-card" style="width: 20rem !important;">
+                                <img class="relative card-img"
+                                    src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
+                                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
+                                <span class="badge badge-success position-absolute mt-2 ml-2"
+                                    style="width: auto !important;">UploadTime</span>
+                                <span class="card-title position-absolute ml-2 h2"
+                                    style="color:rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
+                                <div class="card-body">
+                                    <div class="card-text text-small"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath
+                                            Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
+                                    <div class="card-text">Location
+                                        <span class="float float-right">
+                                            <!--Must include the listingId as a param-->
+                                            <a href="/listings/{{ 0 }}">View Details</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card listing-card" style="width: 20rem !important;">
+                                <img class="relative card-img"
+                                    src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
+                                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
+                                <span class="badge badge-success position-absolute mt-2 ml-2"
+                                    style="width: auto !important;">UploadTime</span>
+                                <span class="card-title position-absolute ml-2 h2"
+                                    style="color:rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
+                                <div class="card-body">
+                                    <div class="card-text text-small"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath
+                                            Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
+                                    <div class="card-text">Location
+                                        <span class="float float-right">
+                                            <!--Must include the listingId as a param-->
+                                            <a href="/listings/{{ 0 }}">View Details</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-5">
+                        <div class="col">
+                            <div class="card listing-card" style="width: 20rem !important;">
+                                <img class="relative card-img"
+                                    src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
+                                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
+                                <span class="badge badge-success position-absolute mt-2 ml-2"
+                                    style="width: auto !important;">UploadTime</span>
+                                <span class="card-title position-absolute ml-2 h2"
+                                    style="color:rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
+                                <div class="card-body">
+                                    <div class="card-text text-small"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath
+                                            Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
+                                    <div class="card-text">Location
+                                        <span class="float float-right">
+                                            <!--Must include the listingId as a param-->
+                                            <a href="/listings/{{ 0 }}">View Details</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card listing-card" style="width: 20rem !important;">
+                                <img class="relative card-img"
+                                    src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
+                                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
+                                <span class="badge badge-success position-absolute mt-2 ml-2"
+                                    style="width: auto !important;">UploadTime</span>
+                                <span class="card-title position-absolute ml-2 h2"
+                                    style="color:rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
+                                <div class="card-body">
+                                    <div class="card-text text-small"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath
+                                            Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
+                                    <div class="card-text">Location
+                                        <span class="float float-right">
+                                            <!--Must include the listingId as a param-->
+                                            <a href="/listings/{{ 0 }}">View Details</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card listing-card" style="width: 20rem !important;">
+                                <img class="relative card-img"
+                                    src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
+                                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
+                                <span class="badge badge-success position-absolute mt-2 ml-2"
+                                    style="width: auto !important;">UploadTime</span>
+                                <span class="card-title position-absolute ml-2 h2"
+                                    style="color:rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
+                                <div class="card-body">
+                                    <div class="card-text text-small"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath
+                                            Size</i> &#x0009 <b>0</b> <i>footprint</i></div>
                                     <div class="card-text">Location
                                         <span class="float float-right">
                                             <!--Must include the listingId as a param-->
@@ -453,4 +453,5 @@
             <div class="tab-pane fade" id="nav-foreclosure" role="tabpanel" aria-labelledby="nav-foreclosure-tab">...</div>
         </div>
     </div>
+
 @endsection

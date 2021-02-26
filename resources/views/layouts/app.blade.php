@@ -37,5 +37,17 @@
 
         @include('inc.footer')
     </div>
+
+    <script>
+        function hover(element){
+            element.setAttribute('src', 'https://images.freeimages.com/images/large-previews/0f7/old-barn-1641487.jpg');
+            element.style.overflow = 'hidden';
+        }
+
+        function unhover(element){
+            element.setAttribute('src', 'https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg');
+            element.style.overflow = 'hidden';
+        }
+    </script>
 </body>
 </html>

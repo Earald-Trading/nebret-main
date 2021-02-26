@@ -4,8 +4,8 @@
     </span>
     <nav class="navbar sticky-top navbar-expand-md navbar-light bg-light shadow-sm" id="navbar">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}" style="color: red !important;">
-                {{ config('app.name', 'NEBRET') }}
+            <a class="navbar-brand" href="{{ url('/') }}" style="color: red !important;" title="{{ config('app.name', 'NEBRET') }}">
+                <img class="img-fluid" src="../../../public/storage/FINAL.png" alt="{{ config('app.name', 'NEBRET') }}" style="width: 3rem !important; object-fit: cover !important;">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -18,7 +18,7 @@
                 <ul class="navbar-nav mr-auto">
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="/listings">HOME</a>
+                            <a class="nav-link" href="">HOME</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/listings">AVAILABLE LISTINGS</a>

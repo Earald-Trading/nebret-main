@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container container-fluid">
-        <div class="row justify-content-center mt-5">
+        {{-- <div class="row justify-content-center mt-5">
             <h2 class="text-center">The Masters</h2>
         </div>
 
@@ -21,22 +21,22 @@
                 <div class="text-center mt-5 mb-1 h3">Yonatan Amha</div>
                 <div class="lead text-center">Position</div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="row">
             <div class="col-6">
                 <img class="img-fluid" src="../../public/storage/mela_penthouse_1.jpg">
             </div>
             <div class="col-6 align-self-center">
-                <h2>We Know</h2>
-                <p class="lead font-italic">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed felis odio. Sed nisl velit, euismod in velit ut, fermentum elementum ipsum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis eget felis vitae ornare. Proin cursus ullamcorper dui. Mauris semper convallis enim, id blandit lorem fermentum quis. Nunc finibus facilisis risus id euismod. Donec et porta dolor.</p>
+                <h2>Who Are We?</h2>
+                <p class="lead font-italic">Nebret Property Management is a Asset management company founded by young ambitious entrepreneurs, Yonatan Amha and Natnael Girma.</p>
             </div>
         </div>
 
         <div class="row">
             <div class="col-6">
-                <h2>Excellence</h2>
-                <p class="lead font-italic">Nulla laoreet lacus egestas eros imperdiet, non pharetra neque tempus. Etiam laoreet consequat pulvinar. Mauris eu feugiat diam, sit amet mattis tortor. Aliquam lobortis sed dolor nec efficitur. Vestibulum lacinia feugiat tristique. Aliquam et eros sed arcu volutpat lacinia. Sed lacinia lacinia tincidunt. In sollicitudin neque ac mattis iaculis. Proin eu vestibulum turpis, eu gravida nulla. Sed ut venenatis lacus. Suspendisse placerat elit est, non placerat neque ultrices ac. Nunc varius, velit sed hendrerit cursus, lacus turpis imperdiet velit, ac pharetra lectus augue facilisis magna.</p>
+                <h2>What Do We Do?</h2>
+                <p class="lead font-italic">They created the company because they wanted to creat a solution for seller, new homeowners and other buyers that are frustrated with the system in place.</p>
             </div>
             <div class="col-6 align-self-center">
                 <img class="img-fluid" src="../../public/storage/mela_penthouse_2.jpg">
@@ -48,8 +48,29 @@
                 <img class="img-fluid" src="../../public/storage/mela_penthouse_3.jpg">
             </div>
             <div class="col-6 align-self-center">
+                <h2>Reliable</h2>
+                <p class="lead font-italic">Nebret PM is here to solve the struggle  of buying new properties and create a simple and enjoyable  experience to our clients.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6 align-self-center">
+                <h2>Excellence</h2>
+                <p class="lead font-italic">Our company is experienced to help customers  buy, sell, rent and manage assets such as commercial buildings, apartments and villas.</p>
+            </div>
+            <div class="col-6">
+                <img class="img-fluid" src="../../public/storage/mela_penthouse_3.jpg">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <img class="img-fluid" src="../../public/storage/mela_penthouse_3.jpg">
+            </div>
+            <div class="col-6 align-self-center">
                 <h2>Professional</h2>
-                <p class="lead font-italic">Sed et eleifend arcu. Donec eu sem ac erat dignissim dapibus hendrerit in augue. Integer sed quam bibendum nulla posuere ornare ac sed massa. Donec sem nulla, molestie sit amet dui et, imperdiet ultrices risus.</p>
+                <p class="lead font-italic">Nebret PM connects you to the right clients at the right time with the right price.</p>
+                <p class="lead font-italic">We work with buyers and sellers across the world who are interested to get involved in Ethiopia’s real estate market and those who want to land their next home.</p>
             </div>
         </div>
         <div class="row justify-content-center mt-5 mb-3 pb-3">

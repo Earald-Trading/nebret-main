@@ -7,9 +7,10 @@
                     <!--About AMTES-->
                     <div class="col-xs-12 col-sm-6 col-md-3 mt-3">
                         <div class="widget subscribe no-box">
-                            <h5 class="widget-title font-weight-bold my-0 py-0">AMTES Asset Management<span></span></h5>
+                            <h5 class="widget-title font-weight-bold my-0 py-0">NEBRET Property Management<span></span></h5>
                             <hr class="footer-horizontal-break mt-0 pt-0 ml-0">
-                            <p>About the company, little discription will goes here.. </p>
+                            <p>We work with buyers and sellers across the world who are interested to get involved in Ethiopia’s real estate market and those who want to land their next home.</p>
+                            <p>Come work with us and we guarantee your satisfaction!</p>
                         </div>
                     </div>
 
@@ -74,7 +75,7 @@
                                 following ...</p>
                             <p class="mt-1 mb-0">(+251) 912-140-906</p>
                             <p class="mt-1 mb-2">(+251) 921-161-210</p>
-                            <p><a href="mailto:info@domain.com" title="glorythemes">info@domain.com</a></p>
+                            <p><a href="mailto:info@domain.com">support.nebret@gmail.com</a></p>
                             <ul class="social-footer list-inline ml-3">
                                 <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"
                                         title="Facebook" class="fa fa-facebook button button-primary"></a></li>
