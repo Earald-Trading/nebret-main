@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Upload;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PagesController extends Controller
 {
@@ -30,7 +31,7 @@ class PagesController extends Controller
      * @param int $number
      * @return \Illuminate\Http\Response
      */
-    public function image($id, $number)
+    public function image($id, $number = null)
     {
         $upload = Upload::find($id);
 
@@ -38,10 +39,17 @@ class PagesController extends Controller
             abort(404);
         }
 
+        if ($number == null) {
+            return response([
+                'images' => count(Storage::allFiles($upload['images']))
+            ], 200);
+        }
+
         $images = storage_path("app/{$upload->images}");
         foreach (glob("{$images}/{$number}.*") as $image) {
             return response()->file($image);
         }
+
         abort(404);
     }
 }

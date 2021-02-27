@@ -166,7 +166,10 @@ class UploadController extends Controller
      */
     public function index()
     {
-        return view('listings.listings');
+        $uploads = Upload::select(
+            'id', 'beds','baths', 'house_type', 'listing_type', 'footprint', 'subcity', 'reduced_price', 'updated_at'
+        )->paginate(15);
+        return view('listings.listings', ['uploads' => $uploads]);
     }
 
     /**
