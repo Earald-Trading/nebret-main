@@ -38,10 +38,8 @@ class UploadFactory extends Factory
             return;
         }
 
-        $download_dir = sys_get_temp_dir() . "/public";
-
-        if (! File::exists($download_dir)) {
-            File::makeDirectory($download_dir);
+        if (! File::exists('/tmp/public')) {
+            File::makeDirectory('/tmp/public');
         }
         $urls = [
             'https://noahrealestateplc.com/images/projects_gallery/16/Noah_Centrum_-_Cover_001.jpg',
@@ -57,7 +55,7 @@ class UploadFactory extends Factory
 
         $i = 0;
         foreach ($urls as $url) {
-            $filename = "{$download_dir}/{$i}.jpg";
+            $filename = "/tmp/public/{$i}.jpg";
             if (File::exists($filename)) {
                 continue;
             }
