@@ -11,53 +11,7 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: test_db
-        ports:
-          - 3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
-    strategy:
-      fail-fast: true
-      matrix:
-        php: ['7.4', '8.0']
-        stability: [prefer-lowest, prefer-stable]
-
-    name: PHP ${{ matrix.php }} - ${{ matrix.stability }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, redis, memcached
-          tools: composer:v2
-          coverage: none
-
-      - name: Install dependencies
-        uses: nick-invision/retry@v1
-        with:
-          timeout_minutes: 5
-          max_attempts: 5
-          command: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
-      - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-
-      - name: Generate key
-        run: php artisan key:generate
-      - name: Run migration and seed
-        env:
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
-        run: php artisan migrate:refresh --seed
-
-  windows-build:
-    runs-on: windows-latest
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: test_db
+          MYSQL_DATABASE: delala
         ports:
           - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
