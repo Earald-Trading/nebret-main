@@ -92,6 +92,6 @@
         intervalvar = 0;
         index = 1;
 
-        $(element).attr('src', make_image_url(id, index));
+        $(element).attr('src', make_image_url(id, 0));
     }
 </script>
