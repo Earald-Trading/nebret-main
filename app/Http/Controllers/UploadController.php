@@ -160,15 +160,120 @@ class UploadController extends Controller
     }
 
     /**
+     * Make query for listings
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    protected function makeQuery(Request $request)
+    {
+        $query = [];
+
+        if ($request->filled('type')) {
+            switch($request->query('type')) {
+                case 'rent':
+                    $query[] = ['listing_type', '=', 'For Rent'];
+                    break;
+                case 'sale':
+                    $query[] = ['listing_type', '=', 'For Sale'];
+                    break;
+                case 'foreclosure':
+                    $query[] = ['listing_type', '=', 'Foreclosure'];
+                    break;
+                case 'jointventure':
+                    $query[] = ['listing_type', '=', 'Joint Venture'];
+                    break;
+            }
+        }
+
+        if ($request->filled('htype')) {
+            $query[] = ['house_type',  '=', $request->query('htype')];
+        }
+
+        if ($request->filled('subcity')) {
+            $query[] = ['subcity',  '=', $request->query('subcity')];
+        }
+
+        if ($request->filled('beds')) {
+            switch($request->query('beds')) {
+                case 1:
+                    $query[] = ['beds', '=', 1];
+                    break;
+                case 2:
+                    $query[] = ['beds', '=', 2];
+                    break;
+                case 3:
+                    $query[] = ['beds', '=', 3];
+                    break;
+                case 4:
+                    $query[] = ['beds', '=', 4];
+                    break;
+                case 5:
+                    $query[] = ['beds', '>', 5];
+                    break;
+            }
+        }
+
+        if ($request->filled('area')) {
+            switch($request->query('area')) {
+                case 1:
+                    $query[] = ['footprint', '<=', 100];
+                    break;
+                case 2:
+                    $query[] = ['footprint', '>', 100];
+                    $query[] = ['footprint', '<=', 200];
+                    break;
+                case 3:
+                    $query[] = ['footprint', '>', 200];
+                    $query[] = ['footprint', '<=', 300];
+                    break;
+                case 4:
+                    $query[] = ['footprint', '>', 300];
+                    $query[] = ['footprint', '<=', 400];
+                    break;
+                case 5:
+                    $query[] = ['footprint', '>', 400];
+                    break;
+            }
+        }
+
+        if ($request->has('featured')) {
+            $query[] = ['featured', '=', 1];
+        }
+        if ($request->has('reduced')) {
+            $query[] = ['reduced_price', '=', 1];
+        }
+        if ($request->has('open')) {
+            $query[] = ['openhouse', '=', 1];
+        }
+        if ($request->has('new')) {
+            $query[] = ['newconstruction', '=', 1];
+        }
+
+        if ($request->filled('min_price')) {
+            $query[] = ['price', '>=', $request->query('min_price')*100];
+        }
+
+        if ($request->filled('max_price')) {
+            $query[] = ['price', '<', $request->query('max_price')*100];
+        }
+
+        return $query;
+    }
+
+    /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $uploads = Upload::select(
-            'id', 'beds','baths', 'house_type', 'listing_type', 'footprint', 'subcity', 'reduced_price', 'updated_at'
-        )->paginate(15);
+        $uploads = Upload::where($this->makeQuery($request))
+            ->select('id', 'beds','baths', 'house_type', 'listing_type',
+                     'footprint', 'subcity', 'reduced_price', 'updated_at')
+            ->paginate(15);
+
         return view('listings.listings', ['uploads' => $uploads]);
     }
 
