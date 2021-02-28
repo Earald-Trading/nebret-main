@@ -130,7 +130,7 @@
                     </div>
                     @guest
                         <div class="col col-auto align-self-center justify-content-center">
-                            <a href="./login">
+                            <a href="../../login">
                                 <button class="btn btn-lg btn-danger" style="width: fit-content !important;" type="button">
                                     Login to see comparative analysis
                                 </button>

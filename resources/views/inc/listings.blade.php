@@ -10,7 +10,7 @@
                 <div class="col" onclick="location.href='{{ route('listings.show', ['id' => $upload->id]) }}';" style="cursor: pointer;">
                     <div class="card listing-card" style="width: 20rem !important;">
                         <img class="relative card-img" src="{{ route('images', ['id' => $upload->id, 'number' => 0 ]) }}"
-                            style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" />
+                            style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this)" onmouseout="unhover(this)" />
 
                         <div class="position-absolute mt-2 ml-2">
                             <span class="badge badge-success">
@@ -56,3 +56,15 @@
         @endif
     </div>
 </div>
+
+<script>
+    function hover(element){
+        element.setAttribute('src', 'https://images.freeimages.com/images/large-previews/0f7/old-barn-1641487.jpg');
+        element.style.overflow = 'hidden';
+    }
+
+    function unhover(element){
+        element.setAttribute('src', 'https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg');
+        element.style.overflow = 'hidden';
+    }
+</script>

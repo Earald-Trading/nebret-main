@@ -148,7 +148,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row my-3">
+            <div class="row justify-content-center my-3" style="width: 100% !important; margin: auto !important; padding-top: 1rem !important;">
                 <div class="col-3 form-check">
                     <input class="form-check-input" type="checkbox" id="filter_featured"
                             onclick="clickablecheckbox(this, '{{ query('listings', ['featured' => 1]) }}', '{{  query_remove('listings', 'featured') }}');"
@@ -174,13 +174,13 @@
                     <label class="label" for="filter_open">Open House</label>
                 </div>
             </div>
-            <div class="row my-3">
-                Price:
+            <div class="row justify-content-end my-3 mr-0 pr-0" style="width: auto !important; margin-right: 1rem !important;">
                 <div class="input-group mb-3 col-3 w-100">
+                    <label class="col-form-label mr-3" for="price">Price:</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text">$<span>
                     </div>
-                    <input type="number" id="min_price" class="form-control"
+                    <input type="number" id="min_price" class="form-control" name="price"
                        value="{{ Request::query('min_price') ?? '' }}"
                        placeholder="Min" aria-label="Min price">
                 </div>
