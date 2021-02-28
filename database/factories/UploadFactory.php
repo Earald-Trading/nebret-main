@@ -79,14 +79,14 @@ class UploadFactory extends Factory
     public function configure()
     {
         $this->faker->addProvider(new \Faker\Provider\Youtube($this->faker));
+        $download_dir = $this->download();
         return $this->afterMaking(function (Upload $upload) {
             $upload->user_id = User::inRandomOrder()->first()->id;
             $upload->admin_id = User::where('role', 'agent')->inRandomOrder()->first()->id;
             $upload->house_type = HouseType::inRandomOrder()->first()->type;
             $upload->listing_type = ListingType::inRandomOrder()->first()->type;
             $upload->subcity = State::inRandomOrder()->first()->state;
-        })->afterCreating(function (Upload $upload) {
-            $download_dir = $this->download();
+        })->afterCreating(function (Upload $upload) use($download_dir) {
             File::copyDirectory($download_dir, storage_path("app/{$upload->images}"));
         });
     }
