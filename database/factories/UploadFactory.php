@@ -66,6 +66,7 @@ class UploadFactory extends Factory
         }
 
         static::$download_run = true;
+        return $download_dir;
     }
 
     /**
@@ -76,7 +77,6 @@ class UploadFactory extends Factory
     public function configure()
     {
         $this->faker->addProvider(new \Faker\Provider\Youtube($this->faker));
-        $this->download();
         return $this->afterMaking(function (Upload $upload) {
             $upload->user_id = User::inRandomOrder()->first()->id;
             $upload->admin_id = User::where('role', 'agent')->inRandomOrder()->first()->id;
@@ -84,7 +84,8 @@ class UploadFactory extends Factory
             $upload->listing_type = ListingType::inRandomOrder()->first()->type;
             $upload->subcity = State::inRandomOrder()->first()->state;
         })->afterCreating(function (Upload $upload) {
-            File::copyDirectory('/tmp/public', storage_path("app/{$upload->images}"));
+            $download_dir = $this->download();
+            File::copyDirectory($download_dir, storage_path("app/{$upload->images}"));
         });
     }
 
