@@ -5,7 +5,7 @@
     <nav class="navbar sticky-top navbar-expand-md navbar-light bg-light shadow-sm" id="navbar">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}" style="color: red !important;" title="{{ config('app.name', 'NEBRET') }}">
-                <img class="img-fluid" src="../../../public/storage/FINAL.png" alt="{{ config('app.name', 'NEBRET') }}" style="width: 3rem !important; object-fit: cover !important;">
+                <img class="img-fluid mr-4" src="../../images/FINAL.png" alt="{{ config('app.name', 'NEBRET') }}" style="width: 7rem !important; object-fit: cover !important;">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false"
