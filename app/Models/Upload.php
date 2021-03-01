@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 
 class Upload extends Model
 {
@@ -40,6 +41,19 @@ class Upload extends Model
         'reduced_price',
         'job_finished'
     ];
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::deleted(function ($upload) {
+            $dir = storage_path("app/{$upload->images}");
+            File::deleteDirectory($dir);
+        });
+    }
 
     /**
      * Get the user related to this data

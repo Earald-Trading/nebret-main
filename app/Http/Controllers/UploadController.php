@@ -343,7 +343,7 @@ class UploadController extends Controller
         $upload['images'] = count(Storage::allFiles($upload['images']));
 
         $upload['liked'] = false;
-        if (Like::where([
+        if (Auth::user() && Like::where([
             'user_id' => Auth::user()->id,
             'upload_id' => $id
         ])->first()) {
