@@ -272,7 +272,7 @@ class UploadController extends Controller
         $uploads = Upload::where($this->makeQuery($request))
             ->select('id', 'beds','baths', 'house_type', 'listing_type',
                      'footprint', 'subcity', 'reduced_price', 'updated_at')
-            ->paginate(15);
+            ->orderBy('updated_at', 'DESC')->paginate(15);
 
         return view('listings.listings', ['uploads' => $uploads]);
     }
@@ -299,7 +299,6 @@ class UploadController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->input());
         $this->validateRequest($request);
         $images = $this->validateZip($request->file('images'));
         $folder_name = $this->storeImages($request, $images);
