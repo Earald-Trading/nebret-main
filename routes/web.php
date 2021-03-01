@@ -28,6 +28,7 @@ Route::get('/listings/{id}', 'UploadController@show')->name('listings.show');
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
+    Route::get('/listings/{id}/like', 'UploadController@like')->name('listings.like');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/preferences', 'UserController@edit')->name('user.edit');
     Route::post('/preferences', 'UserController@update')->name('user.update');

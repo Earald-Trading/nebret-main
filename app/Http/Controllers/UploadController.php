@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\State;
+use App\Models\Like;
 use App\Models\Upload;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -342,6 +342,14 @@ class UploadController extends Controller
 
         $upload['images'] = count(Storage::allFiles($upload['images']));
 
+        $upload['liked'] = false;
+        if (Like::where([
+            'user_id' => Auth::user()->id,
+            'upload_id' => $id
+        ])->first()) {
+            $upload['liked'] = true;
+        }
+
         return view('listings.show', $upload);
     }
 
@@ -427,6 +435,33 @@ class UploadController extends Controller
         }
 
         $upload->update($upload_collection);
+
+        return redirect()->route('listings.show', ['id' => $upload->id]);
+    }
+
+    /**
+     * Like the resource
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function like(Request $request, $id)
+    {
+        $upload = Upload::find($id);
+
+        if (!$upload) {
+            abort(404);
+        }
+
+        Like::create([
+            'user_id' => Auth::user()->id,
+            'upload_id' => $id
+        ]);
+
+        if ($request->expectsJson()) {
+            return response([],204);
+        }
 
         return redirect()->route('listings.show', ['id' => $upload->id]);
     }

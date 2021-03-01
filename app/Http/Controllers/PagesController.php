@@ -24,14 +24,16 @@ class PagesController extends Controller
     {
         return view('about');
     }
+
     /**
      * Get images form storage
      *
+     * @param \Illuminate\Http\Request $request
      * @param int $id
      * @param int $number
      * @return \Illuminate\Http\Response
      */
-    public function image($id, $number = null)
+    public function image(Request $request, $id, $number = null)
     {
         $upload = Upload::find($id);
 
@@ -40,9 +42,12 @@ class PagesController extends Controller
         }
 
         if ($number == null) {
-            return response([
-                'images' => count(Storage::allFiles($upload['images']))
-            ], 200);
+            if ($request->expectsJson()) {
+                return response([
+                    'images' => count(Storage::allFiles($upload['images']))
+                ], 200);
+            }
+            $number = 0;
         }
 
         $images = storage_path("app/{$upload->images}");
