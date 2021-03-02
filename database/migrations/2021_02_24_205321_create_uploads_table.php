@@ -33,11 +33,12 @@ class CreateUploadsTable extends Migration
             $table->unsignedSmallInteger('footprint');
             $table->unsignedSmallInteger('lot');
             $table->unsignedSmallInteger('year');
-            $table->unsignedInteger('price')->index();
+            $table->unsignedBigInteger('price')->index();
 
             // location
             $table->float('latitude', 10, 6);
             $table->float('longitude', 10, 6);
+            $table->string('city', 40)->default('Addis Ababa');
             $table->string('subcity', 25);
             $table->unsignedTinyInteger('wereda');
             $table->string('houseno', 10);
