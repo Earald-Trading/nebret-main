@@ -453,11 +453,19 @@ class UploadController extends Controller
         if (!$upload) {
             abort(404);
         }
-
-        Like::create([
+        $like = Like::where([
             'user_id' => Auth::user()->id,
             'upload_id' => $id
         ]);
+
+        if ($like) {
+            $like->delete();
+        } else {
+            Like::create([
+                'user_id' => Auth::user()->id,
+                'upload_id' => $id
+            ]);
+        }
 
         if ($request->expectsJson()) {
             return response([],204);

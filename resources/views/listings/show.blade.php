@@ -26,13 +26,14 @@
                                         @endif
                                     </span>
                                     <span class="badge badge-primary">@if($job_finished)Not @endif Active</span>
-                                    @auth
-                                        <!-- Script on the like button does not work -->
-                                        <span>
-                                            <i id="like_button" class="fa fa-thumbs-up btn btn-sm btn-primary"
-                                                onclick="getElementById('like_button').style.cssText = 'background-color: red !important; fill: red !important;'"></i>
-                                        </span>
-                                    @endauth
+                                    <span>
+                                        <i id="like_button" class="fa fa-thumbs-up btn btn-sm @if($liked) btn-primary @else btn-secondary @endif"
+                                           @guest onclick="document.querySelector('#like_button>a').click();" @endguest
+                                           @auth onclick="sendLike();"; @endauth
+                                        >
+                                            <a href="{{ route('listings.like', compact('id')) }}"></a>
+                                        </i>
+                                    </span>
                                 </div>
                                 <div class="carousel-inner">
                                     @for ($i = 0; $i < $images; ++$i)
@@ -188,4 +189,22 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        var liked = {{ $liked == true ? 1 : 0 }};
+        function sendLike() {
+            axios.get("{{ route('listings.like', compact('id')) }}").then(function(response) {
+                if (response.status == 204) {
+                    if(! liked) {
+                        document.getElementById('like_button').classList.remove('btn-secondary');
+                        document.getElementById('like_button').classList.add('btn-primary');
+                        liked = true;
+                    } else {
+                        document.getElementById('like_button').classList.remove('btn-primary');
+                        document.getElementById('like_button').classList.add('btn-secondary');
+                        liked = false;
+                    }
+                }
+            }).catch(function(error) {});
+        }
+    </script>
 @endsection
