@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\ListingType;
-use App\Models\HouseType;
-use App\Models\State;
+use App\Models\Like;
 use App\Models\User;
 use App\Models\Upload;
 use Illuminate\Database\Seeder;
@@ -21,7 +19,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
         User::create([
             'first_name' => 'Menoriya',
             'last_name' => 'Admin',
@@ -39,5 +36,6 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->count(200)->create();
         Upload::factory()->count(100)->create();
+        Like::factory()->count(1000)->create();
     }
 }
