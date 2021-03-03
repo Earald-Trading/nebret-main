@@ -86,6 +86,11 @@ class UploadFactory extends Factory
             $upload->house_type = HouseType::inRandomOrder()->first()->type;
             $upload->listing_type = ListingType::inRandomOrder()->first()->type;
             $upload->subcity = State::inRandomOrder()->first()->state;
+            $upload->images = hash(
+                'sha256',
+                "{$upload['logline']} {$upload['latitude']} {$upload['longtiude']} {$upload['houseno']}"
+            );
+
         })->afterCreating(function (Upload $upload) use($download_dir) {
             File::copyDirectory($download_dir, storage_path("app/{$upload->images}"));
         });
@@ -99,7 +104,6 @@ class UploadFactory extends Factory
     public function definition()
     {
         return [
-            'images' => $this->faker->sha256,
             'youtube_id' => basename($this->faker->youtubeEmbedUri),
             'description' => $this->faker->paragraphs(2, true),
             'comparative_analysis' => $this->faker->paragraphs(3, true),
