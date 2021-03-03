@@ -279,13 +279,26 @@ class UploadController extends Controller
      */
     public function index(Request $request)
     {
-        $uploads = Upload::where($this->makeQuery($request))
+        $query = $this->makeQuery($request);
+        $featured = [];
+        $reduced_price = [];
+        if (empty($query)) {
+            $featured = Upload::where('featured', 1)->where('job_finished', 0)->inRandomOrder()->limit(6)->get();
+        }
+        if (empty($query)) {
+            $reduced_price = Upload::where('reduced_price', 1)->where('job_finished', 0)->inRandomOrder()->limit(6)->get();
+        }
+        $uploads = Upload::where($query)
             ->select('id', 'beds','baths', 'house_type', 'listing_type',
                 'footprint', 'subcity', 'featured', 'reduced_price',
                 'job_finished', 'updated_at')
             ->orderBy('updated_at', 'DESC')->paginate(15);
 
-        return view('listings.listings', ['uploads' => $uploads]);
+        return view('listings.listings', [
+            'uploads' => $uploads,
+            'featured' => $featured,
+            'reduced_price' => $reduced_price
+        ]);
     }
 
     /**
