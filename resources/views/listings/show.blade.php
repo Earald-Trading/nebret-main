@@ -11,7 +11,9 @@
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 <div
                                     class="carousel-caption carousel-caption-listing position-absolute ml-0 left-align align-content-start justify-content-start">
-                                    @if ($reduced_price)
+                                    @if ($job_finished)
+                                        <span class="badge badge-danger">Listing not active</span>
+                                    @else
                                         <span class="badge badge-danger">
                                             Reduced Price
                                         </span>
@@ -25,7 +27,6 @@
                                             {{ $updated_at->diffForHumans() }}
                                         @endif
                                     </span>
-                                    <span class="badge badge-primary">@if($job_finished)Not @endif Active</span>
                                     <span>
                                         <i id="like_button" class="fa fa-thumbs-up btn btn-sm @if($liked) btn-primary @else btn-secondary @endif"
                                            @guest onclick="document.querySelector('#like_button>a').click();" @endguest
@@ -137,13 +138,36 @@
                                 </button>
                             </a>
                         </div>
-                    @else
-                        <div class="col col-auto align-self-center justify-content-center">
-                            <button class="btn btn-lg btn-primary" style="width: fit-content !important;">
-                                Contact Agent for More
-                            </button>
-                        </div>
                     @endguest
+                    @auth
+                        @if (Auth::user()->is_agent)
+                            <div class="col col-auto align-self-center justify-content-center">
+                                @if (! $job_finished)
+                                    <a class="btn btn-lg btn-primary" style="width: fit-content !important;" href="{{ route('listings.edit', $id) }}">
+                                        Edit
+                                    </a>
+                                    <a class="btn btn-lg btn-primary" style="width: fit-content !important;"
+                                        onclick="document.getElementById('featured_form').submit();">
+                                        @if (! $featured)
+                                            Feature
+                                        @else
+                                            Unfeature
+                                        @endif
+                                    </a>
+                                    <a class="btn btn-lg btn-danger" style="width: fit-content !important;"
+                                        onclick="document.getElementById('job_finished_form').submit();">
+                                        Sold
+                                    </a>
+                                @endif
+                            </div>
+                        @else
+                            <div class="col col-auto align-self-center justify-content-center">
+                                <button class="btn btn-lg btn-primary" style="width: fit-content !important;">
+                                    Contact Agent for More
+                                </button>
+                            </div>
+                        @endif
+                    @endauth
                 </div>
                 <div class="card my-5">
                     <div class="card-header">
@@ -189,6 +213,14 @@
             </div>
         </div>
     </div>
+    <form class="d-none" id="featured_form" method="POST" action="{{ route('listings.update', compact('id')) }}">
+        <input type="hidden" name="featured" @if (! $featured) value="true" @else value="false" @endif >
+        @csrf
+    </form>
+    <form class="d-none" id="job_finished_form" method="POST" action="{{ route('listings.update', compact('id')) }}">
+        <input type="hidden" name="job_finished" value="true">
+        @csrf
+    </form>
     <script type="text/javascript">
         var liked = {{ $liked == true ? 1 : 0 }};
         function sendLike() {

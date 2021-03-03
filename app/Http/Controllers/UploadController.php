@@ -149,6 +149,7 @@ class UploadController extends Controller
             'featured',
             'openhouse',
             'newconstruction',
+            'job_finished',
         ))->merge([
             'admin_id' => $request->user()->id,
             'images' => $folder_name
@@ -442,9 +443,9 @@ class UploadController extends Controller
 
         $upload_collection = $this->makeUpload($request, $folder_name)->all();
 
-        if ($upload_collection['price'] < $upload->price) {
+        if ($request['price'] < $upload->price) {
             $upload_collection['reduced_price'] = true;
-        } else if($upload_collection['price'] > $upload->price) {
+        } else if($request['price'] > $upload->price) {
             $upload_collection['reduced_price'] = false;
         }
 
