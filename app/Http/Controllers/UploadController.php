@@ -183,6 +183,9 @@ class UploadController extends Controller
                 case 'jointventure':
                     $query[] = ['listing_type', '=', 'Joint Venture'];
                     break;
+                case 'sold':
+                    $query[] = ['job_finished', '=', true];
+                    break;
             }
         }
 
