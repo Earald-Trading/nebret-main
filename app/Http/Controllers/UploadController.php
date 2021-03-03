@@ -271,7 +271,7 @@ class UploadController extends Controller
     {
         $uploads = Upload::where($this->makeQuery($request))
             ->select('id', 'beds','baths', 'house_type', 'listing_type',
-                     'footprint', 'subcity', 'reduced_price', 'updated_at')
+                     'footprint', 'subcity', 'featured', 'reduced_price', 'updated_at')
             ->orderBy('updated_at', 'DESC')->paginate(15);
 
         return view('listings.listings', ['uploads' => $uploads]);
@@ -430,7 +430,7 @@ class UploadController extends Controller
 
         if ($upload_collection['price'] < $upload->price) {
             $upload_collection['reduced_price'] = true;
-        } else {
+        } else if($upload_collection['price'] > $upload->price) {
             $upload_collection['reduced_price'] = false;
         }
 
