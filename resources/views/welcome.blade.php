@@ -19,7 +19,7 @@
         <div class="carousel-inner" role="listbox">
             <!-- Slide One - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing active"
-                style="background-image: url('../../../../public/images/JUMBO1.jpeg')">
+                style="background-image: url('../../public/images/JUMBO1.jpeg')">
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4">Find Your Dream Home</h2>
                     <p class="lead">Use our easy-to-use platform and realize your dream, all without the hustle.</p>
