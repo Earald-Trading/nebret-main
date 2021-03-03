@@ -47,7 +47,8 @@ class UploadController extends Controller
             'listing_type' => "{$required_rule}string|exists:listing_types,type",
             'featured' => 'in:on,1,true',
             'openhouse' => 'in:on,1,true',
-            'newconstruction' => 'in:on,1,true'
+            'newconstruction' => 'in:on,1,true',
+            'job_finished' => 'in:on,1,true',
         ]);
 
         isset($request['featured']) ? $request['featured'] = true : $request['featured'] = false;
@@ -55,6 +56,8 @@ class UploadController extends Controller
         isset($request['openhouse']) ? $request['openhouse'] = true : $request['openhouse'] = false;
 
         isset($request['newconstruction']) ? $request['newconstruction'] = true : $request['newconstruction'] = false;
+
+        isset($request['job_finished']) ? $request['job_finished'] = true : $request['job_finished'] = false;
     }
 
     /**
@@ -389,11 +392,14 @@ class UploadController extends Controller
             'newconstruction',
             'reduced_price',
             'job_finished'
-        )
-            ->find($id);
+        )->find($id);
 
         if (!$upload) {
             abort(404);
+        }
+
+        if ($upload->job_finished) {
+            return redirect()->route('listings.show', compact('id'));
         }
 
         $upload['user_email'] = $upload->user->email;
@@ -403,7 +409,8 @@ class UploadController extends Controller
             'header' => 'Edit Listing.',
             'description' => 'Here you edit a previously uploaded listing.',
             'data' => $upload,
-            'route' => route('listings.update', ['id' => $id])
+            'route' => route('listings.update', ['id' => $id]),
+            'editing' => true
         ]);
     }
 

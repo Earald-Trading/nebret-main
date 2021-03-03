@@ -255,6 +255,12 @@
                         <input class="form-check-input" type="checkbox" name="newconstruction" id="id_newconstruction" @if (isset($data['newconstruction']) && $data['newconstruction']) checked @endif>
                         <label class="form-label">New Construction</label>
                     </div>
+                    @if ($editing)
+                        <div class="form-check form-switch my-3 col">
+                            <input class="form-check-input" type="checkbox" name="job_finished" id="id_newconstruction" @if (isset($data['job_finished']) && $data['job_finished']) checked @endif>
+                            <label class="form-label">Job Finished</label>
+                        </div>
+                    @endif
                 </div>
             </div>
             @csrf
