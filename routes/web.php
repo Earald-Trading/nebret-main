@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/preferences', 'UserController@update')->name('user.update');
     Route::get('/profile', 'UserController@profile')->name('user.profile');
     Route::get('/likes', 'UserController@likes')->name('user.likes');
+    Route::get('/lists', 'UserController@listings')->name('user.listings');
 });
 
 Route::middleware('auth.agent')->group(function () {
@@ -48,5 +49,6 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/users', 'UserController@index');
     Route::get('/users/{id}', 'UserController@show')->name('users.show');
     Route::get('/users/{id}/likes', 'UserController@likes')->name('users.likes');
+    Route::get('/users/{id}/listings', 'UserController@listings')->name('users.likes');
     Route::post('/users/{id}/edit', 'UserController@update')->name('users.update');
 });

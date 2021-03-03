@@ -7,7 +7,7 @@
             @else
                 {{ $user->first_name }} {{ $user->last_name }}
             @endif
-            Likes
+            Listings
         </h3>
         @include('inc.listings')
     </div>

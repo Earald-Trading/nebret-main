@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Like;
+use App\Models\Upload;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -197,5 +198,42 @@ class UserController extends Controller
             ->paginate(15);
 
         return view('users.likes', compact('uploads', 'user'));
+    }
+
+    /**
+     * show the user listings
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function listings(Request $request, $id = null)
+    {
+        if ($id == null) {
+            $user = Auth::user();
+        } else {
+            $user = User::find($id);
+        }
+
+        if (!$user) {
+            abort(404);
+        }
+
+        if ($user->is_agent) {
+            $uploads =  Upload::where(function($query) use($user) {
+                return $query->where('user_id', $user->id)->whereOr('admin_id', $user->id);
+            })
+                ->select('id', 'beds','baths', 'house_type', 'listing_type',
+                         'footprint', 'subcity', 'reduced_price', 'updated_at')
+                ->orderBy('updated_at', 'DESC')->paginate(15);
+        } else {
+            $uploads =  Upload::where('user_id', $user->id)
+                ->select('id', 'beds','baths', 'house_type', 'listing_type',
+                         'footprint', 'subcity', 'reduced_price', 'updated_at')
+                ->orderBy('updated_at', 'DESC')->paginate(15);
+        }
+
+
+        return view('users.listings', compact('uploads', 'user'));
     }
 }
