@@ -96,7 +96,7 @@
                 <div class="row">
                     <hr class="footer-horizontal-break w-75 text-center">
                     <div class="col-md-12 text-center mb-0 pb-0">
-                        <p class="text-small">Developed by: <i class="font-weight-bold">EARALD Trading and Technologies
+                        <p class="text-small"><i class="font-weight-bold">NEBRET Property Management
                                 PLC.</i> © 2021. All rights reserved.</p>
                     </div>
                 </div>
