@@ -26,14 +26,24 @@
                     <div class="my-3 col-8">
                         <label class="form-label">User Email</label>
                         <input class="form-control" type="email" name="user_email" id="id_email" required
-                            value={{ $data['user_email'] ?? '' }}>
+                            value={{ $data['user_email'] ?? old('user_email') }}>
+                        @error('user_email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
 
                     <div class="my-3 col">
                         <label class="form-label">Price</label>
                         @if (isset($data['price']) && ($price = (int) $data['price'] / 100)) @endif
                         <input class="form-control" type="number" step=0.01 name="price" id="id_price" required
-                            value={{ $price ?? '' }}>
+                            value={{ $price ?? old('price') }}>
+                        @error('price')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <hr>
@@ -47,45 +57,85 @@
                                 <option value="{{ $h['type'] }}" @if (isset($data['house_type']) && $data['house_type'] == $h['type']) selected @endif>{{ $h['type'] }}</option>
                             @endforeach
                         </select>
+                        @error('house_type')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="my-3 col">
                         <label class="form-label">Beds</label>
                         <input class="form-control" type="number" name="beds" id="id_beds" required
-                            value={{ $data['beds'] ?? '' }}>
+                            value={{ $data['beds'] ?? old('beds') }}>
+                        @error('beds')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="my-3 col">
                         <label class="form-label">Baths</label>
                         <input class="form-control" type="number" name="baths" id="id_baths" required
-                            value={{ $data['baths'] ?? '' }}>
+                            value={{ $data['baths'] ?? old('baths') }}>
+                        @error('baths')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">
                     <div class="my-3 col">
                         <label class="form-label">House Area</label>
                         <input class="form-control" type="number" name="footprint" id="id_footprint" required
-                            value={{ $data['footprint'] ?? '' }}>
+                            value={{ $data['footprint'] ?? old('footprint') }}>
+                        @error('footprint')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="my-3 col">
                         <label class="form-label">Total Area</label>
                         <input class="form-control" type="number" name="lot" id="id_lot" required
-                            value={{ $data['lot'] ?? '' }}>
+                            value={{ $data['lot'] ?? old('lot') }}>
+                        @error('footprint')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="my-3 col">
                         <label class="form-label">Year</label>
                         <input class="form-control" type="number" name="year" id="id_year" required
-                            value={{ $data['year'] ?? '' }}>
+                            value={{ $data['year'] ?? old('year') }}>
+                        @error('year')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">
                     <div class="my-3 col">
                         <label class="form-label">Description</label>
-                        <textarea name="description" class="ckeditor form-control" id="id_description" required>{{ $data['description'] ?? '' }}</textarea>
+                        <textarea name="description" class="ckeditor form-control" id="id_description" required>{{ $data['description'] ?? old('desciption') }}</textarea>
+                        @error('description')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">
                     <div class="my-3 col">
                         <label class="form-label">Comparative Analysis</label>
-                        <textarea name="comparative_analysis" class="ckeditor form-control" id="id_comparative_analysis" required>{{ $data['comparative_analysis'] ?? '' }}</textarea>
+                        <textarea name="comparative_analysis" class="ckeditor form-control" id="id_comparative_analysis" required>{{ $data['comparative_analysis'] ?? old('comparative_analysis') }}</textarea>
+                        @error('comparative_analysis')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row my-3"></div>
@@ -93,7 +143,12 @@
                     <div class="my-3 col">
                         <label class="form-label">Youtube Video id</label>
                         <input class="form-control" name="youtube_id" id="id_youtube" required
-                            value={{ $data['youtube_id'] ?? '' }}>
+                            value={{ $data['youtube_id'] ?? old('youtube_id') }}>
+                        @error('youtube_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row my-3 col">
@@ -101,6 +156,11 @@
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="images" id="images" accept=".zip" @if (!isset($data['images'])) required @endif>
                         <label class="custom-file-label" for="images">Choose zip file</label>
+                        @error('images')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <hr>
@@ -110,12 +170,22 @@
                     <div class="my-3 col">
                         <label class="form-label">Latitude</label>
                         <input class="form-control" type="number" step=any name="latitude" id="id_latitude" required
-                            value={{ $data['latitude'] ?? '' }}>
+                            value={{ $data['latitude'] ?? old('latitude') }}>
+                        @error('latitude')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="my-3 col">
                         <label class="form-label">Longitude</label>
                         <input class="form-control" type="number" step=any name="longitude" id="id_longitude" required
-                            value={{ $data['longitude'] ?? '' }}>
+                            value={{ $data['longitude'] ?? old('longitude') }}>
+                        @error('longitude')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">
@@ -127,16 +197,31 @@
                                 <option value="{{ $s['state'] }}" @if (isset($data['subcity']) && $data['subcity'] == $s['state']) selected @endif>{{ $s['state'] }}</option>
                             @endforeach
                         </select>
+                        @error('subcity')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="my-3 col">
                         <label class="form-label">Wereda</label>
                         <input class="form-control" type="number" name="wereda" id="id_wereda" required
-                            value={{ $data['wereda'] ?? '' }} />
+                            value={{ $data['wereda'] ?? old('wereda') }} />
+                        @error('wereda')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="my-3 col">
                         <label class="form-label">House Number</label>
                         <input class="form-control" name="houseno" id="id_houseno" required
-                            value={{ $data['houseno'] ?? '' }}>
+                            value={{ $data['houseno'] ?? old('houseno') }}>
+                        @error('houseno')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <hr>
@@ -150,6 +235,11 @@
                                 <option value="{{ $l['type'] }}" @if (isset($data['listing_type']) && $data['listing_type'] == $l['type']) selected @endif>{{ $l['type'] }}</option>
                             @endforeach
                         </select>
+                        @error('listing_type')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row my-3 col">
