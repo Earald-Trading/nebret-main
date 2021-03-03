@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'PagesController@index');
+Route::get('/', 'PagesController@index')->name('homepage');
 Route::get('/images/{id}/{number?}', 'PagesController@image')->name('images');
 
-Route::get('/survey', 'PagesController@survey');
+Route::get('/survey', 'PagesController@survey')->name('survey');
 
-Route::get('/about', 'PagesController@about');
+Route::get('/about', 'PagesController@about')->name('about');
 
 // Temporary
 Route::get('/listings', 'UploadController@index')->name('listings');
@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/preferences', 'UserController@edit')->name('user.edit');
     Route::post('/preferences', 'UserController@update')->name('user.update');
     Route::get('/profile', 'UserController@profile')->name('user.profile');
+    Route::get('/likes', 'UserController@likes')->name('user.likes');
 });
 
 Route::middleware('auth.agent')->group(function () {
@@ -46,5 +47,6 @@ Route::middleware('auth.agent')->group(function () {
 Route::middleware('auth.admin')->group(function () {
     Route::get('/users', 'UserController@index');
     Route::get('/users/{id}', 'UserController@show')->name('users.show');
+    Route::get('/users/{id}/likes', 'UserController@likes')->name('users.likes');
     Route::post('/users/{id}/edit', 'UserController@update')->name('users.update');
 });

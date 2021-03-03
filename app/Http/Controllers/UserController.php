@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -155,5 +157,45 @@ class UserController extends Controller
     public function edit()
     {
         return view('users.edit', Auth::user());
+    }
+
+    /**
+     * show the user likes
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function likes(Request $request, $id = null)
+    {
+        if ($id == null) {
+            $user = Auth::user();
+        } else {
+            $user = User::find($id);
+        }
+
+        if (!$user) {
+            abort(404);
+        }
+
+        // Fix this when eloquent has viable joins
+        $uploads =  DB::table('likes as l')
+            ->join('uploads as u', 'u.id', '=', 'l.upload_id')
+            ->where('l.user_id', '=', $user->id)
+            ->orderBy('u.updated_at', 'DESC')
+            ->select(
+                'u.id as id',
+                'beds',
+                'baths',
+                'house_type',
+                'listing_type',
+                'footprint',
+                'subcity',
+                'reduced_price',
+                'u.updated_at as updated_at'
+            )
+            ->paginate(15);
+
+        return view('users.likes', compact('uploads', 'user'));
     }
 }
