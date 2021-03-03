@@ -10,6 +10,7 @@
 @endif
 
 @section('content')
+    @php $required = empty($data) ? 'required' : '' @endphp
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">{{ $header }}</h1>
@@ -22,8 +23,8 @@
                 <div class="row">
                     <div class="my-3 col-8">
                         <label class="form-label">User Email</label>
-                        <input class="form-control" type="email" name="user_email" id="id_email" required
-                            value={{ $data['user_email'] ?? old('user_email') }}>
+                        <input class="form-control" type="email" name="user_email" id="id_email" {{ $required }}
+                            value={{ old('user_email') ?? $data['user_email'] ?? '' }}>
                         @error('user_email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -33,9 +34,9 @@
 
                     <div class="my-3 col">
                         <label class="form-label">Price</label>
-                        @if (($price = (int) $data['price'] / 100)) @endif
-                        <input class="form-control" type="number" step=0.01 name="price" id="id_price" required
-                            value={{ $price ?? old('price') }}>
+                        @if ($price = intval($data['price'] ?? 0) / 100) @endif
+                        <input class="form-control" type="number" step=0.01 name="price" id="id_price" {{ $required }}
+                            value={{ old('price') ?? $price }}>
                         @error('price')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -48,10 +49,10 @@
                 <div class="row">
                     <div class="my-3 col">
                         <label class="form-label">House type</label>
-                        <select class="custom-select" name="house_type" id="id_house_type" required>
+                        <select class="custom-select" name="house_type" id="id_house_type" {{ $required }}>
                             <option selected disabled hidden>Choose House Type</option>
                             @foreach (\App\Models\HouseType::all() as $h)
-                                <option value="{{ $h['type'] }}" @if ($data['house_type'] == $h['type']) selected @endif>{{ $h['type'] }}</option>
+                                <option value="{{ $h['type'] }}" @if (($data['house_type'] ?? null) == $h['type']) selected @endif>{{ $h['type'] }}</option>
                             @endforeach
                         </select>
                         @error('house_type')
@@ -62,8 +63,8 @@
                     </div>
                     <div class="my-3 col">
                         <label class="form-label">Beds</label>
-                        <input class="form-control" type="number" name="beds" id="id_beds" required
-                            value={{ $data['beds'] ?? old('beds') }}>
+                        <input class="form-control" type="number" name="beds" id="id_beds" {{ $required }}
+                            value={{ old('beds') ?? $data['beds'] ?? '' }}>
                         @error('beds')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -72,8 +73,8 @@
                     </div>
                     <div class="my-3 col">
                         <label class="form-label">Baths</label>
-                        <input class="form-control" type="number" name="baths" id="id_baths" required
-                            value={{ $data['baths'] ?? old('baths') }}>
+                        <input class="form-control" type="number" name="baths" id="id_baths" {{ $required }}
+                            value={{ old('baths') ?? $data['baths'] ?? '' }}>
                         @error('baths')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -84,8 +85,8 @@
                 <div class="row">
                     <div class="my-3 col">
                         <label class="form-label">House Area</label>
-                        <input class="form-control" type="number" name="footprint" id="id_footprint" required
-                            value={{ $data['footprint'] ?? old('footprint') }}>
+                        <input class="form-control" type="number" name="footprint" id="id_footprint" {{ $required }}
+                            value={{ old('footprint') ?? $data['footprint'] ?? '' }}>
                         @error('footprint')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -94,8 +95,8 @@
                     </div>
                     <div class="my-3 col">
                         <label class="form-label">Total Area</label>
-                        <input class="form-control" type="number" name="lot" id="id_lot" required
-                            value={{ $data['lot'] ?? old('lot') }}>
+                        <input class="form-control" type="number" name="lot" id="id_lot" {{ $required }}
+                            value={{ old('lot') ?? $data['lot'] ?? '' }}>
                         @error('footprint')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -104,8 +105,8 @@
                     </div>
                     <div class="my-3 col">
                         <label class="form-label">Year</label>
-                        <input class="form-control" type="number" name="year" id="id_year" required
-                            value={{ $data['year'] ?? old('year') }}>
+                        <input class="form-control" type="number" name="year" id="id_year" {{ $required }}
+                            value={{ old('year') ?? $data['year'] ?? '' }}>
                         @error('year')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -116,7 +117,7 @@
                 <div class="row">
                     <div class="my-3 col">
                         <label class="form-label">Description</label>
-                        <textarea name="description" class="ckeditor form-control" id="id_description" required>{{ $data['description'] ?? old('desciption') }}</textarea>
+                        <textarea name="description" class="ckeditor form-control" id="id_description" {{ $required }}>{{ old('desciption') ?? $data['description'] ?? '' }}</textarea>
                         @error('description')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -127,7 +128,7 @@
                 <div class="row">
                     <div class="my-3 col">
                         <label class="form-label">Comparative Analysis</label>
-                        <textarea name="comparative_analysis" class="ckeditor form-control" id="id_comparative_analysis" required>{{ $data['comparative_analysis'] ?? old('comparative_analysis') }}</textarea>
+                        <textarea name="comparative_analysis" class="ckeditor form-control" id="id_comparative_analysis" {{ $required }}>{{ old('comparative_analysis') ?? $data['comparative_analysis'] ?? '' }}</textarea>
                         @error('comparative_analysis')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -139,8 +140,8 @@
                 <div class="row">
                     <div class="my-3 col">
                         <label class="form-label">Youtube Video id</label>
-                        <input class="form-control" name="youtube_id" id="id_youtube" required
-                            value={{ $data['youtube_id'] ?? old('youtube_id') }}>
+                        <input class="form-control" name="youtube_id" id="id_youtube" {{ $required }}
+                            value={{ old('youtube_id') ?? $data['youtube_id'] ?? '' }}>
                         @error('youtube_id')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -151,7 +152,7 @@
                 <div class="row my-3 col">
                     <label class="form-label">Images</label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="images" id="images" accept=".zip" @if (!isset($data['images'])) required @endif>
+                        <input type="file" class="custom-file-input" name="images" id="images" accept=".zip" {{ $required }} />
                         <label class="custom-file-label" for="images">Choose zip file</label>
                         @error('images')
                             <span class="invalid-feedback" role="alert">
@@ -166,8 +167,8 @@
                 <div class="row">
                     <div class="my-3 col">
                         <label class="form-label">Latitude</label>
-                        <input class="form-control" type="number" step=any name="latitude" id="id_latitude" required
-                            value={{ $data['latitude'] ?? old('latitude') }}>
+                        <input class="form-control" type="number" step=any name="latitude" id="id_latitude" {{ $required }}
+                            value={{ old('latitude') ?? $data['latitude'] ?? '' }}>
                         @error('latitude')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -176,8 +177,8 @@
                     </div>
                     <div class="my-3 col">
                         <label class="form-label">Longitude</label>
-                        <input class="form-control" type="number" step=any name="longitude" id="id_longitude" required
-                            value={{ $data['longitude'] ?? old('longitude') }}>
+                        <input class="form-control" type="number" step=any name="longitude" id="id_longitude" {{ $required }}
+                            value={{ old('longitude') ?? $data['longitude'] ?? '' }}>
                         @error('longitude')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -188,10 +189,10 @@
                 <div class="row">
                     <div class="my-3 col">
                         <label class="form-label">Subcity</label>
-                        <select class="custom-select" name="subcity" id="id_subcity" required>
+                        <select class="custom-select" name="subcity" id="id_subcity" {{ $required }}>
                             <option selected disabled hidden>Choose subcity</option>
                             @foreach (\App\Models\State::all() as $s)
-                                <option value="{{ $s['state'] }}" @if ($data['subcity'] == $s['state']) selected @endif>{{ $s['state'] }}</option>
+                                <option value="{{ $s['state'] }}" @if (($data['subcity'] ?? null) == $s['state']) selected @endif>{{ $s['state'] }}</option>
                             @endforeach
                         </select>
                         @error('subcity')
@@ -202,8 +203,8 @@
                     </div>
                     <div class="my-3 col">
                         <label class="form-label">Wereda</label>
-                        <input class="form-control" type="number" name="wereda" id="id_wereda" required
-                            value={{ $data['wereda'] ?? old('wereda') }} />
+                        <input class="form-control" type="number" name="wereda" id="id_wereda" {{ $required }}
+                            value={{ old('wereda') ?? $data['wereda'] ?? '' }} />
                         @error('wereda')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -212,8 +213,8 @@
                     </div>
                     <div class="my-3 col">
                         <label class="form-label">House Number</label>
-                        <input class="form-control" name="houseno" id="id_houseno" required
-                            value={{ $data['houseno'] ?? old('houseno') }}>
+                        <input class="form-control" name="houseno" id="id_houseno" {{ $required }}
+                            value={{ old('houseno') ?? $data['houseno'] ?? '' }}>
                         @error('houseno')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -226,10 +227,10 @@
                 <div class="row">
                     <div class="form-check form-switch my-3 col">
                         <label class="form-label">Listing Type</label>
-                        <select class="custom-select" name="listing_type" id="id_listing_type" required>
+                        <select class="custom-select" name="listing_type" id="id_listing_type" {{ $required }}>
                             <option selected disabled hidden>Choose Listing type</option>
                             @foreach (\App\Models\ListingType::all() as $l)
-                                <option value="{{ $l['type'] }}" @if ($data['listing_type'] == $l['type']) selected @endif>{{ $l['type'] }}</option>
+                                <option value="{{ $l['type'] }}" @if (($data['listing_type'] ?? null) == $l['type']) selected @endif>{{ $l['type'] }}</option>
                             @endforeach
                         </select>
                         @error('listing_type')
@@ -241,23 +242,23 @@
                 </div>
                 <div class="row my-3 col">
                     <div class="form-check form-switch my-3 col">
-                        <input class="form-check-input" type="checkbox" id="id_featured" @if ($data['featured']) checked @endif>
+                        <input class="form-check-input" type="checkbox" id="id_featured" @if ($data['featured'] ?? null) checked @endif>
                         <input type="hidden" name="featured" id="id_featured_hidden">
                         <label class="form-label">Featured</label>
                     </div>
                     <div class="form-check form-switch my-3 col">
-                        <input class="form-check-input" type="checkbox" id="id_openhouse" @if ($data['openhouse']) checked @endif>
+                        <input class="form-check-input" type="checkbox" id="id_openhouse" @if ($data['openhouse'] ?? null) checked @endif>
                         <input type="hidden" name="openhouse" id="id_openhouse_hidden">
                         <label class="form-label">Open House</label>
                     </div>
                     <div class="form-check form-switch my-3 col">
-                        <input class="form-check-input" type="checkbox" id="id_newconstruction" @if ($data['newconstruction']) checked @endif>
+                        <input class="form-check-input" type="checkbox" id="id_newconstruction" @if ($data['newconstruction'] ?? null) checked @endif>
                         <input type="hidden" name="newconstruction" id="id_newconstruction_hidden">
                         <label class="form-label">New Construction</label>
                     </div>
-                    @if ($editing)
+                    @if (! empty($data))
                         <div class="form-check form-switch my-3 col">
-                            <input class="form-check-input" type="checkbox" id="id_job_finished" @if ($data['job_finished']) checked @endif>
+                            <input class="form-check-input" type="checkbox" id="id_job_finished" @if ($data['job_finished'] ?? null) checked @endif>
                             <input type="hidden" name="job_finished" id="id_job_finished_hidden">
                             <label class="form-label">Job Finished</label>
                         </div>

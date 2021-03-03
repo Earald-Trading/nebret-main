@@ -414,7 +414,6 @@ class UploadController extends Controller
             'description' => 'Here you edit a previously uploaded listing.',
             'data' => $upload,
             'route' => route('listings.update', ['id' => $id]),
-            'editing' => true
         ]);
     }
 
