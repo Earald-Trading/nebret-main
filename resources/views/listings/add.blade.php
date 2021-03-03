@@ -8,9 +8,6 @@
         </ul>
     </div>
 @endif
-@section('style')
-    <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
-@endsection
 
 @section('content')
     <div class="jumbotron jumbotron-fluid">
@@ -36,7 +33,7 @@
 
                     <div class="my-3 col">
                         <label class="form-label">Price</label>
-                        @if (isset($data['price']) && ($price = (int) $data['price'] / 100)) @endif
+                        @if (($price = (int) $data['price'] / 100)) @endif
                         <input class="form-control" type="number" step=0.01 name="price" id="id_price" required
                             value={{ $price ?? old('price') }}>
                         @error('price')
@@ -54,7 +51,7 @@
                         <select class="custom-select" name="house_type" id="id_house_type" required>
                             <option selected disabled hidden>Choose House Type</option>
                             @foreach (\App\Models\HouseType::all() as $h)
-                                <option value="{{ $h['type'] }}" @if (isset($data['house_type']) && $data['house_type'] == $h['type']) selected @endif>{{ $h['type'] }}</option>
+                                <option value="{{ $h['type'] }}" @if ($data['house_type'] == $h['type']) selected @endif>{{ $h['type'] }}</option>
                             @endforeach
                         </select>
                         @error('house_type')
@@ -194,7 +191,7 @@
                         <select class="custom-select" name="subcity" id="id_subcity" required>
                             <option selected disabled hidden>Choose subcity</option>
                             @foreach (\App\Models\State::all() as $s)
-                                <option value="{{ $s['state'] }}" @if (isset($data['subcity']) && $data['subcity'] == $s['state']) selected @endif>{{ $s['state'] }}</option>
+                                <option value="{{ $s['state'] }}" @if ($data['subcity'] == $s['state']) selected @endif>{{ $s['state'] }}</option>
                             @endforeach
                         </select>
                         @error('subcity')
@@ -232,7 +229,7 @@
                         <select class="custom-select" name="listing_type" id="id_listing_type" required>
                             <option selected disabled hidden>Choose Listing type</option>
                             @foreach (\App\Models\ListingType::all() as $l)
-                                <option value="{{ $l['type'] }}" @if (isset($data['listing_type']) && $data['listing_type'] == $l['type']) selected @endif>{{ $l['type'] }}</option>
+                                <option value="{{ $l['type'] }}" @if ($data['listing_type'] == $l['type']) selected @endif>{{ $l['type'] }}</option>
                             @endforeach
                         </select>
                         @error('listing_type')
@@ -244,20 +241,24 @@
                 </div>
                 <div class="row my-3 col">
                     <div class="form-check form-switch my-3 col">
-                        <input class="form-check-input" type="checkbox" name="featured" id="id_featured" @if (isset($data['featured']) && $data['featured']) checked @endif>
+                        <input class="form-check-input" type="checkbox" id="id_featured" @if ($data['featured']) checked @endif>
+                        <input type="hidden" name="featured" id="id_featured_hidden">
                         <label class="form-label">Featured</label>
                     </div>
                     <div class="form-check form-switch my-3 col">
-                        <input class="form-check-input" type="checkbox" name="openhouse" id="id_openhouse" @if (isset($data['openhouse']) && $data['openhouse']) checked @endif>
+                        <input class="form-check-input" type="checkbox" id="id_openhouse" @if ($data['openhouse']) checked @endif>
+                        <input type="hidden" name="openhouse" id="id_openhouse_hidden">
                         <label class="form-label">Open House</label>
                     </div>
                     <div class="form-check form-switch my-3 col">
-                        <input class="form-check-input" type="checkbox" name="newconstruction" id="id_newconstruction" @if (isset($data['newconstruction']) && $data['newconstruction']) checked @endif>
+                        <input class="form-check-input" type="checkbox" id="id_newconstruction" @if ($data['newconstruction']) checked @endif>
+                        <input type="hidden" name="newconstruction" id="id_newconstruction_hidden">
                         <label class="form-label">New Construction</label>
                     </div>
                     @if ($editing)
                         <div class="form-check form-switch my-3 col">
-                            <input class="form-check-input" type="checkbox" name="job_finished" id="id_newconstruction" @if (isset($data['job_finished']) && $data['job_finished']) checked @endif>
+                            <input class="form-check-input" type="checkbox" id="id_job_finished" @if ($data['job_finished']) checked @endif>
+                            <input type="hidden" name="job_finished" id="id_job_finished_hidden">
                             <label class="form-label">Job Finished</label>
                         </div>
                     @endif
@@ -271,6 +272,24 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('.ckeditor').ckeditor();
+        });
+        $('#form').submit(function() {
+            checkboxes = [
+                document.getElementById('id_featured'),
+                document.getElementById('id_openhouse'),
+                document.getElementById('id_newconstruction'),
+                document.getElementById('id_job_finished'),
+            ];
+
+            for (var checkbox of checkboxes) {
+                elem = document.getElementById(checkbox.id+'_hidden');
+                if (checkbox.checked) {
+                    elem.value = "true";
+                } else {
+                    elem.value = "false";
+                }
+            }
+            return true;
         });
     </script>
 @endsection

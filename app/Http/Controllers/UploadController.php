@@ -45,19 +45,22 @@ class UploadController extends Controller
             'wereda' => "{$required_rule}integer",
             'houseno' => "{$required_rule}string",
             'listing_type' => "{$required_rule}string|exists:listing_types,type",
-            'featured' => 'in:on,1,true',
-            'openhouse' => 'in:on,1,true',
-            'newconstruction' => 'in:on,1,true',
-            'job_finished' => 'in:on,1,true',
+            'featured' => 'in:false,true',
+            'openhouse' => 'in:false,true',
+            'newconstruction' => 'in:false,true',
+            'job_finished' => 'in:false,true',
         ]);
 
-        isset($request['featured']) ? $request['featured'] = true : $request['featured'] = false;
+        $checkboxes = ['featured', 'openhouse', 'newconstruction', 'job_finished'];
 
-        isset($request['openhouse']) ? $request['openhouse'] = true : $request['openhouse'] = false;
-
-        isset($request['newconstruction']) ? $request['newconstruction'] = true : $request['newconstruction'] = false;
-
-        isset($request['job_finished']) ? $request['job_finished'] = true : $request['job_finished'] = false;
+        foreach($checkboxes as $checkbox) {
+            $value = $request[$checkbox];
+            if ($value == "true") {
+                $request[$checkbox] = true;
+            } else if ($value == "false") {
+                $request[$checkbox] = false;
+            }
+        }
     }
 
     /**
@@ -294,6 +297,7 @@ class UploadController extends Controller
         return view('listings.add', [
             'title' => 'Upload',
             'header' => 'Upload Listing',
+            'data' => [],
             'description' => 'Here you upload a listing by request of user.',
         ]);
     }
