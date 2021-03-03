@@ -1,5 +1,5 @@
-<footer class="footer navbar-light bg-white shadow-sm">
-    <div class="container">
+<footer class="footer navbar-light bg-white shadow-sm full-width">
+    <div class="container container-fluid">
         <div class="main-footer widgets-dark typo-light my-5 py-5">
             <div class="container">
                 <div class="row">
