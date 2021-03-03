@@ -2,9 +2,9 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="navbar navbar-expand w-100 text-center" style="background: #c1c4db !important;">
-            <span style="width: fit-content !important; margin: auto !important;">We are collecting a survey to help us
+    <div>
+        <div class="text-center py-2" style="background: #c1c4db !important; width: 100% !important;">
+            <span>We are collecting a survey to help us
                 understand more about you, our customers. And we would highly appreciate it, if you would fill you the form
                 in <a href="/survey"> this link</a>. Thank you and keep safe!</span>
         </div>
@@ -19,7 +19,7 @@
         <div class="carousel-inner" role="listbox">
             <!-- Slide One - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing active"
-                style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2019/07/September2017-54-1600x1279.jpg')">
+                style="background-image: url('../../../../public/images/JUMBO1.jpeg')">
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4">Find Your Dream Home</h2>
                     <p class="lead">Use our easy-to-use platform and realize your dream, all without the hustle.</p>
@@ -27,7 +27,7 @@
             </div>
             <!-- Slide Two - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing"
-                style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2017/10/cam-01-1600x888.jpg')">
+                style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2017/10/cam-01-1600x888.jpg'), url('../images/JUMBO2.png')">
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4">Secure Your Property</h2>
                     <p class="lead">We take all burden from you and manage your property as ours.</p>
@@ -35,7 +35,7 @@
             </div>
             <!-- Slide Three - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing"
-                style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2017/08/dsc7241l-1600x1068.jpg')">
+                style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2017/08/dsc7241l-1600x1068.jpg'), url('../images/JUMBO3.png')">
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4">Sell! And Easily Restock</h2>
                     <p class="lead">Use our platform to sell or rent your place. Get direct contact to your clients.</p>
