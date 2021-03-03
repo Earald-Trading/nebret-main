@@ -53,7 +53,7 @@ class UploadController extends Controller
 
         $checkboxes = ['featured', 'openhouse', 'newconstruction', 'job_finished'];
 
-        foreach($checkboxes as $checkbox) {
+        foreach ($checkboxes as $checkbox) {
             $value = $request[$checkbox];
             if ($value == "true") {
                 $request[$checkbox] = true;
@@ -177,7 +177,7 @@ class UploadController extends Controller
         $query = [];
 
         if ($request->filled('type')) {
-            switch($request->query('type')) {
+            switch ($request->query('type')) {
                 case 'rent':
                     $query[] = ['listing_type', '=', 'For Rent'];
                     break;
@@ -205,7 +205,7 @@ class UploadController extends Controller
         }
 
         if ($request->filled('beds')) {
-            switch($request->query('beds')) {
+            switch ($request->query('beds')) {
                 case 1:
                     $query[] = ['beds', '=', 1];
                     break;
@@ -225,7 +225,7 @@ class UploadController extends Controller
         }
 
         if ($request->filled('area')) {
-            switch($request->query('area')) {
+            switch ($request->query('area')) {
                 case 1:
                     $query[] = ['footprint', '<=', 100];
                     break;
@@ -261,11 +261,11 @@ class UploadController extends Controller
         }
 
         if ($request->filled('min_price')) {
-            $query[] = ['price', '>=', $request->query('min_price')*100];
+            $query[] = ['price', '>=', $request->query('min_price') * 100];
         }
 
         if ($request->filled('max_price')) {
-            $query[] = ['price', '<', $request->query('max_price')*100];
+            $query[] = ['price', '<', $request->query('max_price') * 100];
         }
 
         return $query;
@@ -280,18 +280,20 @@ class UploadController extends Controller
     public function index(Request $request)
     {
         $query = $this->makeQuery($request);
+        $select = [
+            'id', 'beds', 'baths', 'house_type', 'footprint', 'subcity',
+            'featured', 'reduced_price', 'job_finished', 'updated_at'
+        ];
         $featured = [];
         $reduced_price = [];
         if (empty($query)) {
-            $featured = Upload::where('featured', 1)->where('job_finished', 0)->inRandomOrder()->limit(6)->get();
+            $featured = Upload::select($select)->where('featured', 1)->where('job_finished', 0)->inRandomOrder()->limit(6)->get();
         }
         if (empty($query)) {
-            $reduced_price = Upload::where('reduced_price', 1)->where('job_finished', 0)->inRandomOrder()->limit(6)->get();
+            $reduced_price = Upload::select($select)->where('reduced_price', 1)->where('job_finished', 0)->inRandomOrder()->limit(6)->get();
         }
         $uploads = Upload::where($query)
-            ->select('id', 'beds','baths', 'house_type', 'listing_type',
-                'footprint', 'subcity', 'featured', 'reduced_price',
-                'job_finished', 'updated_at')
+            ->select($select)
             ->orderBy('updated_at', 'DESC')->paginate(15);
 
         return view('listings.listings', [
@@ -458,7 +460,7 @@ class UploadController extends Controller
 
         if ($request['price'] < $upload->price) {
             $upload_collection['reduced_price'] = true;
-        } else if($request['price'] > $upload->price) {
+        } else if ($request['price'] > $upload->price) {
             $upload_collection['reduced_price'] = false;
         }
 
@@ -496,7 +498,7 @@ class UploadController extends Controller
         }
 
         if ($request->expectsJson()) {
-            return response([],204);
+            return response([], 204);
         }
 
         return redirect()->route('listings.show', ['id' => $upload->id]);

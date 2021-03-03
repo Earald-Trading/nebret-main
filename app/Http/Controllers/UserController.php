@@ -183,7 +183,7 @@ class UserController extends Controller
             ->join('uploads as u', 'u.id', '=', 'l.upload_id')
             ->where('l.user_id', '=', $user->id)
             ->orderBy('u.updated_at', 'DESC')
-            ->select(
+            ->select([
                 'u.id as id',
                 'beds',
                 'baths',
@@ -195,8 +195,7 @@ class UserController extends Controller
                 'reduced_price',
                 'job_finished',
                 'u.updated_at as updated_at'
-            )
-            ->paginate(15);
+            ])->paginate(15);
 
         return view('users.likes', compact('uploads', 'user'));
     }
@@ -220,9 +219,9 @@ class UserController extends Controller
             abort(404);
         }
 
-        $select =  [
-            'id', 'beds', 'baths', 'house_type', 'listing_type',
-            'footprint', 'subcity', 'featured', 'reduced_price', 'job_finished', 'updated_at'
+        $select = [
+            'id', 'beds', 'baths', 'house_type', 'footprint', 'subcity',
+            'featured', 'reduced_price', 'job_finished', 'updated_at'
         ];
 
         if ($user->is_agent) {

@@ -53,9 +53,7 @@
                     Location Addis Ababa, {{ $upload->subcity }}
                 </div>
                 <div class="card-text">
-                    <span class="float float-right">
-                        <a href="{{ route('listings.show', ['id' => $upload->id]) }} ">View Details</a>
-                    </span>
+                    <b> {{ $upload->house_type }} </b>
                 </div>
             </div>
         </div>
