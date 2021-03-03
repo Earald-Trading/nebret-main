@@ -29,7 +29,7 @@
                     @else
                         @if (Auth::is_admin())
                             <li class="nav-item">
-                                <a class="nav-link" href="/home">HOME</a>
+                                <a class="nav-link" href="./">HOME</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/listings">AVAILABLE LISTINGS</a>
@@ -43,7 +43,7 @@
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="/home">HOME</a>
+                                <a class="nav-link" href="./">HOME</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/listings">AVAILABLE LISTINGS</a>
