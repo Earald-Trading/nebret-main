@@ -31,12 +31,12 @@
                     </span>
                 @else
                     @if ($upload->featured)
-                        <span class="badge badge-success">
+                        <span class="badge badge-dark">
                             Featured
                         </span>
                     @endif
                     @if ($upload->reduced_price)
-                        <span class="badge badge-danger">
+                        <span class="badge badge-secondary">
                             Reduced Price
                         </span>
                     @endif
