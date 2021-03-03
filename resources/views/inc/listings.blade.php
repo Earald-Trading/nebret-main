@@ -43,6 +43,8 @@
                             </div>
                             <div class="card-text">
                                 Location Addis Ababa, {{ $upload->subcity }}
+                            </div>
+                            <div class="card-text">
                                 <span class="float float-right">
                                     <!--Must include the listingId as a param-->
                                     <a href="{{ route('images', ['id' => $upload->id, 'number' => 0 ]) }} ">View Details</a>
