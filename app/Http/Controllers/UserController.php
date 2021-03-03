@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Like;
 use App\Models\Upload;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -192,7 +191,9 @@ class UserController extends Controller
                 'listing_type',
                 'footprint',
                 'subcity',
+                'featured',
                 'reduced_price',
+                'job_finished',
                 'u.updated_at as updated_at'
             )
             ->paginate(15);
@@ -219,18 +220,18 @@ class UserController extends Controller
             abort(404);
         }
 
+        $select =  [
+            'id', 'beds', 'baths', 'house_type', 'listing_type',
+            'footprint', 'subcity', 'featured', 'reduced_price', 'job_finished', 'updated_at'
+        ];
+
         if ($user->is_agent) {
-            $uploads =  Upload::where(function($query) use($user) {
+            $uploads =  Upload::where(function ($query) use ($user) {
                 return $query->where('user_id', $user->id)->whereOr('admin_id', $user->id);
-            })
-                ->select('id', 'beds','baths', 'house_type', 'listing_type',
-                         'footprint', 'subcity', 'reduced_price', 'updated_at')
-                ->orderBy('updated_at', 'DESC')->paginate(15);
+            })->select($select)->orderBy('updated_at', 'DESC')->paginate(15);
         } else {
             $uploads =  Upload::where('user_id', $user->id)
-                ->select('id', 'beds','baths', 'house_type', 'listing_type',
-                         'footprint', 'subcity', 'reduced_price', 'updated_at')
-                ->orderBy('updated_at', 'DESC')->paginate(15);
+                ->select($select)->orderBy('updated_at', 'DESC')->paginate(15);
         }
 
 
