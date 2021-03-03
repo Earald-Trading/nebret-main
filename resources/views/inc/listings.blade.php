@@ -7,10 +7,14 @@
                     <div class="row my-5">
                 @endif
                 @php $updated_at = \Carbon\Carbon::parse($upload->updated_at) @endphp
-                <div class="col" onclick="location.href='{{ route('listings.show', ['id' => $upload->id]) }}';" style="cursor: pointer;">
+                <div class="col" onclick="location.href='{{ route('listings.show', ['id' => $upload->id]) }}';"
+                     onmouseover="hover(document.getElementById('cover_img_{{ $upload->id }}'), {{ $upload->id }})"
+                     onmouseout="unhover(document.getElementById('cover_img_{{ $upload->id }}'), {{ $upload->id }})"
+                    style="cursor: pointer;overflow:hidden;">
                     <div class="card listing-card" style="width: 20rem !important;">
                         <img class="relative card-img" src="{{ route('images', ['id' => $upload->id, 'number' => 0 ]) }}"
-                            style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this)" onmouseout="unhover(this)" />
+                           id="cover_img_{{ $upload->id }}"
+                           style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" />
 
                         <div class="position-absolute mt-2 ml-2">
                             <span class="badge badge-success">
@@ -57,14 +61,37 @@
     </div>
 </div>
 
-<script>
-    function hover(element){
-        element.setAttribute('src', 'https://images.freeimages.com/images/large-previews/0f7/old-barn-1641487.jpg');
-        element.style.overflow = 'hidden';
+<script type="text/javascript">
+    var intervalvar = 0;
+    var index = 1;
+
+    function make_image_url(id, number) {
+        var base = window.location.protocol + "//" + window.location.host;
+        var url = new URL("/images/"+id+"/"+number, base);
+
+        return url.toString();
+    }
+    function hover(element, id) {
+        if (intervalvar != 0)
+            return;
+
+        $(element).attr('src', make_image_url(id, index));
+        ++index;
+
+        intervalvar = setInterval(function() {
+            if (index > 2)
+                index = 0;
+
+            $(element).attr('src', make_image_url(id, index));
+            ++index;
+        }, 2000);
     }
 
-    function unhover(element){
-        element.setAttribute('src', 'https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg');
-        element.style.overflow = 'hidden';
+    function unhover(element, id) {
+        clearInterval(intervalvar);
+        intervalvar = 0;
+        index = 1;
+
+        $(element).attr('src', make_image_url(id, 0));
     }
 </script>
