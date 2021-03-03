@@ -141,9 +141,31 @@
                         </div>
                     @else
                         <div class="col col-auto align-self-center justify-content-center">
-                            <button class="btn btn-lg btn-primary" style="width: fit-content !important;">
+                            <button class="btn btn-lg btn-primary" style="width: fit-content !important;" type="button" data-toggle="modal" data-target="#contact-modal-center">
                                 Contact Agent for More
                             </button>
+                        </div>
+
+                        <div class="modal fade" id="contact-modal-center" tabindex="-1" role="dialog" aria-labelledby="contact-agent-center" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="contact-modal-title">Agent Details</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="lead">Yonathan Amha</p>
+                                        <p class="ml-3 mb-1 pb-0">+251 91 214 0906</p>
+                                        <p class="ml-3 my-0 py-0">yonathan.amha@gmail.com</p>
+                                        <br>
+                                        <p class="lead">Natnael Hailu</p>
+                                        <p class="ml-3 mb-1 pb-0">+251 92 116 1210</p>
+                                        <p class="ml-3 my-0 py-0">natnael.hailu@gmail.com</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     @endguest
                 </div>
