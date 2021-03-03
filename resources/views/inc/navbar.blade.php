@@ -4,7 +4,7 @@
     </span>
     <nav class="navbar sticky-top navbar-expand-md navbar-light bg-light shadow-sm" id="navbar">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}" style="color: red !important;" title="{{ config('app.name', 'NEBRET') }}">
+            <a class="navbar-brand" href="{{ route('homepage') }}" style="color: red !important;" title="{{ config('app.name', 'NEBRET') }}">
                 <img class="img-fluid mr-4" src="../../images/FINAL.png" alt="{{ config('app.name', 'NEBRET') }}" style="width: 7rem !important; object-fit: cover !important;">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -18,35 +18,35 @@
                 <ul class="navbar-nav mr-auto">
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="">HOME</a>
+                            <a class="nav-link" href="{{ route('homepage') }}">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/listings">AVAILABLE LISTINGS</a>
+                            <a class="nav-link" href="{{ route('listings') }}">AVAILABLE LISTINGS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/about">ABOUT US</a>
+                            <a class="nav-link" href="{{ route('about') }}">ABOUT US</a>
                         </li>
                     @else
                         @if (Auth::is_admin())
                             <li class="nav-item">
-                                <a class="nav-link" href="/listings">HOME</a>
+                                <a class="nav-link" href="{{ route('listings') }}">HOME</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/listings">AVAILABLE LISTINGS</a>
+                                <a class="nav-link" href="{{ route('listings') }}">AVAILABLE LISTINGS</a>
                             </li>
                             <li class="nav-item">
                                 <!-- Needs to have a parameter, request-type, 'rent', along with userId -->
-                                <a class="nav-link" href="/upload">UPLOAD</a>
+                                <a class="nav-link" href="{{ route('listings.store') }}">UPLOAD</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/about">ABOUT US</a>
+                                <a class="nav-link" href="{{ route('about') }}">ABOUT US</a>
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="/listings">HOME</a>
+                                <a class="nav-link" href="{{ route('listings') }}">HOME</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/listings">AVAILABLE LISTINGS</a>
+                                <a class="nav-link" href="{{ route('listing') }}">AVAILABLE LISTINGS</a>
                             </li>
                             <li class="nav-item">
                                 <!-- Needs to have a parameter, request-type, 'sell', along with userId -->
@@ -61,7 +61,7 @@
                                 <a class="nav-link" href="/dashboard">MY LISTINGS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/about">ABOUT US</a>
+                                <a class="nav-link" href="{{ route('about') }}">ABOUT US</a>
                             </li>
                         @endif
                     @endguest
@@ -100,7 +100,7 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
-                                <a class="dropdown-item" href="/users/{{ Auth::user()->id }}/edit">Edit My Profile</a>
+                                <a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a>
                             </div>
                         </li>
                     @endguest
