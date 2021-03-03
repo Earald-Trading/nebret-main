@@ -28,10 +28,21 @@
                                     {{ $updated_at->diffForHumans() }}
                                 @endif
                             </span>
-                            @if ($upload->reduced_price)
+                            @if ($upload->job_finished)
                                 <span class="badge badge-danger">
-                                    Reduced Price
+                                    Sold
                                 </span>
+                            @else
+                                @if ($upload->featured)
+                                    <span class="badge badge-success">
+                                        Featured
+                                    </span>
+                                @endif
+                                @if ($upload->reduced_price)
+                                    <span class="badge badge-danger">
+                                        Reduced Price
+                                    </span>
+                                @endif
                             @endif
                         </div>
                         <div class="card-body">
