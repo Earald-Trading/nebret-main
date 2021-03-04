@@ -27,6 +27,9 @@
                                             {{ $updated_at->diffForHumans() }}
                                         @endif
                                     </span>
+                                    <span class="badge badge-secondary">
+                                        {{ $likes }}
+                                    </span>
                                     <span>
                                         <i id="like_button" class="fa fa-thumbs-up btn btn-sm @if($liked) btn-primary @else btn-secondary @endif"
                                            @guest onclick="document.querySelector('#like_button>a').click();" @endguest

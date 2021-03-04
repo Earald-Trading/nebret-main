@@ -377,6 +377,8 @@ class UploadController extends Controller
             $upload['liked'] = true;
         }
 
+        $upload['likes'] = Like::where('upload_id', $id)->count();
+
         return view('listings.show', $upload);
     }
 
