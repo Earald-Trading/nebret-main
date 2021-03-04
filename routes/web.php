@@ -21,6 +21,8 @@ Route::get('/survey', 'PagesController@survey');
 
 Route::get('/about', 'PagesController@about');
 
+// Route::get('/request', 'PagesController@request');
+
 // Temporary
 Route::get('/listings', 'UploadController@index')->name('listings');
 Route::get('/listings/{id}', 'UploadController@show')->name('listings.show');
@@ -32,6 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/preferences', 'UserController@edit')->name('user.edit');
     Route::post('/preferences', 'UserController@update')->name('user.update');
     Route::get('/profile', 'UserController@profile')->name('user.profile');
+    Route::get('/request', 'UploadRequestController@create')->name('uploadRequest.create');
+    Route::post('/request', 'UploadRequestController@store')->name('uploadRequest.store');
+    Route::post('/request/{id}', 'UploadRequestController@update')->name('uploadRequest.update');
 });
 
 Route::middleware('auth.agent')->group(function () {

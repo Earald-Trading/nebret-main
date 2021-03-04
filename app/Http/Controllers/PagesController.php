@@ -24,6 +24,11 @@ class PagesController extends Controller
     {
         return view('about');
     }
+
+    public function request()
+    {
+        return view('listings.request');
+    }
     /**
      * Get images form storage
      *

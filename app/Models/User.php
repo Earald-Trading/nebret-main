@@ -105,4 +105,9 @@ class User extends Authenticatable
     {
         $this->hasMany(Like::class, 'user_id');
     }
+
+    public function uploadRequests()
+    {
+        $this->hasMany(UploadRequest::class, 'user_id');
+    }
 }

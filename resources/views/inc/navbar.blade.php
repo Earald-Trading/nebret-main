@@ -29,7 +29,7 @@
                     @else
                         @if (Auth::is_admin())
                             <li class="nav-item">
-                                <a class="nav-link" href="./">HOME</a>
+                                <a class="nav-link" href="/home">HOME</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/listings">AVAILABLE LISTINGS</a>
@@ -37,6 +37,9 @@
                             <li class="nav-item">
                                 <!-- Needs to have a parameter, request-type, 'rent', along with userId -->
                                 <a class="nav-link" href="/upload">UPLOAD</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/users">USERS</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/about">ABOUT US</a>
@@ -50,12 +53,11 @@
                             </li>
                             <li class="nav-item">
                                 <!-- Needs to have a parameter, request-type, 'sell', along with userId -->
-                                <a class="nav-link" href="/request-upload">SELL</a>
+                                <a class="nav-link" href="/request">SELL/RENT</a>
                             </li>
-                            <li class="nav-item">
-                                <!-- Needs to have a parameter, request-type, 'rent', along with userId -->
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="/request-listing">RENT</a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <!-- Needs to have the userId passed as a param -->
                                 <a class="nav-link" href="/dashboard">MY LISTINGS</a>
