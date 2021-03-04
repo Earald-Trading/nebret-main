@@ -51,4 +51,5 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/users/{id}/likes', 'UserController@likes')->name('users.likes');
     Route::get('/users/{id}/listings', 'UserController@listings')->name('users.likes');
     Route::post('/users/{id}/edit', 'UserController@update')->name('users.update');
+    Route::post('/users/{id}/delete', 'UserController@destroy')->name('users.delete');
 });

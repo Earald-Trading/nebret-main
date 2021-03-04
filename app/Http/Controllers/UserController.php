@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\Upload;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -157,6 +158,26 @@ class UserController extends Controller
     public function edit()
     {
         return view('users.edit', Auth::user());
+    }
+
+    /**
+     * Delete the specified resource in storage
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            abort(404);
+        }
+        Like::where('user_id', $user->id)->delete();
+        $user->delete();
+
+        return redirect()->route('users');
     }
 
     /**

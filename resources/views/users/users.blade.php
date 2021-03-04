@@ -24,7 +24,7 @@
                     <th scope="col">Email</th>
                     <th scope="col">Phone Number</th>
                     <th scope="col">Type</th>
-                    <th scope="col"></th>
+                    <th scope="col" class="text-danger">Delete User</a>
                 </tr>
             </thead>
             <tbody>
@@ -32,14 +32,30 @@
                     @foreach ($users as $user)
                         <tr>
                             <th scope="row">{{ $user->id }}</th>
-                            <td>{{ $user->first_name }} {{ $user->last_name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>--</td>
-                            <td class="text-info">
-                            @if ($user->is_admin) Admin @elseif ($user->is_agent) Agent
-                                @else User @endif
+                            <td>
+                                <a href="{{ route('users.show', ['id' => $user->id]) }}">
+                                     {{ $user->first_name }} {{ $user->last_name }}
+                                </a>
                             </td>
-                            <td><a href="/users/{{ $user->id }}">View Detail</a></td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->phone ?? '--' }}</td>
+                            <td class="text-secondary">
+                                @if ($user->is_admin)
+                                    Admin
+                                @elseif ($user->is_agent)
+                                    Agent
+                                @else
+                                    User
+                                @endif
+                            </td>
+                            <td class="text-danger">
+                                <button class="btn btn-outline-danger" onclick="document.getElementById('user-delete-{{ $user->id }}-form').submit();">
+                                    Delete User
+                                </button>
+                                <form id="user-delete-{{ $user->id }}-form" class="d-none" method="POST" action="{{ route('users.delete', ['id' => $user->id]) }}">
+                                    @csrf
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 @endif
