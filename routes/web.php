@@ -46,7 +46,7 @@ Route::middleware('auth.agent')->group(function () {
 });
 
 Route::middleware('auth.admin')->group(function () {
-    Route::get('/users', 'UserController@index');
+    Route::get('/users', 'UserController@index')->name('users');
     Route::get('/users/{id}', 'UserController@show')->name('users.show');
     Route::get('/users/{id}/likes', 'UserController@likes')->name('users.likes');
     Route::get('/users/{id}/listings', 'UserController@listings')->name('users.likes');

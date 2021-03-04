@@ -16,55 +16,30 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-                    @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('homepage') }}">HOME</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('listings') }}">AVAILABLE LISTINGS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('about') }}">ABOUT US</a>
-                        </li>
-                    @else
-                        @if (Auth::is_admin())
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('listings') }}">HOME</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('listings') }}">AVAILABLE LISTINGS</a>
-                            </li>
-                            <li class="nav-item">
-                                <!-- Needs to have a parameter, request-type, 'rent', along with userId -->
-                                <a class="nav-link" href="{{ route('listings.store') }}">UPLOAD</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('about') }}">ABOUT US</a>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('listings') }}">HOME</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('listing') }}">AVAILABLE LISTINGS</a>
-                            </li>
-                            <li class="nav-item">
-                                <!-- Needs to have a parameter, request-type, 'sell', along with userId -->
-                                <a class="nav-link" href="/request-upload">SELL</a>
-                            </li>
-                            <li class="nav-item">
-                                <!-- Needs to have a parameter, request-type, 'rent', along with userId -->
-                                <a class="nav-link" href="/request-listing">RENT</a>
-                            </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('homepage') }}">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('listings') }}">AVAILABLE LISTINGS</a>
+                    </li>
+                    @auth
+                        @agent
+                                <li class="nav-item">
+                                    <!-- Needs to have a parameter, request-type, 'rent', along with userId -->
+                                    <a class="nav-link" href="{{ route('listings.store') }}">UPLOAD</a>
+                                </li>
+                        @endagent
+
+                        @admin
                             <li class="nav-item">
                                 <!-- Needs to have the userId passed as a param -->
-                                <a class="nav-link" href="/dashboard">MY LISTINGS</a>
+                                <a class="nav-link" href="{{ route('users') }}">USERS</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('about') }}">ABOUT US</a>
-                            </li>
-                        @endif
-                    @endguest
+                        @endadmin
+                    @endauth
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('about') }}">ABOUT US</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -92,6 +67,10 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a>
+                                <a class="dropdown-item" href="{{ route('user.edit') }}">Preferences</a>
+                                <a class="dropdown-item" href="{{ route('user.likes') }}"> Likes</a>
+                                <a class="dropdown-item" href="{{ route('user.listings') }}">Your Listings</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                     Logout
@@ -100,7 +79,6 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
-                                <a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a>
                             </div>
                         </li>
                     @endguest
