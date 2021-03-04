@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\Upload;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,7 +12,18 @@ class PagesController extends Controller
     // Should return the latest three listings to the view.
     public function index()
     {
-        return view('welcome');
+        $select = [
+            'id', 'beds', 'baths', 'house_type', 'footprint', 'subcity',
+            'featured', 'reduced_price', 'job_finished', 'updated_at'
+        ];
+        $most_liked_id = Like::selectRaw('upload_id as id, count(*) as count')->groupBy('upload_id')->orderBy('count', 'DESC')->first()->id;
+
+        $uploads = [
+            Upload::where('featured', 1)->select($select)->inRandomOrder()->first(),
+            Upload::where('reduced_price', 1)->select($select)->inRandomOrder()->first(),
+            Upload::select($select)->find($most_liked_id),
+        ];
+        return view('welcome', compact('uploads'));
     }
 
     public function survey()
