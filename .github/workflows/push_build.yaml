@@ -1,7 +1,7 @@
 name: PR Test
 on:
   push:
-    branches: [ master ]
+    branches: [ master, backend ]
 
 jobs:
   linux-build:
