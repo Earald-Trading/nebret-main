@@ -3,6 +3,9 @@
     @if ($i % 3  == 0)
         <div class="row my-5">
     @endif
+    @if (is_null($upload))
+        @continue
+    @endif
     @php $updated_at = \Carbon\Carbon::parse($upload->updated_at) @endphp
     <div class="col" onclick="location.href='{{ route('listings.show', ['id' => $upload->id]) }}';"
          onmouseover="hover(document.getElementById('cover_img_{{ $upload->id }}'), {{ $upload->id }})"
@@ -16,28 +19,29 @@
             <div class="position-absolute mt-2 ml-2">
                 <span class="badge badge-success">
                     @if ($updated_at->diffInDays() > 30)
-                        {{ $updated_at->format('d, M Y') }}
+                        {{ _($updated_at->format('d, M Y')) }}
                     @elseif ($updated_at->diffInMinutes() < 60)
-                        New
+                        {{ _('New') }}
                     @elseif ($updated_at->diffInHours() < 24)
-                        New - {{ $updated_at->diffForHumans() }}
+                        {{ _('New') }} - {{ _($updated_at->diffForHumans()) }}
                     @else
-                        {{ $updated_at->diffForHumans() }}
+                        {{ _($updated_at->diffForHumans()) }}
                     @endif
                 </span>
                 @if ($upload->job_finished)
                     <span class="badge badge-danger">
-                        Sold
+                        {{ _('Sold') }}
                     </span>
                 @else
                     @if ($upload->featured)
                         <span class="badge badge-dark">
-                            Featured
+                            {{ _('Featured')
+                        }}
                         </span>
                     @endif
                     @if ($upload->reduced_price)
                         <span class="badge badge-secondary">
-                            Reduced Price
+                            {{ _('Reduced Price') }}
                         </span>
                     @endif
                 @endif
@@ -45,15 +49,15 @@
             <div class="card-body">
                 <div class="card-text text-small">
                     {{--What the hell is &#x0009.--}}
-                    <b> {{ $upload->beds }} </b> <i>Bed Size</i> &#x0009
-                    <b> {{ $upload->baths }}</b> <i>Bath Size</i> &#x0009
-                    <b> {{ $upload->footprint }} </b> <i>sqmr</i>
+                    <b> {{ $upload->beds }} </b> <i>{{ _('Bed Size') }}</i> &#x0009
+                    <b> {{ $upload->baths }}</b> <i>{{ _('Bath Size') }}</i> &#x0009
+                    <b> {{ $upload->footprint }} </b> <i>{{ _('sqmr') }}</i>
                 </div>
                 <div class="card-text">
-                    Location Addis Ababa, {{ $upload->subcity }}
+                    {{ _('Location Addis Ababa,') }} {{ __($upload->subcity) }}
                 </div>
                 <div class="card-text">
-                    <b> {{ $upload->house_type }} </b>
+                    <b> {{ __($upload->house_type) }} </b>
                 </div>
             </div>
         </div>

@@ -16,12 +16,13 @@ class PagesController extends Controller
             'id', 'beds', 'baths', 'house_type', 'footprint', 'subcity',
             'featured', 'reduced_price', 'job_finished', 'updated_at'
         ];
-        $most_liked_id = Like::selectRaw('upload_id as id, count(*) as count')->groupBy('upload_id')->orderBy('count', 'DESC')->first()->id;
+        $most_liked = Like::selectRaw('upload_id as id, count(*) as count')->groupBy('upload_id')->orderBy('count', 'DESC')->first();
+
 
         $uploads = [
             Upload::where('featured', 1)->select($select)->inRandomOrder()->first(),
             Upload::where('reduced_price', 1)->select($select)->inRandomOrder()->first(),
-            Upload::select($select)->find($most_liked_id),
+            Upload::select($select)->find($most_liked ? $most_liked->id : null),
         ];
         return view('welcome', compact('uploads'));
     }
