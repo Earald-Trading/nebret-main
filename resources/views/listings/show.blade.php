@@ -9,6 +9,9 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-caption row position-absolute top-0" style="padding-bottom: 40% !important;">
+                                    <span class="badge badge-success">Featured</span>
+                                </div>
                                 <div
                                     class="carousel-caption carousel-caption-listing position-absolute ml-0 left-align align-content-start justify-content-start">
                                     @if ($job_finished)
@@ -64,27 +67,27 @@
                                 <hr>
                             </div>
                             <div class="text text-left font-weight-bolder h3 my-3">
-                                @if($reduced_price) Reduced Price - @endif {{ $house_type }}
+                                @if($reduced_price) <span style="color: rgb(19, 9, 9); font-weight: lighter !important;">Reduced Price</span> - @endif {{ $house_type }}
                             </div>
                             <div class="row">
                                 <div class="col-3">
-                                    <div class="text text-left text-info lead"><b
+                                    <div class="text text-left text-secondary lead"><b
                                             class="font-weight-bold">{{ $beds }} </b>Beds</div>
                                 </div>
                                 <div class="col">
-                                    <div class="text text-left text-info lead"><b
+                                    <div class="text text-left text-secondary lead"><b
                                             class="font-weight-bold">{{ $baths }} </b>Baths</div>
                                 </div>
                             </div>
-                            <div class="my-4">
-                                <div class="row text text-left text-info lead">
+                            <div class="mt-4 mb-1 mx-3">
+                                <div class="row text text-left text-secondary lead py-2">
                                     <b class="h5 font-weight-bold">House Area - {{ $footprint }}</b>sqmr
                                 </div>
-                                <div class="row text text-left text-info lead">
+                                <div class="row text text-left text-secondary lead py-2">
                                     <b class="h5 font-weight-bold">Total Area - {{ $lot }}</b>sqmr
                                 </div>
                             </div>
-                            <div class="row h6 lead text text-info">
+                            <div class="row h6 lead text text-info mx-1 mt-1">
                                 Addis Ababa, {{ $subcity }}
                                 @agent
                                     , Wereda {{ $wereda }}, {{ $houseno }}
@@ -141,9 +144,8 @@
                                 </button>
                             </a>
                         </div>
-                    @endguest
-                    @auth
-                        @if (Auth::user()->is_agent)
+                    @else
+                        @agent
                             <div class="col col-auto align-self-center justify-content-center">
                                 @if (! $job_finished)
                                     <a class="btn btn-lg btn-primary" style="width: fit-content !important;" href="{{ route('listings.edit', $id) }}">
@@ -165,12 +167,33 @@
                             </div>
                         @else
                             <div class="col col-auto align-self-center justify-content-center">
-                                <button class="btn btn-lg btn-primary" style="width: fit-content !important;">
+                                <button class="btn btn-lg btn-primary" style="width: fit-content !important;" type="button" data-toggle="modal" data-target="#contact-modal-center">
                                     Contact Agent for More
                                 </button>
                             </div>
-                        @endif
-                    @endauth
+                            <div class="modal fade" id="contact-modal-center" tabindex="-1" role="dialog" aria-labelledby="contact-agent-center" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="contact-modal-title">Agent Details</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="lead">Yonathan Amha</p>
+                                            <p class="ml-3 mb-1 pb-0">+251 91 214 0906</p>
+                                            <p class="ml-3 my-0 py-0">yonathan.amha@gmail.com</p>
+                                            <br>
+                                            <p class="lead">Natnael Hailu</p>
+                                            <p class="ml-3 mb-1 pb-0">+251 92 116 1210</p>
+                                            <p class="ml-3 my-0 py-0">natnael.hailu@gmail.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endagent
+                    @endguest
                 </div>
                 <div class="card my-5">
                     <div class="card-header">

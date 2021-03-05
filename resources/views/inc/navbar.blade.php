@@ -23,6 +23,13 @@
                         <a class="nav-link" href="{{ route('listings') }}">AVAILABLE LISTINGS</a>
                     </li>
                     @auth
+                        @user
+                            <li class="nav-item">
+                                <!-- Needs to have a parameter, request-type, 'sell', along with userId -->
+                                <a class="nav-link" href="/request">SELL/RENT</a>
+                            </li>
+                        @enduser
+
                         @agent
                                 <li class="nav-item">
                                     <!-- Needs to have a parameter, request-type, 'rent', along with userId -->

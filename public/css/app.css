@@ -87,8 +87,11 @@ body {
 }
 
 .listing-img-carousel {
-  height: 40vh;
+  height: auto;
   min-height: 350px;
+  max-height: 350px;
+  width: auto;
+  max-width: 847px;
   background: no-repeat center center scroll;
   background-size: cover;
 }

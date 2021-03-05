@@ -23,9 +23,9 @@
             </div>
         </div> --}}
 
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-6">
-                <img class="img-fluid" src="../../public/storage/mela_penthouse_1.jpg">
+                <img class="img-fluid" src="../images/FINAL.png">
             </div>
             <div class="col-6 align-self-center">
                 <h2>Who Are We?</h2>
@@ -33,19 +33,19 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-6">
+        <div class="row mt-5">
+            <div class="col-6 align-self-center">
                 <h2>What Do We Do?</h2>
                 <p class="lead font-italic">They created the company because they wanted to creat a solution for seller, new homeowners and other buyers that are frustrated with the system in place.</p>
             </div>
-            <div class="col-6 align-self-center">
-                <img class="img-fluid" src="../../public/storage/mela_penthouse_2.jpg">
+            <div class="col-6">
+                <img class="img-fluid" src="https://images.pexels.com/photos/313691/pexels-photo-313691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-6">
-                <img class="img-fluid" src="../../public/storage/mela_penthouse_3.jpg">
+                <img class="img-fluid" src="https://images.pexels.com/photos/5668765/pexels-photo-5668765.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
             </div>
             <div class="col-6 align-self-center">
                 <h2>Reliable</h2>
@@ -53,19 +53,19 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-6 align-self-center">
                 <h2>Excellence</h2>
                 <p class="lead font-italic">Our company is experienced to help customers  buy, sell, rent and manage assets such as commercial buildings, apartments and villas.</p>
             </div>
             <div class="col-6">
-                <img class="img-fluid" src="../../public/storage/mela_penthouse_3.jpg">
+                <img class="img-fluid" src="https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-6">
-                <img class="img-fluid" src="../../public/storage/mela_penthouse_3.jpg">
+                <img class="img-fluid" src="https://images.pexels.com/photos/4491441/pexels-photo-4491441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
             </div>
             <div class="col-6 align-self-center">
                 <h2>Professional</h2>

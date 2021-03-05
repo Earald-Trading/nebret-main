@@ -29,7 +29,7 @@
             </div>
             <!-- Slide Two - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing"
-                style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2017/10/cam-01-1600x888.jpg'), url('/images/JUMBO2.jpeg')">
+                style="background-image: url('/images/JUMBO2.jpeg')">
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4">Secure Your Property</h2>
                     <p class="lead">We take all burden from you and manage your property as ours.</p>
@@ -37,7 +37,7 @@
             </div>
             <!-- Slide Three - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing"
-                style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2017/08/dsc7241l-1600x1068.jpg'), url('/images/JUMBO3.jpeg')">
+                style="background-image: url('/images/JUMBO3.jpeg')">
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4">Sell! And Easily Restock</h2>
                     <p class="lead">Use our platform to sell or rent your place. Get direct contact to your clients.</p>
