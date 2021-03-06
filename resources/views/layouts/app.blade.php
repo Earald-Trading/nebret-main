@@ -21,7 +21,7 @@
         @yield('style')
     @endif
 </head>
-<body class="antialiased back">
+<body class="antialiased bg-img">
     <script src="{{ asset('js/app.js') }}"></script>
 
     <div class="relative flex" id="app">
