@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="back">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +21,7 @@
         @yield('style')
     @endif
 </head>
-<body class="antialiased">
+<body class="antialiased back">
     <script src="{{ asset('js/app.js') }}"></script>
 
     <div class="relative flex" id="app">
@@ -37,5 +37,12 @@
 
         @include('inc.footer')
     </div>
+    <script>
+        jQuery(document).ready(function () {
+            jQuery(".back").append(
+                "<ul class='circles'><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>"
+            );
+        });
+    </script>
 </body>
 </html>
