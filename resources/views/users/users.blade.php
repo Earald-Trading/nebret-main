@@ -49,12 +49,14 @@
                                 @endif
                             </td>
                             <td class="text-danger">
-                                <button class="btn btn-outline-danger" onclick="document.getElementById('user-delete-{{ $user->id }}-form').submit();">
-                                    Delete User
-                                </button>
-                                <form id="user-delete-{{ $user->id }}-form" class="d-none" method="POST" action="{{ route('users.delete', ['id' => $user->id]) }}">
-                                    @csrf
-                                </form>
+                                @if (!$user->is_agent || ($user->is_agent && !$user->is_admin))
+                                    <button class="btn btn-outline-danger" onclick="document.getElementById('user-delete-{{ $user->id }}-form').submit();">
+                                        Delete User
+                                    </button>
+                                    <form id="user-delete-{{ $user->id }}-form" class="d-none" method="POST" action="{{ route('users.delete', ['id' => $user->id]) }}">
+                                        @csrf
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

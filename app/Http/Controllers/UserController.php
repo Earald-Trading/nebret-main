@@ -76,7 +76,11 @@ class UserController extends Controller
         if (isset($request['make_admin'])) {
             $user->is_admin = true;
         } else if (isset($request['make_agent'])) {
-            $user->is_agent = true;
+            if ($request['make_agent'] == 'true') {
+                $user->is_agent = true;
+            } else {
+                $user->role = null;
+            }
         } else {
             $user->email_verified_at = now();
         }
@@ -174,8 +178,11 @@ class UserController extends Controller
         if (!$user) {
             abort(404);
         }
-        Like::where('user_id', $user->id)->delete();
-        $user->delete();
+
+        if (! $user->is_admin) {
+            Like::where('user_id', $user->id)->delete();
+            $user->delete();
+        }
 
         return redirect()->route('users');
     }

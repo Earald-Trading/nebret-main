@@ -28,15 +28,18 @@
                     </form>
                 @endif
 
-                @if (!$is_agent)
-                    <form method="post" action="{{ route('users.update', ['id' => $id]) }}">
-                        <input type="hidden" name="make_agent" value="true" />
-                        @csrf
-                        <input type="submit" class="btn btn-outline-danger text-center mr-2" value="Make Agent" />
-                    </form>
-                @endif
+                <form method="post" action="{{ route('users.update', ['id' => $id]) }}">
+                    @if (!$is_agent)
+                            <input type="hidden" name="make_agent" value="true" />
+                            <input type="submit" class="btn btn-outline-danger text-center mr-2" value="Make Agent" />
+                    @else
+                            <input type="hidden" name="make_agent" value="false" />
+                            <input type="submit" class="btn btn-outline-danger text-center mr-2" value="Revoke Agent" />
+                    @endif
+                @csrf
+                </form>
 
-                @if (!$is_admin)
+                @if (!$is_admin && $is_agent)
                     <form method="post" action="{{ route('users.update', ['id' => $id]) }}">
                         <input type="hidden" name="make_admin" value="true" />
                         @csrf
