@@ -21,6 +21,8 @@ Route::get('/survey', 'PagesController@survey')->name('survey');
 
 Route::get('/about', 'PagesController@about')->name('about');
 
+Route::post('/locale', 'PagesController@changelocale')->name('locale');
+
 // Route::get('/request', 'PagesController@request');
 
 // Temporary
