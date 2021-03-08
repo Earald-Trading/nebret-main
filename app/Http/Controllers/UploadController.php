@@ -184,15 +184,19 @@ class UploadController extends Controller
             switch ($request->query('type')) {
                 case 'rent':
                     $query[] = ['listing_type', '=', 'For Rent'];
+                    $query[] = ['job_finished', '=', false];
                     break;
                 case 'sale':
                     $query[] = ['listing_type', '=', 'For Sale'];
+                    $query[] = ['job_finished', '=', false];
                     break;
                 case 'foreclosure':
                     $query[] = ['listing_type', '=', 'Foreclosure'];
+                    $query[] = ['job_finished', '=', false];
                     break;
                 case 'jointventure':
                     $query[] = ['listing_type', '=', 'Joint Venture'];
+                    $query[] = ['job_finished', '=', false];
                     break;
                 case 'sold':
                     $query[] = ['job_finished', '=', true];
