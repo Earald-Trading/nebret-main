@@ -38,8 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', 'UserController@profile')->name('user.profile');
     Route::get('/likes', 'UserController@likes')->name('user.likes');
     Route::get('/lists', 'UserController@listings')->name('user.listings');
-    Route::get('/request', 'UploadRequestController@create')->name('uploadRequest.create');
-    Route::post('/request', 'UploadRequestController@store')->name('uploadRequest.store');
+    Route::get('/request', 'PagesController@userRequest')->name('uploadRequest.create');
+    Route::post('/request', 'PagesController@emailAdmin')->name('uploadRequest.store');
     Route::post('/request/{id}', 'UploadRequestController@update')->name('uploadRequest.update');
 });
 

@@ -53,6 +53,16 @@ class PagesController extends Controller
         return redirect()->back();
     }
 
+    public function userRequest(Request $request)
+    {
+        return view('listings.request');
+    }
+
+    public function emailAdmin(Request $request)
+    {
+        return redirect()->back();
+    }
+
     /**
      * Get images form storage
      *
