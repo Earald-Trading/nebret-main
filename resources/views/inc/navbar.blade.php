@@ -17,9 +17,6 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('homepage') }}">HOME</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('listings') }}">AVAILABLE LISTINGS</a>
                     </li>
                     @auth
