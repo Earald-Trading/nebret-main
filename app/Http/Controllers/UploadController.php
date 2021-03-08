@@ -206,6 +206,8 @@ class UploadController extends Controller
                     $query[] = ['job_finished', '=', true];
                     break;
             }
+        } else {
+            $query[] = ['job_finished', '=', false];
         }
 
         if ($request->filled('htype')) {

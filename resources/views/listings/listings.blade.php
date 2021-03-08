@@ -235,7 +235,7 @@
     </div>
 
     <!-- Pagination -->
-    <div class="row text-center d-flex justify-content-center">
+    <div class="text-center d-flex justify-content-center">
         {{ $uploads->links() }}
     </div>
 
