@@ -28,6 +28,12 @@
         @include('inc.navbar')
 
         <main>
+            <form method="POST" id="locale_form" action="{{ route('locale') }}">
+                @csrf
+                <input type="hidden" id="locale_name" name="locale" />
+            </form>
+            <button class="btn btn-outline-info" onclick="changelocale('am');">Amharic</button>
+            <button class="btn btn-outline-info" onclick="changelocale('en');">English</button>
 
             @include('inc.messages')
 
@@ -43,6 +49,10 @@
                 "<ul class='circles'><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>"
             );
         });
+        function changelocale(locale) {
+            document.getElementById('locale_name').value = locale;
+            $('#locale_form').submit();
+        }
     </script>
 </body>
 </html>

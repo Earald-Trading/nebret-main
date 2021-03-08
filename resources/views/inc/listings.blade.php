@@ -1,12 +1,12 @@
 <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
     <div class="container">
         @if (isset($featured) && !empty($featured))
-            <h3>Featured Posts</h3>
+            <h3>{{ __('Featured Posts') }}</h3>
             @include('inc.displaylistings', ['uploads' => $featured])
             <hr />
         @endif
         @if (isset($reduced_price) && !empty($reduced_price))
-            <h3>Discounts</h3>
+            <h3>{{ __('Discounts') }}</h3>
             @include('inc.displaylistings', ['uploads' => $reduced_price])
             <hr />
         @endif

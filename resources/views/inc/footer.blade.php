@@ -7,16 +7,16 @@
                     <!--About AMTES-->
                     <div class="col-xs-12 col-sm-6 col-md-3 mt-3">
                         <div class="widget subscribe no-box">
-                            <h5 class="widget-title font-weight-bold my-0 py-0">NEBRET Property Management<span></span></h5>
+                            <h5 class="widget-title font-weight-bold my-0 py-0">NEBRET Property Management</h5>
                             <hr class="footer-horizontal-break mt-0 pt-0 ml-0">
-                            <p>We work with buyers and sellers across the world who are interested to get involved in Ethiopia’s real estate market and those who want to land their next home.</p>
-                            <p>Come work with us and we guarantee your satisfaction!</p>
+                            <p>{{ __('We work with buyers and sellers across the world who are interested to get involved in Ethiopia’s real estate market and those who want to land their next home.') }}</p>
+                            <p>{{ __('Come work with us and we guarantee your satisfaction!') }}</p>
                         </div>
                     </div>
 
                     <!--Location-->
                     <div class="col-xs-12 col-sm-6 col-md-3 mb-0 mt-3">
-                        <h5 class="widget-title my-0 py-0">Location<span></span></h5>
+                        <h5 class="widget-title my-0 py-0">{{ __('Location') }}</h5>
                         <hr class="footer-horizontal-break mt-0 pt-0 w-50 ml-0">
                         <div class="card card-cascade narrower">
                             <div class="card-body card-body-cascade text-center mx-0 my-0 px-0 py-0 mb-0 pb-0">
@@ -38,11 +38,11 @@
                     <!--Affiliate Links-->
                     <div class="col-xs-12 col-sm-6 col-md-3 mt-3">
                         <div class="widget no-box">
-                            <h5 class="widget-title my-0 py-0">Site Map<span></span></h5>
+                            <h5 class="widget-title my-0 py-0">{{ __('Site Map') }}</h5>
                             <hr class="footer-horizontal-break mt-0 pt-0 w-50 ml-0">
                             <ul class="thumbnail-widget list-unstyled">
                                 <li>
-                                    <div class="thumb-content"><a href="#.">Listings</a></div>
+                                    <div class="thumb-content"><a href="#.">{{ __('Listings') }}</a></div>
                                 </li>
                                 {{-- <li>
                                     <div class="thumb-content"><a href="#.">Top Leaders</a></div>
@@ -60,7 +60,7 @@
                                     <div class="thumb-content"><a href="#.">Lifestyle</a></div>
                                 </li> --}}
                                 <li>
-                                    <div class="thumb-content"><a href="#.">About</a></div>
+                                    <div class="thumb-content"><a href="#.">{{ __('About Us') }}</a></div>
                                 </li>
                             </ul>
                         </div>
@@ -69,10 +69,11 @@
                     <!--Social-media Handles-->
                     <div class="col-xs-12 col-sm-6 col-md-3 mt-3">
                         <div class="widget no-box">
-                            <h5 class="widget-title my-0 py-0">Connect with Us<span></span></h5>
+                            <h5 class="widget-title my-0 py-0">{{ __('Connect with Us') }}</h5>
                             <hr class="footer-horizontal-break mt-0 pt-0 w-75 ml-0">
-                            <p class="w-100 mb-4">If you have any property to sell or rent, contact us with the
-                                following ...</p>
+                            <p class="w-100 mb-4">
+                               {{ __('If you have any property to sell or rent, contact us with the following') }} ...
+                            </p>
                             <p class="mt-1 mb-0">(+251) 912-140-906</p>
                             <p class="mt-1 mb-2">(+251) 921-161-210</p>
                             <p><a href="mailto:info@domain.com">support.nebret@gmail.com</a></p>

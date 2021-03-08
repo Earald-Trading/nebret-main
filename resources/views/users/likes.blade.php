@@ -3,11 +3,10 @@
     <div class="container" style="width: 90% !important; margin: auto !important;">
         <h3 class="my-3">
             @if ($user->id == Auth::user()->id)
-                Your
+               {{ __('Your Likes') }}
             @else
-                {{ $user->first_name }} {{ $user->last_name }}
+                {{ $user->first_name }} {{ $user->last_name }} {{ __('Likes.') }}
             @endif
-            Likes
         </h3>
         @include('inc.listings')
     </div>

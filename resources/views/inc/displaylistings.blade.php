@@ -19,29 +19,29 @@
             <div class="position-absolute mt-2 ml-2">
                 <span class="badge badge-success">
                     @if ($updated_at->diffInDays() > 30)
-                        {{ _($updated_at->format('d, M Y')) }}
+                        {{ __($updated_at->format('d, M Y')) }}
                     @elseif ($updated_at->diffInMinutes() < 60)
-                        {{ _('New') }}
+                        {{ __('New') }}
                     @elseif ($updated_at->diffInHours() < 24)
-                        {{ _('New') }} - {{ _($updated_at->diffForHumans()) }}
+                        {{ __('New') }} - {{ __($updated_at->diffForHumans()) }}
                     @else
-                        {{ _($updated_at->diffForHumans()) }}
+                        {{ __($updated_at->diffForHumans()) }}
                     @endif
                 </span>
                 @if ($upload->job_finished)
                     <span class="badge badge-danger">
-                        {{ _('Sold') }}
+                        {{ __('Sold') }}
                     </span>
                 @else
                     @if ($upload->featured)
                         <span class="badge badge-dark">
-                            {{ _('Featured')
+                            {{ __('Featured')
                         }}
                         </span>
                     @endif
                     @if ($upload->reduced_price)
                         <span class="badge badge-secondary">
-                            {{ _('Reduced Price') }}
+                            {{ __('Reduced Price') }}
                         </span>
                     @endif
                 @endif
@@ -49,12 +49,12 @@
             <div class="card-body">
                 <div class="card-text text-small">
                     {{--What the hell is &#x0009.--}}
-                    <b> {{ $upload->beds }} </b> <i>{{ _('Bed Size') }}</i> &#x0009
-                    <b> {{ $upload->baths }}</b> <i>{{ _('Bath Size') }}</i> &#x0009
-                    <b> {{ $upload->footprint }} </b> <i>{{ _('sqmr') }}</i>
+                    <b> {{ $upload->beds }} </b> <i>{{ __('Beds') }}</i> &#x0009
+                    <b> {{ $upload->baths }}</b> <i>{{ __('Baths') }}</i> &#x0009
+                    <b> {{ $upload->footprint }} </b> <i>{{ __('sqmr') }}</i>
                 </div>
                 <div class="card-text">
-                    {{ _('Location Addis Ababa,') }} {{ __($upload->subcity) }}
+                    {{ __('Location') }} {{ __('Addis Ababa') }}, {{ __($upload->subcity) }}
                 </div>
                 <div class="card-text">
                     <b> {{ __($upload->house_type) }} </b>

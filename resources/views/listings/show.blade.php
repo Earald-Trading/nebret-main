@@ -9,25 +9,27 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-caption row position-absolute top-0" style="padding-bottom: 40% !important;">
-                                    <span class="badge badge-success">Featured</span>
-                                </div>
+                                @if ($featured)
+                                    <div class="carousel-caption row position-absolute top-0 left-0" style="padding-bottom: 40% !important;">
+                                        <span class="badge badge-success">{{ __('Featured') }}</span>
+                                    </div>
+                                @endif
                                 <div
                                     class="carousel-caption carousel-caption-listing position-absolute ml-0 left-align align-content-start justify-content-start">
                                     @if ($job_finished)
-                                        <span class="badge badge-danger">Listing not active</span>
+                                        <span class="badge badge-danger">{{ __('Listing not active') }}</span>
                                     @else
                                         <span class="badge badge-danger">
-                                            Reduced Price
+                                           {{ __('Reduced Price') }}
                                         </span>
                                     @endif
                                     @php $updated_at = \Carbon\Carbon::parse($updated_at) @endphp
                                     <span class="badge badge-success">
-                                        Listed
+                                       {{ __('Listed') }}
                                         @if ($updated_at->diffInDays() > 30)
-                                            on - {{ $updated_at->format('d, M Y') }}
+                                           {{ __('on') }} - {{ $updated_at->format('d, M Y') }}
                                         @else
-                                            {{ $updated_at->diffForHumans() }}
+                                           {{ $updated_at->diffForHumans() }}
                                         @endif
                                     </span>
                                     <span class="badge badge-secondary">
@@ -52,48 +54,50 @@
                                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
                                     data-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
+                                    <span class="sr-only">{{ __('Previous') }}</span>
                                 </a>
                                 <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
                                     data-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
+                                    <span class="sr-only">{{ __('Next') }}</span>
                                 </a>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="header h4 mt-3 mb-4">
-                                <span class="">About this property</span>
+                                <span class="">{{ __('About this property') }}</span>
                                 <hr>
                             </div>
                             <div class="text text-left font-weight-bolder h3 my-3">
-                                @if($reduced_price) <span style="color: rgb(19, 9, 9); font-weight: lighter !important;">Reduced Price</span> - @endif {{ $house_type }}
+                                @if($reduced_price) <span style="color: rgb(19, 9, 9); font-weight: lighter !important;">{{ __('Reduced Price') }}</span> - @endif {{ __($house_type) }}
                             </div>
                             <div class="row">
                                 <div class="col-3">
                                     <div class="text text-left text-secondary lead"><b
-                                            class="font-weight-bold">{{ $beds }} </b>Beds</div>
+                                            class="font-weight-bold">{{ $beds }} </b> {{ __('Beds') }}
+                                    </div>
                                 </div>
                                 <div class="col">
                                     <div class="text text-left text-secondary lead"><b
-                                            class="font-weight-bold">{{ $baths }} </b>Baths</div>
+                                            class="font-weight-bold">{{ $baths }} </b> {{ __('Baths') }}
+                                    </div>
                                 </div>
                             </div>
                             <div class="mt-4 mb-1 mx-3">
                                 <div class="row text text-left text-secondary lead py-2">
-                                    <b class="h5 font-weight-bold">House Area - {{ $footprint }}</b>sqmr
+                                    <b class="h5 font-weight-bold">{{ __('House Area') }} - {{ $footprint }}</b>{{ __('sqmr') }}
                                 </div>
                                 <div class="row text text-left text-secondary lead py-2">
-                                    <b class="h5 font-weight-bold">Total Area - {{ $lot }}</b>sqmr
+                                    <b class="h5 font-weight-bold">{{ __('Total Area') }} - {{ $lot }}</b>{{ __('sqmr') }}
                                 </div>
                             </div>
                             <div class="row h6 lead text text-info mx-1 mt-1">
-                                Addis Ababa, {{ $subcity }}
+                                {{ __('Addis Ababa') }}, {{ __($subcity) }}
                                 @agent
-                                    , Wereda {{ $wereda }}, {{ $houseno }}
+                                    , {{ __('Wereda') }} {{ $wereda }}, {{ $houseno }}
                                 @endagent
                             </div>
-                            <div class="text text-left text-secondary h1 mt-4 pt-2">{{ $price / 100 }} ETB</div>
+                            <div class="text text-left text-secondary h1 mt-4 pt-2">{{ $price / 100 }} {{ __('ETB') }}</div>
                         </div>
                     </div>
                 </div>
@@ -103,15 +107,15 @@
                     <div class="col">
                         <div class="row my-3">
                             <div class="col-8 text lead">
-                                <span class="text text-secondary font-weight-light">Property Type</span>
+                                <span class="text text-secondary font-weight-light">{{ __('Property Type') }}</span>
                             </div>
                             <div class="col-4 text lead">
-                                <span class="text text-secondary font-weight-bold">{{ $house_type }}</span>
+                                <span class="text text-secondary font-weight-bold">{{ __($house_type) }}</span>
                             </div>
                         </div>
                         <div class="row my-3">
                             <div class="col-8 text lead">
-                                <span class="text text-secondary font-weight-light">Year Built</span>
+                                <span class="text text-secondary font-weight-light">{{ __('Year Built') }}</span>
                             </div>
                             <div class="col-4 text lead">
                                 <span class="text text-secondary font-weight-bold">{{ $year }}</span>
@@ -121,18 +125,18 @@
                     <div class="col">
                         <div class="row my-3">
                             <div class="col-7 text lead">
-                                <span class="text text-secondary font-weight-light">Price per sqmr</span>
+                                <span class="text text-secondary font-weight-light">{{ __('Price per sqmr') }}</span>
                             </div>
                             <div class="col-5 text lead">
-                                <span class="text text-secondary font-weight-bold">{{ number_format(($price / 100 / $footprint), 2) }} ETB</span>
+                                <span class="text text-secondary font-weight-bold">{{ number_format(($price / 100 / $footprint), 2) }} {{ __('ETB') }}</span>
                             </div>
                         </div>
                         <div class="row my-3">
                             <div class="col-7 text lead">
-                                <span class="text text-secondary font-weight-light">Status</span>
+                                <span class="text text-secondary font-weight-light">{{ __('Status') }}</span>
                             </div>
                             <div class="col-5 text lead">
-                                <span class="text text-secondary font-weight-bold">{{ $listing_type }}</span>
+                                <span class="text text-secondary font-weight-bold">{{ __($listing_type) }}</span>
                             </div>
                         </div>
                     </div>
@@ -140,7 +144,7 @@
                         <div class="col col-auto align-self-center justify-content-center">
                             <a href="{{ route('login') }}">
                                 <button class="btn btn-lg btn-danger" style="width: fit-content !important;" type="button">
-                                    Login to see comparative analysis
+                                   {{ __('Login to see comparative analysis') }}
                                 </button>
                             </a>
                         </div>
@@ -149,43 +153,43 @@
                             <div class="col col-auto align-self-center justify-content-center">
                                 @if (! $job_finished)
                                     <a class="btn btn-lg btn-primary" style="width: fit-content !important;" href="{{ route('listings.edit', $id) }}">
-                                        Edit
+                                       {{ __('Edit') }}
                                     </a>
                                     <a class="btn btn-lg btn-primary" style="width: fit-content !important;"
                                         onclick="document.getElementById('featured_form').submit();">
                                         @if (! $featured)
-                                            Feature
+                                           {{ __('Feature') }}
                                         @else
-                                            Unfeature
+                                           {{ __('Unfeature') }}
                                         @endif
                                     </a>
                                     <a class="btn btn-lg btn-danger" style="width: fit-content !important;"
                                         onclick="document.getElementById('job_finished_form').submit();">
-                                        Sold
+                                       {{ __('Sold') }}
                                     </a>
                                 @endif
                             </div>
                         @else
                             <div class="col col-auto align-self-center justify-content-center">
                                 <button class="btn btn-lg btn-primary" style="width: fit-content !important;" type="button" data-toggle="modal" data-target="#contact-modal-center">
-                                    Contact Agent for More
+                                   {{ __('Contact Agent for More') }}
                                 </button>
                             </div>
                             <div class="modal fade" id="contact-modal-center" tabindex="-1" role="dialog" aria-labelledby="contact-agent-center" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="contact-modal-title">Agent Details</h5>
+                                            <h5 class="modal-title" id="contact-modal-title">{{ __('Agent Details') }}</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <p class="lead">Yonathan Amha</p>
+                                            <p class="lead">{{ __('Yonathan Amha') }}</p>
                                             <p class="ml-3 mb-1 pb-0">+251 91 214 0906</p>
                                             <p class="ml-3 my-0 py-0">yonathan.amha@gmail.com</p>
                                             <br>
-                                            <p class="lead">Natnael Hailu</p>
+                                            <p class="lead">{{ __('Natnael Hailu') }}</p>
                                             <p class="ml-3 mb-1 pb-0">+251 92 116 1210</p>
                                             <p class="ml-3 my-0 py-0">natnael.hailu@gmail.com</p>
                                         </div>
@@ -197,7 +201,7 @@
                 </div>
                 <div class="card my-5">
                     <div class="card-header">
-                        <span class="lead">Description</span>
+                        <span class="lead">{{ __('Description') }}</span>
                     </div>
                     <div class="card-body">
                             {!! $description !!}
@@ -205,7 +209,7 @@
                 </div>
                 <div class="card my-5">
                     <div class="card-header">
-                        <span class="lead">Video Footage</span>
+                        <span class="lead">{{ __('Video Footage') }}</span>
                     </div>
                     <div class="card-body">
                         <iframe width="1090" height="409" src="https://www.youtube.com/embed/{{ $youtube_id }}"
@@ -215,7 +219,7 @@
                 @auth
                     <div class="card my-5">
                         <div class="card-header">
-                            <span class="lead">Comparative Market Analysis</span>
+                            <span class="lead">{{ __('Comparative Market Analysis') }}</span>
                         </div>
                         <div class="card-body">
                             {!! $comparative_analysis !!}
@@ -223,7 +227,7 @@
                             @agent
                                 <hr />
                                 <div style="width: 100% !important; margin: auto !important;">
-                                    <div class="h5 font-weight-light">Areal Location in Google Maps</div>
+                                    <div class="h5 font-weight-light">{{ __('Areal Location') }}</div>
                                     <div>
                                         {{--This requires google api key see https://developers.google.com/maps/documentation/embed/embedding-map#view_mode--}}
                                         <iframe

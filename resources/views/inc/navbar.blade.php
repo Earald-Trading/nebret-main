@@ -9,7 +9,7 @@
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="{{ __('Toggle navigation') }}">
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -17,32 +17,32 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('listings') }}">AVAILABLE LISTINGS</a>
+                        <a class="nav-link" href="{{ route('listings') }}">{{ __('AVAILABLE LISTINGS') }}</a>
                     </li>
                     @auth
                         @user
                             <li class="nav-item">
                                 <!-- Needs to have a parameter, request-type, 'sell', along with userId -->
-                                <a class="nav-link" href="/request">SELL/RENT</a>
+                                <a class="nav-link" href="/request">{{ __('SELL/RENT') }}</a>
                             </li>
                         @enduser
 
                         @agent
                                 <li class="nav-item">
                                     <!-- Needs to have a parameter, request-type, 'rent', along with userId -->
-                                    <a class="nav-link" href="{{ route('listings.store') }}">UPLOAD</a>
+                                    <a class="nav-link" href="{{ route('listings.store') }}">{{ __('UPLOAD') }}</a>
                                 </li>
                         @endagent
 
                         @admin
                             <li class="nav-item">
                                 <!-- Needs to have the userId passed as a param -->
-                                <a class="nav-link" href="{{ route('users') }}">USERS</a>
+                                <a class="nav-link" href="{{ route('users') }}">{{ __('USERS') }}</a>
                             </li>
                         @endadmin
                     @endauth
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('about') }}">ABOUT US</a>
+                        <a class="nav-link" href="{{ route('about') }}">{{ __('ABOUT US') }}</a>
                     </li>
                 </ul>
 
@@ -71,13 +71,13 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a>
-                                <a class="dropdown-item" href="{{ route('user.edit') }}">Preferences</a>
-                                <a class="dropdown-item" href="{{ route('user.likes') }}"> Likes</a>
-                                <a class="dropdown-item" href="{{ route('user.listings') }}">Your Listings</a>
+                                <a class="dropdown-item" href="{{ route('user.profile') }}">{{ __('Profile') }}</a>
+                                <a class="dropdown-item" href="{{ route('user.edit') }}">{{ __('Preferences') }}</a>
+                                <a class="dropdown-item" href="{{ route('user.likes') }}">{{ __('Likes') }}</a>
+                                <a class="dropdown-item" href="{{ route('user.listings') }}">{{ __('Your Listings') }}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                    Logout
+                                    {{ __('Logout') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

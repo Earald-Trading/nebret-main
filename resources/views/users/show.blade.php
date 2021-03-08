@@ -9,11 +9,11 @@
         <div class="text-center mt-5 mb-1 h3">{{ $first_name }} {{ $last_name }}</div>
         <div class="text-center lead mt-0 mb-3">
             @if ($is_admin)
-                <span class="h6 badge badge-info">Admin</span>
+                <span class="h6 badge badge-info">{{ __('Admin') }}</span>
             @elseif ($is_agent)
-                <span class="h6 badge badge-info">Agent</span>
+                <span class="h6 badge badge-info">{{ __('Agent') }}</span>
             @else
-                <span class="h6 badge badge-info">User</span>
+                <span class="h6 badge badge-info">{{ __('User') }}</span>
             @endif
         </div>
         <h5 class="text-center" style="text-decoration-line: underline !important">{{ $email }}</h5>
@@ -24,17 +24,17 @@
                     <form method="post" action="{{ route('users.update', ['id' => $id]) }}">
                         <input type="hidden" name="verify_email" value="true" />
                         @csrf
-                        <input type="submit" class="btn btn-outline-danger text-center mr-2" value="Verify Email" />
+                        <input type="submit" class="btn btn-outline-danger text-center mr-2" value="{{ __('Verify Email') }}" />
                     </form>
                 @endif
 
                 <form method="post" action="{{ route('users.update', ['id' => $id]) }}">
                     @if (!$is_agent)
                             <input type="hidden" name="make_agent" value="true" />
-                            <input type="submit" class="btn btn-outline-danger text-center mr-2" value="Make Agent" />
+                            <input type="submit" class="btn btn-outline-danger text-center mr-2" value="{{ __('Make Agent') }}" />
                     @else
                             <input type="hidden" name="make_agent" value="false" />
-                            <input type="submit" class="btn btn-outline-danger text-center mr-2" value="Revoke Agent" />
+                            <input type="submit" class="btn btn-outline-danger text-center mr-2" value="{{ __('Revoke Agent') }}" />
                     @endif
                 @csrf
                 </form>
@@ -43,12 +43,12 @@
                     <form method="post" action="{{ route('users.update', ['id' => $id]) }}">
                         <input type="hidden" name="make_admin" value="true" />
                         @csrf
-                        <input type="submit" class="btn btn-outline-danger text-center" value="Make Admin" />
+                        <input type="submit" class="btn btn-outline-danger text-center" value="{{ __('Make Admin') }}" />
                     </form>
                 @endif
             @endif
             @if (Auth::user()->id == $id)
-                <a href="{{ route('user.edit') }}" class="btn btn-outline-danger">Edit Profile</a>
+                <a href="{{ route('user.edit') }}" class="btn btn-outline-danger">{{  __('Edit Profile') }}</a>
             @endif
         </div>
     </div>
