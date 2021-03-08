@@ -163,6 +163,10 @@ class UploadController extends Controller
             $collection['price'] =  (int)((float)$request['price'] * 100);
         }
 
+        if ($collection['job_finished']) {
+            $collection['featured'] = false;
+        }
+
         return $collection;
     }
 
