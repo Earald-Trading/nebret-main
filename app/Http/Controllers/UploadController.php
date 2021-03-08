@@ -101,9 +101,13 @@ class UploadController extends Controller
      */
     protected function storeImages(Request $request, $images, Upload $upload = null)
     {
+        $hash_string = "{$request['logline']} {$request['latitude']} {$request['longtiude']} {$request['houseno']}";
+        if (empty($hash_string) && $upload) {
+            $hash_string = "{$upload['logline']} {$upload['latitude']} {$upload['longtiude']} {$upload['houseno']}";
+        }
         $folder_name = hash(
             'sha256',
-            "{$request['logline']} {$request['latitude']} {$request['longtiude']} {$request['houseno']}"
+            $hash_string
         );
 
         if (isset($request['images'])) {
@@ -163,7 +167,7 @@ class UploadController extends Controller
             $collection['price'] =  (int)((float)$request['price'] * 100);
         }
 
-        if ($collection['job_finished']) {
+        if ($collection['job_finished'] ?? false) {
             $collection['featured'] = false;
         }
 
@@ -436,7 +440,7 @@ class UploadController extends Controller
 
         return view('listings.add', [
             'title' => 'Edit',
-            'header' => 'Edit Listing.',
+            'header' => 'Edit Listing',
             'description' => 'Here you edit a previously uploaded listing.',
             'data' => $upload,
             'route' => route('listings.update', ['id' => $id]),
