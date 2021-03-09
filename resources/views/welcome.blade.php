@@ -55,7 +55,7 @@
 
     <!-- Listings Section -->
     <!-- Must be changed to iterative list of listings -->
-    <div class="container tab-content">
-        @include('inc.listings', $uploads)
+    <div class="container tab-content mt-5">
+        @include('inc.listings')
     </div>
 @endsection

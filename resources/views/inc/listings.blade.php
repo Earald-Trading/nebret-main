@@ -10,6 +10,11 @@
             @include('inc.displaylistings', ['uploads' => $reduced_price])
             <hr />
         @endif
+        @if (isset($most_liked) && !empty($most_liked))
+            <h3>{{ __('Most Liked') }}</h3>
+            @include('inc.displaylistings', ['uploads' => $most_liked])
+            <hr />
+        @endif
         @if (isset($uploads))
             @include('inc.displaylistings', ['uploads' => $uploads])
         @endif

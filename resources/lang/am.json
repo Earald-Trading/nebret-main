@@ -1,6 +1,6 @@
 {
     "listed": "የቀረበው",
-    "available listings": "የቀረበ",
+    "available listings": "የንብረት ዝርዝር",
     "apartment": "አፓርታማ",
     "ground +": "ባለ ፎቅ ህንፃ",
     "land": "መሬት",
@@ -13,6 +13,7 @@
     "baths": "ባኞ",
     "featured": "የተመረጠ",
     "reduced price": "ዋጋ ቅናሽ",
+    "most liked": "በጣም የተወደዱ",
     "new construction": "አዲስ ግንባታ",
     "open house": "open house",
     "all listings": "ሁሉም",
