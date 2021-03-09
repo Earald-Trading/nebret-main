@@ -36,7 +36,9 @@ class UploadController extends Controller
             'lot' => "{$required_rule}integer",
             'year' => "{$required_rule}integer",
             'description' => "{$required_rule}string",
+            'description_am' => "{$required_rule}string",
             'comparative_analysis' => "{$required_rule}string",
+            'comparative_analysis_am' => "{$required_rule}string",
             'youtube_id' => "{$required_rule}string|size:11",
             'images' => "{$required_rule}file|mimes:zip",
             'latitude' => "{$required_rule}numeric",
@@ -142,7 +144,9 @@ class UploadController extends Controller
             'lot',
             'year',
             'description',
+            'description_am',
             'comparative_analysis',
+            'comparative_analysis_am',
             'youtube_id',
             'latitude',
             'longitude',
@@ -357,15 +361,19 @@ class UploadController extends Controller
      */
     public function show($id)
     {
+        $locale = "";
+        if (app('app')->currentLocale() == "am") {
+            $locale = "_am";
+        }
         $fields = collect([
-            'id', 'images', 'youtube_id', 'description', 'house_type',
+            'id', 'images', 'youtube_id', "description{$locale}", 'house_type',
             'listing_type', 'beds', 'baths', 'footprint', 'lot',
             'year', 'price', 'subcity', 'featured', 'openhouse',
             'newconstruction', 'reduced_price', 'job_finished', 'updated_at'
         ]);
 
         if (Auth::user()) {
-            $fields = $fields->merge(['comparative_analysis', 'latitude', 'longitude']);
+            $fields = $fields->merge(["comparative_analysis{$locale}", 'latitude', 'longitude']);
         }
 
         if (Auth::is_agent()) {
@@ -391,6 +399,7 @@ class UploadController extends Controller
             $upload['liked'] = true;
         }
 
+        $upload['locale'] = $locale;
         $upload['likes'] = Like::where('upload_id', $id)->count();
 
         return view('listings.show', $upload);
@@ -409,7 +418,9 @@ class UploadController extends Controller
             'images',
             'youtube_id',
             'description',
+            'description_am',
             'comparative_analysis',
+            'comparative_analysis_am',
             'house_type',
             'listing_type',
             'beds',

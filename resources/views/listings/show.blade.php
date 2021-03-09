@@ -204,7 +204,11 @@
                         <span class="lead">{{ __('Description') }}</span>
                     </div>
                     <div class="card-body">
+                        @if ($locale == "_am")
+                            {!! $description_am !!}
+                        @else
                             {!! $description !!}
+                        @endif
                     </div>
                 </div>
                 <div class="card my-5">
@@ -222,7 +226,11 @@
                             <span class="lead">{{ __('Comparative Market Analysis') }}</span>
                         </div>
                         <div class="card-body">
-                            {!! $comparative_analysis !!}
+                            @if ($locale == "_am")
+                                {!! $comparative_analysis_am !!}
+                            @else
+                                {!! $comparative_analysis !!}
+                            @endif
                             <br />
                             @agent
                                 <hr />

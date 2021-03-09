@@ -25,7 +25,9 @@ class CreateUploadsTable extends Migration
 
             // description
             $table->text('description');
+            $table->text('description_am');
             $table->text('comparative_analysis');
+            $table->text('comparative_analysis_am');
             $table->string('house_type', 25);
             $table->string('listing_type', 25);
             $table->unsignedTinyInteger('beds');

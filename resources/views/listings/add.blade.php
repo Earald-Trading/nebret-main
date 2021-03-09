@@ -119,9 +119,31 @@
                 </div>
                 <div class="row">
                     <div class="my-3 col">
+                        <label class="form-label">{{ __('Description in Amharic') }}</label>
+                        <textarea name="description_am" class="ckeditor form-control" id="id_description_am" {{ $required }}>{{ old('desciption_am') ?? $data['description_am'] ?? '' }}</textarea>
+                        @error('description_am')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="my-3 col">
                         <label class="form-label">{{ __('Comparative Analysis') }}</label>
                         <textarea name="comparative_analysis" class="ckeditor form-control" id="id_comparative_analysis" {{ $required }}>{{ old('comparative_analysis') ?? $data['comparative_analysis'] ?? '' }}</textarea>
                         @error('comparative_analysis')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="my-3 col">
+                        <label class="form-label">{{ __('Comparative Analysis in Amharic') }}</label>
+                        <textarea name="comparative_analysis_am" class="ckeditor form-control" id="id_comparative_analysis_am" {{ $required }}>{{ old('comparative_analysis_am') ?? $data['comparative_analysis_am'] ?? '' }}</textarea>
+                        @error('comparative_analysis_am')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
