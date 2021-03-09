@@ -103,7 +103,7 @@ class User extends Authenticatable
      */
     public function likes()
     {
-        $this->hasMany(Like::class, 'user_id');
+        return $this->hasMany(Like::class, 'user_id');
     }
 
     public function uploadRequests()

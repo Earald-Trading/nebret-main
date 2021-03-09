@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div>
         <div class="text-center py-2" style="background: #c1c4db !important; width: 100% !important;">
-            <span>We are collecting a survey to help us
-                understand more about you, our customers. And we would highly appreciate it, if you would fill you the form
-                in <a href="/survey"> this link</a>. Thank you and keep safe!</span>
+            <span>
+               {{ __('We are collecting a survey to help us understand more about you, our customers. And we would highly appreciate it, if you would fill you the form in') }}
+                <a href="/survey">{{ __('this link') }}</a>
+               {{ __('Thank you and keep safe!') }}
+            </span>
         </div>
     </div>
     <!-- Carousel Section -->
@@ -19,102 +20,42 @@
         <div class="carousel-inner" role="listbox">
             <!-- Slide One - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing active"
-                style="background-image: url('../../public/images/JUMBO1.jpeg')">
+                style="background-image: url('/images/JUMBO1.jpeg')">
                 <div class="carousel-caption d-none d-md-block">
-                    <h2 class="display-4">Find Your Dream Home</h2>
-                    <p class="lead">Use our easy-to-use platform and realize your dream, all without the hustle.</p>
+                    <h2 class="display-4">{{ __('Find Your Dream Home') }}</h2>
+                    <p class="lead">{{ __('Use our easy-to-use platform and realize your dream, all without the hustle.') }}</p>
                 </div>
             </div>
             <!-- Slide Two - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing"
-                style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2017/10/cam-01-1600x888.jpg'), url('../images/JUMBO2.png')">
+                style="background-image: url('/images/JUMBO2.jpeg')">
                 <div class="carousel-caption d-none d-md-block">
-                    <h2 class="display-4">Secure Your Property</h2>
-                    <p class="lead">We take all burden from you and manage your property as ours.</p>
+                    <h2 class="display-4">{{ __('Secure Your Property') }}</h2>
+                    <p class="lead">{{ __('We take all burden from you and manage your property as ours.') }}</p>
                 </div>
             </div>
             <!-- Slide Three - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing"
-                style="background-image: url('https://www.lifeofpix.com/wp-content/uploads/2017/08/dsc7241l-1600x1068.jpg'), url('../images/JUMBO3.png')">
+                style="background-image: url('/images/JUMBO3.jpeg')">
                 <div class="carousel-caption d-none d-md-block">
-                    <h2 class="display-4">Sell! And Easily Restock</h2>
-                    <p class="lead">Use our platform to sell or rent your place. Get direct contact to your clients.</p>
+                    <h2 class="display-4">{{ __('Sell! And Easily Restock') }}</h2>
+                    <p class="lead">{{ __('Use our platform to sell or rent your place. Get direct contact to your clients.') }}</p>
                 </div>
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+            <span class="sr-only">{{ __('Previous') }}</span>
         </a>
         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+            <span class="sr-only">{{ __('Next') }}</span>
         </a>
     </div>
 
     <!-- Listings Section -->
     <!-- Must be changed to iterative list of listings -->
-    <div class="row center mt-5"
-        style="width: 90% !important; margin: auto !important; padding: 25px !important; position: relative !important;">
-        <div class="col-4">
-            <div class="card listing-card" style="width: 20rem !important;">
-                <img class="relative card-img" id="listing-thumbnail" src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
-                <span class="badge badge-success position-absolute mt-2 ml-2"
-                    style="width: auto !important;">UploadTime</span>
-                <span class="card-title position-absolute ml-2 h2"
-                    style="color: rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
-                <div class="card-body">
-                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i> &#x0009 <b>0</b>
-                        <i>footprint</i></div>
-                    <div class="card-text">Location
-                        <span class="float float-right">
-                            <!--Must include the listingId as a param-->
-                            <a href="/listings/{{ 0 }}">View Details</a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card listing-card" style="width: 20rem !important;">
-                <img class="relative card-img" id="listing-thumbnail" src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
-                <span class="badge badge-success position-absolute mt-2 ml-2"
-                    style="width: auto !important;">UploadTime</span>
-                <span class="card-title position-absolute ml-2 h2"
-                    style="color:rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
-                <div class="card-body">
-                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i> &#x0009 <b>0</b>
-                        <i>footprint</i></div>
-                    <div class="card-text">Location
-                        <span class="float float-right">
-                            <!--Must include the listingId as a param-->
-                            <a href="/listings/{{ 0 }}">View Details</a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card listing-card" style="width: 20rem !important;">
-                <img class="relative card-img" id="listing-thumbnail" src="https://s3-us-west-1.amazonaws.com/realisticshots/63.jpg"
-                    style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" onmouseover="hover(this);" onmouseout="unhover(this);">
-                <span class="badge badge-success position-absolute mt-2 ml-2"
-                    style="width: auto !important;">UploadTime</span>
-                <span class="card-title position-absolute ml-2 h2"
-                    style="color: rgb(20, 20, 20) !important; margin-top: 10rem !important;"><b>Bunglo</b></span>
-                <div class="card-body">
-                    <div class="card-subtitle"><b>0</b> <i>Bed Size</i> &#x0009 <b>0</b> <i>Bath Size</i> &#x0009 <b>0</b>
-                        <i>footprint</i></div>
-                    <div class="card-text">Location
-                        <span class="float float-right">
-                            <!--Must include the listingId as a param-->
-                            <a href="/listings/{{ 0 }}">View Details</a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="container tab-content">
+        @include('inc.listings', $uploads)
     </div>
 @endsection

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
+use App\Models\Upload;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -73,7 +76,11 @@ class UserController extends Controller
         if (isset($request['make_admin'])) {
             $user->is_admin = true;
         } else if (isset($request['make_agent'])) {
-            $user->is_agent = true;
+            if ($request['make_agent'] == 'true') {
+                $user->is_agent = true;
+            } else {
+                $user->role = null;
+            }
         } else {
             $user->email_verified_at = now();
         }
@@ -155,5 +162,106 @@ class UserController extends Controller
     public function edit()
     {
         return view('users.edit', Auth::user());
+    }
+
+    /**
+     * Delete the specified resource in storage
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            abort(404);
+        }
+
+        if (! $user->is_admin) {
+            Like::where('user_id', $user->id)->delete();
+            $user->delete();
+        }
+
+        return redirect()->route('users');
+    }
+
+    /**
+     * show the user likes
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function likes(Request $request, $id = null)
+    {
+        if ($id == null) {
+            $user = Auth::user();
+        } else {
+            $user = User::find($id);
+        }
+
+        if (!$user) {
+            abort(404);
+        }
+
+        // Fix this when eloquent has viable joins
+        $uploads =  DB::table('likes as l')
+            ->join('uploads as u', 'u.id', '=', 'l.upload_id')
+            ->where('l.user_id', '=', $user->id)
+            ->orderBy('u.updated_at', 'DESC')
+            ->select([
+                'u.id as id',
+                'beds',
+                'baths',
+                'house_type',
+                'listing_type',
+                'footprint',
+                'subcity',
+                'featured',
+                'reduced_price',
+                'job_finished',
+                'u.updated_at as updated_at'
+            ])->paginate(15);
+
+        return view('users.likes', compact('uploads', 'user'));
+    }
+
+    /**
+     * show the user listings
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function listings(Request $request, $id = null)
+    {
+        if ($id == null) {
+            $user = Auth::user();
+        } else {
+            $user = User::find($id);
+        }
+
+        if (!$user) {
+            abort(404);
+        }
+
+        $select = [
+            'id', 'beds', 'baths', 'house_type', 'footprint', 'subcity',
+            'featured', 'reduced_price', 'job_finished', 'updated_at'
+        ];
+
+        if ($user->is_agent) {
+            $uploads =  Upload::where(function ($query) use ($user) {
+                return $query->where('user_id', $user->id)->whereOr('admin_id', $user->id);
+            })->select($select)->orderBy('updated_at', 'DESC')->paginate(15);
+        } else {
+            $uploads =  Upload::where('user_id', $user->id)
+                ->select($select)->orderBy('updated_at', 'DESC')->paginate(15);
+        }
+
+
+        return view('users.listings', compact('uploads', 'user'));
     }
 }

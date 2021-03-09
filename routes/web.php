@@ -14,12 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'PagesController@index');
+Route::get('/', 'PagesController@index')->name('homepage');
 Route::get('/images/{id}/{number?}', 'PagesController@image')->name('images');
 
-Route::get('/survey', 'PagesController@survey');
+Route::get('/survey', 'PagesController@survey')->name('survey');
 
-Route::get('/about', 'PagesController@about');
+Route::get('/about', 'PagesController@about')->name('about');
+
+Route::post('/locale', 'PagesController@changelocale')->name('locale');
 
 // Route::get('/request', 'PagesController@request');
 
@@ -30,12 +32,14 @@ Route::get('/listings/{id}', 'UploadController@show')->name('listings.show');
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/listings/{id}/like', 'UploadController@like')->name('listings.like');
     Route::get('/preferences', 'UserController@edit')->name('user.edit');
     Route::post('/preferences', 'UserController@update')->name('user.update');
     Route::get('/profile', 'UserController@profile')->name('user.profile');
-    Route::get('/request', 'UploadRequestController@create')->name('uploadRequest.create');
-    Route::post('/request', 'UploadRequestController@store')->name('uploadRequest.store');
+    Route::get('/likes', 'UserController@likes')->name('user.likes');
+    Route::get('/lists', 'UserController@listings')->name('user.listings');
+    Route::get('/request', 'PagesController@userRequest')->name('uploadRequest.create');
+    Route::post('/request', 'PagesController@emailAdmin')->name('uploadRequest.store');
     Route::post('/request/{id}', 'UploadRequestController@update')->name('uploadRequest.update');
 });
 
@@ -48,7 +52,10 @@ Route::middleware('auth.agent')->group(function () {
 });
 
 Route::middleware('auth.admin')->group(function () {
-    Route::get('/users', 'UserController@index');
+    Route::get('/users', 'UserController@index')->name('users');
     Route::get('/users/{id}', 'UserController@show')->name('users.show');
+    Route::get('/users/{id}/likes', 'UserController@likes')->name('users.likes');
+    Route::get('/users/{id}/listings', 'UserController@listings')->name('users.likes');
     Route::post('/users/{id}/edit', 'UserController@update')->name('users.update');
+    Route::post('/users/{id}/delete', 'UserController@destroy')->name('users.delete');
 });

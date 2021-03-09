@@ -14,24 +14,24 @@
         <form method="post" action="{{ route('user.update') }}">
             <div class="card" style="width: 60% !important; margin: auto !important;">
                 <div class="card-header">
-                    <h4 class="text-center">Edit Profile</h4>
+                    <h4 class="text-center">{{ __('Edit Profile') }}</h4>
                 </div>
                 <div class="card-body">
-                    <label class="mt-3 mb-0" for="first_name">First Name: </label>
+                    <label class="mt-3 mb-0" for="first_name">{{ __('First Name') }}: </label>
                     <div class="input-group input-group-sm mt-0 mb-3">
-                        <input type="text" class="form-control" placeholder="First Name" name="first_name"
+                        <input type="text" class="form-control" name="first_name"
                             value="{{ $first_name }}" />
                     </div>
 
-                    <label class="mt-3 mb-0" for="last_name">Last Name: </label>
+                    <label class="mt-3 mb-0" for="last_name">{{ __('Last Name') }}: </label>
                     <div class="input-group input-group-sm mt-0 mb-3">
-                        <input type="text" class="form-control" placeholder="Last Name" name="last_name"
+                        <input type="text" class="form-control" name="last_name"
                             value="{{ $last_name }}" />
                     </div>
 
-                    <label class="mt-3 mb-0" for="email">Email: </label>
+                    <label class="mt-3 mb-0" for="email">{{ __('E-mail Address') }}: </label>
                     <div class="input-group input-group-sm mt-0 mb-3">
-                        <input type="email" class="form-control" placeholder="myemail@exmaple.com" name="email"
+                        <input type="email" class="form-control" name="email"
                             value="{{ $email }}" />
                     </div>
 
@@ -53,7 +53,7 @@
                 @csrf
                 <div class="card-footer">
                     <div class="row justify-content-end">
-                        <button type="submit" class="btn btn-primary mr3">Submit</button>
+                        <button type="submit" class="btn btn-primary mr3">{{ __('Submit') }}</button>
                     </div>
                 </div>
             </div>

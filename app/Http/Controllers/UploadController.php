@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\State;
+use App\Models\Like;
 use App\Models\Upload;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -45,16 +45,22 @@ class UploadController extends Controller
             'wereda' => "{$required_rule}integer",
             'houseno' => "{$required_rule}string",
             'listing_type' => "{$required_rule}string|exists:listing_types,type",
-            'featured' => 'in:on,1,true',
-            'openhouse' => 'in:on,1,true',
-            'newconstruction' => 'in:on,1,true'
+            'featured' => 'in:false,true',
+            'openhouse' => 'in:false,true',
+            'newconstruction' => 'in:false,true',
+            'job_finished' => 'in:false,true',
         ]);
 
-        isset($request['featured']) ? $request['featured'] = true : $request['featured'] = false;
+        $checkboxes = ['featured', 'openhouse', 'newconstruction', 'job_finished'];
 
-        isset($request['openhouse']) ? $request['openhouse'] = true : $request['openhouse'] = false;
-
-        isset($request['newconstruction']) ? $request['newconstruction'] = true : $request['newconstruction'] = false;
+        foreach ($checkboxes as $checkbox) {
+            $value = $request[$checkbox];
+            if ($value == "true") {
+                $request[$checkbox] = true;
+            } else if ($value == "false") {
+                $request[$checkbox] = false;
+            }
+        }
     }
 
     /**
@@ -95,9 +101,13 @@ class UploadController extends Controller
      */
     protected function storeImages(Request $request, $images, Upload $upload = null)
     {
+        $hash_string = "{$request['logline']} {$request['latitude']} {$request['longtiude']} {$request['houseno']}";
+        if (empty($hash_string) && $upload) {
+            $hash_string = "{$upload['logline']} {$upload['latitude']} {$upload['longtiude']} {$upload['houseno']}";
+        }
         $folder_name = hash(
             'sha256',
-            "{$request['logline']} {$request['latitude']} {$request['longtiude']} {$request['houseno']}"
+            $hash_string
         );
 
         if (isset($request['images'])) {
@@ -143,6 +153,7 @@ class UploadController extends Controller
             'featured',
             'openhouse',
             'newconstruction',
+            'job_finished',
         ))->merge([
             'admin_id' => $request->user()->id,
             'images' => $folder_name
@@ -154,6 +165,10 @@ class UploadController extends Controller
 
         if (isset($request['price'])) {
             $collection['price'] =  (int)((float)$request['price'] * 100);
+        }
+
+        if ($collection['job_finished'] ?? false) {
+            $collection['featured'] = false;
         }
 
         return $collection;
@@ -170,20 +185,29 @@ class UploadController extends Controller
         $query = [];
 
         if ($request->filled('type')) {
-            switch($request->query('type')) {
+            switch ($request->query('type')) {
                 case 'rent':
                     $query[] = ['listing_type', '=', 'For Rent'];
+                    $query[] = ['job_finished', '=', false];
                     break;
                 case 'sale':
                     $query[] = ['listing_type', '=', 'For Sale'];
+                    $query[] = ['job_finished', '=', false];
                     break;
                 case 'foreclosure':
                     $query[] = ['listing_type', '=', 'Foreclosure'];
+                    $query[] = ['job_finished', '=', false];
                     break;
                 case 'jointventure':
                     $query[] = ['listing_type', '=', 'Joint Venture'];
+                    $query[] = ['job_finished', '=', false];
+                    break;
+                case 'sold':
+                    $query[] = ['job_finished', '=', true];
                     break;
             }
+        } else {
+            $query[] = ['job_finished', '=', false];
         }
 
         if ($request->filled('htype')) {
@@ -195,7 +219,7 @@ class UploadController extends Controller
         }
 
         if ($request->filled('beds')) {
-            switch($request->query('beds')) {
+            switch ($request->query('beds')) {
                 case 1:
                     $query[] = ['beds', '=', 1];
                     break;
@@ -215,7 +239,7 @@ class UploadController extends Controller
         }
 
         if ($request->filled('area')) {
-            switch($request->query('area')) {
+            switch ($request->query('area')) {
                 case 1:
                     $query[] = ['footprint', '<=', 100];
                     break;
@@ -251,11 +275,11 @@ class UploadController extends Controller
         }
 
         if ($request->filled('min_price')) {
-            $query[] = ['price', '>=', $request->query('min_price')*100];
+            $query[] = ['price', '>=', $request->query('min_price') * 100];
         }
 
         if ($request->filled('max_price')) {
-            $query[] = ['price', '<', $request->query('max_price')*100];
+            $query[] = ['price', '<', $request->query('max_price') * 100];
         }
 
         return $query;
@@ -269,12 +293,28 @@ class UploadController extends Controller
      */
     public function index(Request $request)
     {
-        $uploads = Upload::where($this->makeQuery($request))
-            ->select('id', 'beds','baths', 'house_type', 'listing_type',
-                     'footprint', 'subcity', 'reduced_price', 'updated_at')
-            ->paginate(15);
+        $query = $this->makeQuery($request);
+        $select = [
+            'id', 'beds', 'baths', 'house_type', 'footprint', 'subcity',
+            'featured', 'reduced_price', 'job_finished', 'updated_at'
+        ];
+        $featured = [];
+        $reduced_price = [];
+        if (empty($query)) {
+            $featured = Upload::select($select)->where('featured', 1)->where('job_finished', 0)->inRandomOrder()->limit(6)->get();
+        }
+        if (empty($query)) {
+            $reduced_price = Upload::select($select)->where('reduced_price', 1)->where('job_finished', 0)->inRandomOrder()->limit(6)->get();
+        }
+        $uploads = Upload::where($query)
+            ->select($select)
+            ->orderBy('updated_at', 'DESC')->paginate(15);
 
-        return view('listings.listings', ['uploads' => $uploads]);
+        return view('listings.listings', [
+            'uploads' => $uploads,
+            'featured' => $featured,
+            'reduced_price' => $reduced_price
+        ]);
     }
 
     /**
@@ -287,6 +327,7 @@ class UploadController extends Controller
         return view('listings.add', [
             'title' => 'Upload',
             'header' => 'Upload Listing',
+            'data' => [],
             'description' => 'Here you upload a listing by request of user.',
         ]);
     }
@@ -299,7 +340,6 @@ class UploadController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->input());
         $this->validateRequest($request);
         $images = $this->validateZip($request->file('images'));
         $folder_name = $this->storeImages($request, $images);
@@ -343,6 +383,16 @@ class UploadController extends Controller
 
         $upload['images'] = count(Storage::allFiles($upload['images']));
 
+        $upload['liked'] = false;
+        if (Auth::user() && Like::where([
+            'user_id' => Auth::user()->id,
+            'upload_id' => $id
+        ])->first()) {
+            $upload['liked'] = true;
+        }
+
+        $upload['likes'] = Like::where('upload_id', $id)->count();
+
         return view('listings.show', $upload);
     }
 
@@ -378,21 +428,24 @@ class UploadController extends Controller
             'newconstruction',
             'reduced_price',
             'job_finished'
-        )
-            ->find($id);
+        )->find($id);
 
         if (!$upload) {
             abort(404);
+        }
+
+        if ($upload->job_finished) {
+            return redirect()->route('listings.show', compact('id'));
         }
 
         $upload['user_email'] = $upload->user->email;
 
         return view('listings.add', [
             'title' => 'Edit',
-            'header' => 'Edit Listing.',
+            'header' => 'Edit Listing',
             'description' => 'Here you edit a previously uploaded listing.',
             'data' => $upload,
-            'route' => route('listings.update', ['id' => $id])
+            'route' => route('listings.update', ['id' => $id]),
         ]);
     }
 
@@ -421,13 +474,48 @@ class UploadController extends Controller
 
         $upload_collection = $this->makeUpload($request, $folder_name)->all();
 
-        if ($upload_collection['price'] < $upload->price) {
+        if ($request['price'] < $upload->price) {
             $upload_collection['reduced_price'] = true;
-        } else {
+        } else if ($request['price'] > $upload->price) {
             $upload_collection['reduced_price'] = false;
         }
 
         $upload->update($upload_collection);
+
+        return redirect()->route('listings.show', ['id' => $upload->id]);
+    }
+
+    /**
+     * Like the resource
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function like(Request $request, $id)
+    {
+        $upload = Upload::find($id);
+
+        if (!$upload) {
+            abort(404);
+        }
+        $like = Like::where([
+            'user_id' => Auth::user()->id,
+            'upload_id' => $id
+        ]);
+
+        if ($like) {
+            $like->delete();
+        } else {
+            Like::create([
+                'user_id' => Auth::user()->id,
+                'upload_id' => $id
+            ]);
+        }
+
+        if ($request->expectsJson()) {
+            return response([], 204);
+        }
 
         return redirect()->route('listings.show', ['id' => $upload->id]);
     }

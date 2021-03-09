@@ -33,6 +33,6 @@ class Like extends Model
      */
     public function upload()
     {
-        $this->belongsTo(Upload::class, 'upload_id');
+        return $this->belongsTo(Upload::class, 'upload_id');
     }
 }

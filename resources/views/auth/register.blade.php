@@ -76,7 +76,7 @@
                                     </div>
                                     <input id="phone" type="numeric"
                                         class="form-control @error('phone') is-invalid @enderror" name="phone"
-                                        value="{{ old('phone') }}" placeholder="Phone number (optional)">
+                                        value="{{ old('phone') }}">
 
                                     @error('phone')
                                         <span class="invalid-feedback" role="alert">
