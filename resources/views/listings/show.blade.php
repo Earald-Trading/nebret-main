@@ -11,7 +11,7 @@
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 @if ($featured)
                                     <div class="carousel-caption row position-absolute top-0 left-0" style="padding-bottom: 40% !important;">
-                                        <span class="badge badge-success">{{ __('Featured') }}</span>
+                                        <span class="badge badge-dark">{{ __('Featured') }}</span>
                                     </div>
                                 @endif
                                 <div
@@ -19,7 +19,7 @@
                                     @if ($job_finished)
                                         <span class="badge badge-danger">{{ __('Listing not active') }}</span>
                                     @else
-                                        <span class="badge badge-danger">
+                                        <span class="badge badge-secondary">
                                            {{ __('Reduced Price') }}
                                         </span>
                                     @endif
