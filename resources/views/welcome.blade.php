@@ -20,7 +20,7 @@
         <div class="carousel-inner" role="listbox">
             <!-- Slide One - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing active"
-                style="background-image: url('/images/JUMBO1.jpeg')">
+                style="background-image: url('/images/O1.jpeg')">
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4">{{ __('Find Your Dream Home') }}</h2>
                     <p class="lead">{{ __('Use our easy-to-use platform and realize your dream, all without the hustle.') }}</p>
@@ -28,7 +28,7 @@
             </div>
             <!-- Slide Two - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing"
-                style="background-image: url('/images/JUMBO2.jpeg')">
+                style="background-image: url('/images/O2.jpeg')">
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4">{{ __('Secure Your Property') }}</h2>
                     <p class="lead">{{ __('We take all burden from you and manage your property as ours.') }}</p>
@@ -36,7 +36,7 @@
             </div>
             <!-- Slide Three - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing"
-                style="background-image: url('/images/JUMBO3.jpeg')">
+                style="background-image: url('/images/O3.jpeg')">
                 <div class="carousel-caption d-none d-md-block">
                     <h2 class="display-4">{{ __('Sell! And Easily Restock') }}</h2>
                     <p class="lead">{{ __('Use our platform to sell or rent your place. Get direct contact to your clients.') }}</p>
