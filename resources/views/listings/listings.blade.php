@@ -11,23 +11,23 @@
                     {{ __('All Listings') }}
                 </a>
                 <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == 'rent') active @endif"
-                   id="nav-rent-tab"  href="{{ query('listings', ['type' => 'rent']) }}" role="tab" aria-controls="nav-rent" aria-selected="true">
+                   id="nav-rent-tab"  href="{{ route('listings', ['type' => 'rent' ]) }}" role="tab" aria-controls="nav-rent" aria-selected="true">
                     {{ __('For Rent') }}
                 </a>
                 <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == 'sale') active @endif"
-                    id="nav-sell-tab" href="{{ query('listings', ['type' => 'sale']) }}" role="tab" aria-controls="nav-sell" aria-selected="true">
+                   id="nav-sell-tab" href="{{ route('listings', ['type' => 'sale' ]) }}" role="tab" aria-controls="nav-sell" aria-selected="true">
                     {{ __('For Sale') }}
                 </a>
                 <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == 'foreclosure') active @endif"
-                    id="nav-foreclosure-tab" href="{{ query('listings', ['type' => 'foreclosure']) }}" role="tab" aria-controls="nav-foreclosure" aria-selected="true">
+                   id="nav-foreclosure-tab" href="{{ route('listings', ['type' => 'foreclosure' ]) }}" role="tab" aria-controls="nav-foreclosure" aria-selected="true">
                     {{ __('Foreclosure') }}
                 </a>
                 <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == 'jointventure') active @endif"
-                    id="nav-foreclosure-tab" href="{{ query('listings', ['type' => 'jointventure']) }}" role="tab" aria-controls="nav-foreclosure" aria-selected="true">
+                   id="nav-foreclosure-tab" href="{{ route('listings', ['type' => 'jointventure' ]) }}" role="tab" aria-controls="nav-foreclosure" aria-selected="true">
                     {{ __('Joint Venture') }}
                 </a>
                 <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == 'sold') active @endif"
-                    id="nav-foreclosure-tab" href="{{ query('listings', ['type' => 'sold']) }}" role="tab" aria-controls="nav-foreclosure" aria-selected="true">
+                   id="nav-foreclosure-tab" href="{{ route('listings', ['type' => 'sold' ]) }}" role="tab" aria-controls="nav-foreclosure" aria-selected="true">
                     {{ __('Just Sold') }}
                 </a>
             </div>
@@ -46,7 +46,7 @@
                             @if (!Request::filled('htype'))
                                -- {{ __('Select the house type') }} --
                             @else
-                                {{ Request::query('htype') }}
+                                {{ __(Request::query('htype')) }}
                             @endif
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -68,7 +68,7 @@
                             @if (!Request::filled('subcity'))
                                -- {{ __('Select the subcity') }} --
                             @else
-                                {{ Request::query('subcity' )}}
+                                {{ __(Request::query('subcity')) }}
                             @endif
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
