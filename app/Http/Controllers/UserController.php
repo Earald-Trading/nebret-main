@@ -109,10 +109,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  string  $email
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function profile()
+    public function profile(Request $request)
     {
         $user = Auth::user();
 

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class PagesController extends Controller
 {
     // Should return the latest three listings to the view.
-    public function index()
+    public function index(Request $request)
     {
         $select = [
             'id', 'beds', 'baths', 'house_type', 'footprint', 'subcity',

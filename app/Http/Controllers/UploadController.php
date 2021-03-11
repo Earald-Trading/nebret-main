@@ -364,10 +364,11 @@ class UploadController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $locale = "";
         if (app('app')->currentLocale() == "am") {
@@ -410,7 +411,7 @@ class UploadController extends Controller
         $upload['locale'] = $locale;
         $upload['likes'] = Like::where('upload_id', $id)->count();
 
-        if ($this->expectsJson()) {
+        if ($request->expectsJson()) {
             return response($upload, 200);
         }
 
