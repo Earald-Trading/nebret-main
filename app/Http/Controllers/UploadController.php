@@ -314,6 +314,14 @@ class UploadController extends Controller
             ->select($select)
             ->orderBy('updated_at', 'DESC')->paginate(15);
 
+        if ($request->expectsJson()) {
+            return response([
+                'uploads' => $uploads,
+                'featured' => $featured,
+                'reduced_price' => $reduced_price
+            ], 200);
+        }
+
         return view('listings.listings', [
             'uploads' => $uploads,
             'featured' => $featured,
@@ -401,6 +409,10 @@ class UploadController extends Controller
 
         $upload['locale'] = $locale;
         $upload['likes'] = Like::where('upload_id', $id)->count();
+
+        if ($this->expectsJson()) {
+            return response($upload, 200);
+        }
 
         return view('listings.show', $upload);
     }
