@@ -1,8 +1,4 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/images/FINAL.png": "/images/FINAL.png",
-    "/images/JUMBO1.jpeg": "/images/JUMBO1.jpeg",
-    "/images/JUMBO2.jpeg": "/images/JUMBO2.jpeg",
-    "/images/JUMBO3.jpeg": "/images/JUMBO3.jpeg"
+    "/css/app.css": "/css/app.css"
 }

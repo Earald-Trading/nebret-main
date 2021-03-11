@@ -19,7 +19,7 @@
                         <h5 class="widget-title my-0 py-0">{{ __('Location') }}</h5>
                         <hr class="footer-horizontal-break mt-0 pt-0 w-50 ml-0">
                         <b>Sunmate Furniture 4th Floor</b>. On the rode from Bole to Megenagna infront of Ethiopia Standards Agency.
-                        <a class="d-inline-block mt-3" href="https://www.google.com/maps/@9.009727,38.8045522,21z">
+                        <a class="d-inline-block mt-3" target="_blank" href="https://www.google.com/maps/@9.009727,38.8045522,21z">
                                 Show on map
                         </a>
                     </div>
