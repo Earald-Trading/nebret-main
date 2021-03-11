@@ -86,7 +86,7 @@
                             </div>
                         </li>
                     @endguest
-                    <li class="nav-item dropright">
+                    <li class="nav-item dropdown">
                         <form method="POST" id="locale_form" action="{{ route('locale') }}">
                             @csrf
                             <input type="hidden" id="locale_name" name="locale" />
