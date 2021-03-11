@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" style="padding: 10rem !important">
+    <div class="container mx-md-5 my-md-5 px-md-5 py-md-5 mx-sm-1 my-sm-1 px-sm-1 py-sm-1">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-lg-8 col-md-8 col-sm-11">
                 <div class="card">
-                    <div class="h3 text-center"
-                        style="color: red !important; width: 100% !important; margin: auto !important; padding-top: 15px !important;">
-                        <img class="img-fluid mr-4" src="{{ url('images/FINAL.png') }}" alt="{{ config('app.name', 'NEBRET') }}" style="width: 7rem !important; margin: auto !important; object-fit: cover !important;">
+                    <div class="h3 text-center pt-lg-5 pt-md-5 mt-sm-3"
+                        style="color: red !important; width: 100% !important; margin: auto !important;">
+                        <img class="img-fluid mr-md-4 mr-sm-2" src="{{ url('images/FINAL.png') }}" alt="{{ config('app.name', 'NEBRET') }}" style="width: 7rem !important; margin: auto !important; object-fit: cover !important;">
                     </div>
                     <div class="card-header text-center h4 font-weight-bold">{{ __('Register') }}</div>
 
@@ -17,9 +17,9 @@
 
                             <div class="form-group row">
                                 <label for="first_name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
+                                    class="col-md-4 col-sm-12 col-form-label text-md-right">{{ __('First Name') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-12">
                                     <input id="first_name" type="text"
                                         class="form-control @error('first_name') is-invalid @enderror" name="first_name"
                                         value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
@@ -34,9 +34,9 @@
 
                             <div class="form-group row">
                                 <label for="last_name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
+                                    class="col-md-4 col-sm-12 col-form-label text-md-right">{{ __('Last Name') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-12">
                                     <input id="last_name" type="text"
                                         class="form-control @error('last_name') is-invalid @enderror" name="last_name"
                                         value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
@@ -51,9 +51,9 @@
 
                             <div class="form-group row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                    class="col-md-4 col-sm-12 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-12">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                         name="email" value="{{ old('email') }}" required autocomplete="email">
 
@@ -68,9 +68,9 @@
 
                             <div class="form-group row">
                                 <label for="phone"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
+                                    class="col-md-4 col-sm-12 col-form-label text-md-right">{{ __('Phone Number') }}</label>
 
-                                <div class="input-group col-md-6">
+                                <div class="input-group col-md-6 col-sm-12">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">+251</span>
                                     </div>
@@ -88,9 +88,9 @@
 
                             <div class="form-group row">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                    class="col-md-4 col-sm-12 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-12">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="new-password">
@@ -105,16 +105,16 @@
 
                             <div class="form-group row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                    class="col-md-4 col-sm-12 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-12">
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>
 
                             <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
+                                <div class="col-md-6 col-sm-12 offset-md-4 offset-sm-2">
                                     <button type="submit" class="btn btn-primary float float-right">
                                         {{ __('Register') }}
                                     </button>

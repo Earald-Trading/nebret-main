@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" style="padding: 10rem !important;">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+    <div class="container mx-md-5 my-md-5 px-md-5 py-md-5 mx-sm-1 my-sm-1 px-sm-1 py-sm-1">
+        <div class="row justify-content-center mt-md-5 mt-sm-3">
+            <div class=" col-lg-8 col-md-8 col-sm-11">
                 <div class="card">
                     <div class="h3 text-center"
-                        style="color: red !important; width: 100% !important; margin: auto !important; padding-top: 15px !important;">
-                        <img class="img-fluid mr-4" src="{{ url('images/FINAL.png') }}" alt="{{ config('app.name', 'NEBRET') }}" style="width: 7rem !important; margin: auto !important; object-fit: cover !important;">
+                        style="color: red !important; min-width: 100% !important; margin: auto !important;">
+                        <img class="img-fluid ml-lg-4 mr-md-4 mr-sm-1" src="{{ url('images/FINAL.png') }}" alt="{{ config('app.name', 'NEBRET') }}" style="width: 7rem !important; margin: auto !important; object-fit: cover !important;">
                     </div>
                     <div class="card-header text-center h4 font-weight-bold">{{ __('Login') }}</div>
 
@@ -17,9 +17,9 @@
 
                             <div class="form-group row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                    class="col-md-4 col-sm-12 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-12">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                         name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
@@ -33,9 +33,9 @@
 
                             <div class="form-group row">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                    class="col-md-4 col-sm-12 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-12">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="current-password">
@@ -49,7 +49,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-md-6 offset-md-4">
+                                <div class="col-md-6 col-sm-12 offset-md-4 offset-sm-6">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember"
                                             {{ old('remember') ? 'checked' : '' }}>
@@ -62,7 +62,7 @@
                             </div>
 
                             <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
+                                <div class="col-md-8 col-sm-12 offset-md-4 offset-sm-6">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Login') }}
                                     </button>
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <div class="col-md-12 text-center" style="width: 60% !important; margin: auto !important;">
+                                <div class="col-md-12 col-sm-12 text-center" style="width: 60% !important; margin: auto !important;">
                                     <a class="btn btn-link btn-sm"
                                         href="./register">{{ __('Don\'t have an account yet? Create here...') }}</a>
                                 </div>

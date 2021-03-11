@@ -86,7 +86,7 @@
                             </div>
                         </li>
                     @endguest
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropright">
                         <form method="POST" id="locale_form" action="{{ route('locale') }}">
                             @csrf
                             <input type="hidden" id="locale_name" name="locale" />
@@ -100,7 +100,7 @@
                                 English
                             @endif
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownlocale" style="min-width: 6rem !important; max-width: 10rem !important;">
+                        <div class="dropdown-menu dropdown-menu-right float align-self-center" aria-labelledby="navbarDropdownlocale" style="min-width: 6rem !important; max-width: 10rem !important;">
                             <a class="dropdown-item" onclick="changelocale('en');">
                                 <img class="img-fluid" src="{{ url('images/en.png') }}"/>
                                 English
