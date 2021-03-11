@@ -86,6 +86,31 @@
                             </div>
                         </li>
                     @endguest
+                    <li class="nav-item dropdown">
+                        <form method="POST" id="locale_form" action="{{ route('locale') }}">
+                            @csrf
+                            <input type="hidden" id="locale_name" name="locale" />
+                        </form>
+                        <a id="navbarDropdownlocale" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            @if (App::currentLocale() == "am")
+                                <img class="img-fluid" src="images/am.png"/>
+                                አማርኛ
+                            @else
+                                <img class="img-fluid" src="images/en.png"/>
+                                English
+                            @endif
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownlocale" style="min-width: 6rem !important; max-width: 10rem !important;">
+                            <a class="dropdown-item" onclick="changelocale('en');">
+                                <img class="img-fluid mr-2 ml-n1" src="images/en.png"/>
+                                English
+                            </a>
+                            <a class="dropdown-item" onclick="changelocale('am');">
+                                <img class="img-fluid mr-2 ml-n1" src="images/am.png"/>
+                                አማርኛ
+                            </a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>

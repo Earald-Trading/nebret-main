@@ -28,13 +28,6 @@
         @include('inc.navbar')
 
         <main>
-            <form method="POST" id="locale_form" action="{{ route('locale') }}">
-                @csrf
-                <input type="hidden" id="locale_name" name="locale" />
-            </form>
-            <button class="btn btn-outline-info" onclick="changelocale('am');">Amharic</button>
-            <button class="btn btn-outline-info" onclick="changelocale('en');">English</button>
-
             @include('inc.messages')
 
             @yield('content')
