@@ -40,7 +40,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/lists', 'UserController@listings')->name('user.listings');
     Route::get('/request', 'PagesController@userRequest')->name('uploadRequest.create');
     Route::post('/request', 'PagesController@emailAdmin')->name('uploadRequest.store');
-    Route::post('/request/{id}', 'UploadRequestController@update')->name('uploadRequest.update');
 });
 
 Route::middleware('auth.agent')->group(function () {
@@ -55,7 +54,7 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/users', 'UserController@index')->name('users');
     Route::get('/users/{id}', 'UserController@show')->name('users.show');
     Route::get('/users/{id}/likes', 'UserController@likes')->name('users.likes');
-    Route::get('/users/{id}/listings', 'UserController@listings')->name('users.likes');
+    Route::get('/users/{id}/listings', 'UserController@listings')->name('users.listings');
     Route::post('/users/{id}/edit', 'UserController@update')->name('users.update');
     Route::post('/users/{id}/delete', 'UserController@destroy')->name('users.delete');
 });
