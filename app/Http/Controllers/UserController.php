@@ -55,6 +55,11 @@ class UserController extends Controller
         $this->validateUpdate($request, true);
 
         $user->update($request->only('first_name', 'last_name', 'email', 'phone'));
+
+        if ($request->exectsJson()) {
+            return response($user, 200);
+        }
+
         return redirect()->route('user.profile');
     }
 
@@ -114,6 +119,11 @@ class UserController extends Controller
         if (!$user) {
             abort(404);
         }
+
+        if ($request->expectsJson()) {
+            return response($user, 200);
+        }
+
         return view('users.show', $user);
     }
 
@@ -225,6 +235,10 @@ class UserController extends Controller
                 'u.updated_at as updated_at'
             ])->paginate(15);
 
+        if ($request->expectsJson()) {
+            return response($uploads, 200);
+        }
+
         return view('users.likes', compact('uploads', 'user'));
     }
 
@@ -259,6 +273,10 @@ class UserController extends Controller
         } else {
             $uploads =  Upload::where('user_id', $user->id)
                 ->select($select)->orderBy('updated_at', 'DESC')->paginate(15);
+        }
+
+        if ($request->expectsJson()) {
+            return response($uploads, 200);
         }
 
 
