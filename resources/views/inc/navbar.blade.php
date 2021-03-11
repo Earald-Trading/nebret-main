@@ -5,7 +5,7 @@
     <nav class="navbar sticky-top navbar-expand-md navbar-light bg-light shadow-sm" id="navbar">
         <div class="container">
             <a class="navbar-brand" href="{{ route('homepage') }}" style="color: red !important;" title="{{ config('app.name', 'NEBRET') }}">
-                <img class="img-fluid mr-4" src="../../images/FINAL.png" alt="{{ config('app.name', 'NEBRET') }}" style="width: 7rem !important; object-fit: cover !important;">
+                <img class="img-fluid mr-4" src="{{ url('images/FINAL.png') }}" alt="{{ config('app.name', 'NEBRET') }}" style="width: 7rem !important; object-fit: cover !important;">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -93,20 +93,20 @@
                         </form>
                         <a id="navbarDropdownlocale" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             @if (App::currentLocale() == "am")
-                                <img class="img-fluid" src="images/am.png"/>
+                                <img class="img-fluid" src="{{ url('images/am.png') }}"/>
                                 አማርኛ
                             @else
-                                <img class="img-fluid" src="images/en.png"/>
+                                <img class="img-fluid" src="{{ url('images/en.png') }}"/>
                                 English
                             @endif
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownlocale" style="min-width: 6rem !important; max-width: 10rem !important;">
                             <a class="dropdown-item" onclick="changelocale('en');">
-                                <img class="img-fluid mr-2 ml-n1" src="images/en.png"/>
+                                <img class="img-fluid" src="{{ url('images/en.png') }}"/>
                                 English
                             </a>
                             <a class="dropdown-item" onclick="changelocale('am');">
-                                <img class="img-fluid mr-2 ml-n1" src="images/am.png"/>
+                                <img class="img-fluid" src="{{ url('images/am.png') }}"/>
                                 አማርኛ
                             </a>
                         </div>

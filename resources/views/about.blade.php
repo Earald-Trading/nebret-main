@@ -25,7 +25,7 @@
 
         <div class="row mt-5">
             <div class="col-6">
-                <img class="img-fluid" src="../images/FINAL.png">
+                <img class="img-fluid" src="{{ url('images/FINAL.png') }}">
             </div>
             <div class="col-6 align-self-center">
                 <h2>{{ __('Who Are We?') }}</h2>

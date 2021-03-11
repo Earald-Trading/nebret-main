@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="h3 text-center"
                         style="color: red !important; width: 100% !important; margin: auto !important; padding-top: 15px !important;">
-                        <img class="img-fluid mr-4" src="../../images/FINAL.png" alt="{{ config('app.name', 'NEBRET') }}" style="width: 7rem !important; margin: auto !important; object-fit: cover !important;">
+                        <img class="img-fluid mr-4" src="{{ url('images/FINAL.png') }}" alt="{{ config('app.name', 'NEBRET') }}" style="width: 7rem !important; margin: auto !important; object-fit: cover !important;">
                     </div>
                     <div class="card-header text-center h4 font-weight-bold">{{ __('Login') }}</div>
 
