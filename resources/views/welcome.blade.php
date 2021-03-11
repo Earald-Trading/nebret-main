@@ -4,7 +4,7 @@
     <div>
         <div class="text-center py-2" style="background: #c1c4db !important; width: 100% !important;">
             <span>
-               {{ __('We are collecting a survey to help us understand more about you, our customers. And we would highly appreciate it, if you would fill you the form in') }}
+               {{ __('We are collecting a survey to help us understand more about you, our customers. And we would highly appreciate it, if you would fill the form in') }}
                 <a href="{{ route('survey') }}">{{ __('this link') }}</a>
                {{ __('Thank you and keep safe!') }}
             </span>

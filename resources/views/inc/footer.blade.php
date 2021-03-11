@@ -18,21 +18,10 @@
                     <div class="col-xs-12 col-sm-6 col-md-3 mb-0 mt-3">
                         <h5 class="widget-title my-0 py-0">{{ __('Location') }}</h5>
                         <hr class="footer-horizontal-break mt-0 pt-0 w-50 ml-0">
-                        <div class="card card-cascade narrower">
-                            <div class="card-body card-body-cascade text-center mx-0 my-0 px-0 py-0 mb-0 pb-0">
-
-                                <!--Google Maps-->
-                                <div div id="map-container-google-9" class="z-depth-1-half map-container-5"
-                                    style="height: 200px">
-
-                                    <!--Embedded Map Tag-->
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d801.7153240633711!2d38.80386512915229!3d9.009714024154114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b853f49c530fd%3A0x546428bb5e749d4f!2sSunmate%20Furniture!5e1!3m2!1sen!2set!4v1613325177005!5m2!1sen!2set"
-                                        width="400" height="200" frameborder="0" style="border:0;" allowfullscreen=""
-                                        aria-hidden="false" tabindex="0"></iframe>
-                                </div>
-                            </div>
-                        </div>
+                        <b>Sunmate Furniture 4th Floor</b>. On the rode from Bole to Megenagna infront of Ethiopia Standards Agency.
+                        <a class="d-inline-block mt-3" href="https://www.google.com/maps/@9.009727,38.8045522,21z">
+                                Show on map
+                        </a>
                     </div>
 
                     <!--Affiliate Links-->
