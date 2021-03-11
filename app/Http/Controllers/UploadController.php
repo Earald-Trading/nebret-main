@@ -394,6 +394,11 @@ class UploadController extends Controller
             abort(404);
         }
 
+        // see https://gis.stackexchange.com/a/2980
+        $offset_longitude = (11.1 / (6378137 * cos((pi()/180)*$upload['latitude']))) * (180/pi());
+        $upload['latitude'] = rand(1,2) == 2 ? $upload['latitude'] - 0.0001 : $upload['latitude'] + 0.0001;
+        $upload['longitude'] = rand(1,2) == 2 ? $upload['longitude'] - $offset_longitude : $upload['longitude'] + $offset_longitude;
+
         if (Auth::is_agent()) {
             $upload['user_email'] = $upload->user->email;
         }
