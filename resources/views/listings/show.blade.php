@@ -72,7 +72,7 @@
                                 @if($reduced_price) <span style="color: rgb(19, 9, 9); font-weight: lighter !important;">{{ __('Reduced Price') }}</span> - @endif {{ __($house_type) }}
                             </div>
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-5">
                                     <div class="text text-left text-secondary lead"><b
                                             class="font-weight-bold">{{ $beds }} </b> {{ __('Beds') }}
                                     </div>
