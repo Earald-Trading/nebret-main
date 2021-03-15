@@ -15,9 +15,9 @@ class CreateUploadsTable extends Migration
     {
         Schema::create('uploads', function (Blueprint $table) {
             // ids
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('admin_id');
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('admin_id');
 
             // images
             $table->string('images', 64);
@@ -67,6 +67,11 @@ class CreateUploadsTable extends Migration
      */
     public function down()
     {
+        Schema::table('uploads', function (Blueprint $table) {
+            $table->dropForeign(['subcity']);
+            $table->dropForeign(['listing_type']);
+            $table->dropForeign(['house_type']);
+        });
         Schema::dropIfExists('uploads');
     }
 }
