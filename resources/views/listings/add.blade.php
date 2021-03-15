@@ -43,7 +43,7 @@
                         <label class="form-label">{{ __('House type') }}</label>
                         <select class="custom-select" name="house_type" id="id_house_type" {{ $required }}>
                             <option selected disabled hidden>{{ __('Choose House Type') }}</option>
-                            @foreach (\App\Models\HouseType::all() as $h)
+                            @foreach (\App\Models\HouseType::all('type') as $h)
                                 <option value="{{ $h['type'] }}" @if (($data['house_type'] ?? null) == $h['type']) selected @endif>{{ __($h['type']) }}</option>
                             @endforeach
                         </select>
@@ -205,7 +205,7 @@
                         <label class="form-label">{{ __('Subcity') }}</label>
                         <select class="custom-select" name="subcity" id="id_subcity" {{ $required }}>
                             <option selected disabled hidden>{{ __('Choose subcity') }}</option>
-                            @foreach (\App\Models\State::all() as $s)
+                            @foreach (\App\Models\State::all('state') as $s)
                                 <option value="{{ $s['state'] }}" @if (($data['subcity'] ?? null) == $s['state']) selected @endif>{{ __($s['state']) }}</option>
                             @endforeach
                         </select>
@@ -243,7 +243,7 @@
                         <label class="form-label">{{ __('Listing Type') }}</label>
                         <select class="custom-select" name="listing_type" id="id_listing_type" {{ $required }}>
                             <option selected disabled hidden>{{ __('Choose Listing type') }}</option>
-                            @foreach (\App\Models\ListingType::all() as $l)
+                            @foreach (\App\Models\ListingType::all('type') as $l)
                                 <option value="{{ $l['type'] }}" @if (($data['listing_type'] ?? null) == $l['type']) selected @endif>{{ __($l['type']) }}</option>
                             @endforeach
                         </select>

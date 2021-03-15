@@ -10,22 +10,13 @@
                     role="tab" aria-controls="nav-all" aria-selected="false">
                     {{ __('All Listings') }}
                 </a>
-                <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == 'rent') active @endif"
-                   id="nav-rent-tab"  href="{{ route('listings', ['type' => 'rent' ]) }}" role="tab" aria-controls="nav-rent" aria-selected="true">
-                    {{ __('For Rent') }}
-                </a>
-                <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == 'sale') active @endif"
-                   id="nav-sell-tab" href="{{ route('listings', ['type' => 'sale' ]) }}" role="tab" aria-controls="nav-sell" aria-selected="true">
-                    {{ __('For Sale') }}
-                </a>
-                <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == 'foreclosure') active @endif"
-                   id="nav-foreclosure-tab" href="{{ route('listings', ['type' => 'foreclosure' ]) }}" role="tab" aria-controls="nav-foreclosure" aria-selected="true">
-                    {{ __('Foreclosure') }}
-                </a>
-                <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == 'jointventure') active @endif"
-                   id="nav-foreclosure-tab" href="{{ route('listings', ['type' => 'jointventure' ]) }}" role="tab" aria-controls="nav-foreclosure" aria-selected="true">
-                    {{ __('Joint Venture') }}
-                </a>
+
+                @foreach (\App\Models\ListingType::all('type') as $l)
+                    <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == $l->type) active @endif"
+                       id="nav-{{ $l->type }}-tab"  href="{{ route('listings', ['type' => 'rent' ]) }}" role="tab" aria-controls="nav-rent" aria-selected="true">
+                       {{ __($l->type) }}
+                    </a>
+                @endforeach
                 <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == 'sold') active @endif"
                    id="nav-foreclosure-tab" href="{{ route('listings', ['type' => 'sold' ]) }}" role="tab" aria-controls="nav-foreclosure" aria-selected="true">
                     {{ __('Just Sold') }}
@@ -51,7 +42,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="{{ query_remove('listings', 'htype') }}">{{ __('All') }}</a>
-                            @foreach (\App\Models\HouseType::all() as $h)
+                            @foreach (\App\Models\HouseType::all('type') as $h)
                                 <a class="dropdown-item" href="{{ query('listings', ['htype' => $h->type]) }}">
                                     {{ __($h->type) }}
                                 </a>
@@ -73,7 +64,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="{{ query_remove('listings', 'subcity') }}">{{ __('All') }}</a>
-                            @foreach (\App\Models\State::all() as $s)
+                            @foreach (\App\Models\State::all('state') as $s)
                                 <a class="dropdown-item"  href="{{ query('listings', ['subcity' => $s->state]) }}">
                                     {{ __($s->state) }}
                                 </a>

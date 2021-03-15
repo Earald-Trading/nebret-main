@@ -30,7 +30,7 @@
                             </label>
                             <select class="custom-select mt-0 pt-0 mb-3" name="house_type" id="house_type" required>
                                 <option selected disabled hidden>-- {{ __('Select the house type') }} --</option>
-                                @foreach (\App\Models\HouseType::all() as $h)
+                                @foreach (\App\Models\HouseType::all('type') as $h)
                                     <option value="{{ $h['type'] }}" @if (isset($data['house_type']) && $data['house_type'] == $h['type']) selected @endif>{{ __($h['type']) }}</option>
                                 @endforeach
                             </select>
