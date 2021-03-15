@@ -11,7 +11,7 @@
          onmouseover="hover(document.getElementById('cover_img_{{ $upload->id }}'), {{ $upload->id }})"
          onmouseout="unhover(document.getElementById('cover_img_{{ $upload->id }}'), {{ $upload->id }})"
         style="cursor: pointer;overflow:hidden;">
-        <div class="card listing-card" style="min-width: 20rem !important;">
+        <div class="card listing-card my-3" style="min-width: 20rem !important;">
             <img class="relative card-img" src="{{ route('images', ['id' => $upload->id, 'number' => 0 ]) }}"
                id="cover_img_{{ $upload->id }}"
                style="object-fit: cover !important; min-width: 20rem !important; height: 12rem !important;" />

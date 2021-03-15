@@ -37,7 +37,7 @@
                 <div class="col-9">{{ __('Filter by') }}:</div>
             </div>
             <div class="row">
-                <div class="col-3">
+                <div class="col-lg-3 col-md-3 col-sm-12">
                     <label class="label my-0" for="house_type">{{ __('House Type') }}</label>
                     <div class="dropdown my-1" id="house_type">
                         <a class="btn btn-sm btn-outline-secondary dropdown-toggle w-100"
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-lg-3 col-md-3 col-sm-12">
                     <label class="label my-0" for="subcity">{{ __('Subcity') }}</label>
                     <div class="dropdown my-1" id="subcity">
                         <a class="btn btn-sm btn-outline-secondary dropdown-toggle w-100"
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-lg-3 col-md-3 col-sm-12">
                     <label class="label my-0" for="bed_number">{{ __('Beds') }}</label>
                     <div class="dropdown my-1" id="bed_number">
                         <a class="btn btn-sm btn-outline-secondary dropdown-toggle w-100"
@@ -129,7 +129,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-lg-3 col-md-3 col-sm-12">
                     <label class="label my-0" for="house_area">{{ __('Area') }}</label>
                     <div class="dropdown my-1" id="house_area">
                         <a class="btn btn-sm btn-outline-secondary dropdown-toggle w-100"
@@ -179,25 +179,25 @@
                 </div>
             </div>
             <div class="row justify-content-center my-3" style="width: 100% !important; margin: auto !important; padding-top: 1rem !important;">
-                <div class="col-3 form-check">
+                <div class="col-lg-3 col-md-3 col-sm-6 form-check">
                     <input class="form-check-input" type="checkbox" id="filter_featured"
                             onclick="clickablecheckbox(this, '{{ query('listings', ['featured' => 1]) }}', '{{  query_remove('listings', 'featured') }}');"
                             @if(Request::has('featured')) checked @endif>
                     <label class="form-check-label" for="filter_featured">{{ __('Featured') }}</label>
                 </div>
-                <div class="col-3 form-check">
+                <div class="col-lg-3 col-md-3 col-sm-6 form-check">
                     <input  class="form-check-input"type="checkbox" id="filter_reduced"
                             onclick="clickablecheckbox(this, '{{ query('listings', ['reduced' => 1]) }}', '{{  query_remove('listings', 'reduced') }}');"
                             @if(Request::has('reduced')) checked @endif>
                     <label class="label" for="filter_reduced">{{ __('Reduced Price') }}</label>
                 </div>
-                <div class="col-3 form-check">
+                <div class="col-lg-3 col-md-3 col-sm-6 form-check">
                     <input class="form-check-input" type="checkbox" id="filter_new"
                             onclick="clickablecheckbox(this, '{{ query('listings', ['new' => 1]) }}', '{{  query_remove('listings', 'new') }}');"
                             @if(Request::has('new')) checked @endif>
                     <label class="label" for="filter_new">{{ __('New Construction') }}</label>
                 </div>
-                <div class="col-3 form-check">
+                <div class="col-lg-3 col-md-3 col-sm-6 form-check">
                     <input class="form-check-input" type="checkbox" id="filter_open"
                             onclick="clickablecheckbox(this, '{{ query('listings', ['open' => 1]) }}', '{{  query_remove('listings', 'open') }}');"
                             @if(Request::has('open')) checked @endif>
@@ -205,7 +205,7 @@
                 </div>
             </div>
             <div class="row justify-content-end my-3 mr-0 pr-0" style="width: auto !important; margin-right: 1rem !important;">
-                <div class="input-group mb-3 col-3 w-100">
+                <div class="input-group mb-3 col-lg-3 col-md-3 col-sm-3 w-100">
                     <label class="col-form-label mr-3" for="price">{{ __('Price') }}:</label>
                     <div class="input-group-prepend">
                         <span class="input-group-text">{{ __('ETB') }}</span>
@@ -215,7 +215,7 @@
                        placeholder="{{ __('Min') }}" aria-label="Min price">
                 </div>
 
-                <div class="input-group mb-3 col-3 w-100">
+                <div class="input-group mb-3 col-lg-3 col-md-3 col-sm-3 w-100">
                     <div class="input-group-prepend">
                         <span class="input-group-text">{{ __('ETB') }}</span>
                     </div>
@@ -223,7 +223,7 @@
                         value="{{ Request::query('max_price') ?? '' }}"
                         placeholder="{{ __('Max') }}" aria-label="Max price">
                 </div>
-                <div class="col">
+                <div class="col-lg col-md col-sm-12">
                     <button class="btn btn-secondary" onclick="filter_price();">
                         Go
                     </button>
