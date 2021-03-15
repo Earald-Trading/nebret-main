@@ -51,7 +51,7 @@
         </table>
 
         <!-- Pagination -->
-        <div class="row text-center d-flex justify-content-center">
+        <div class="row text-center d-flex justify-content-center ml-5">
             {{ $users->links() }}
         </div>
     </div>
