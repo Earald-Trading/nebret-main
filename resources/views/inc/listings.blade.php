@@ -1,5 +1,5 @@
 <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
-    <div class="container">
+    <div class="container container-fluid">
         @if (isset($featured) && !empty($featured))
             <h3>{{ __('Featured Posts') }}</h3>
             @include('inc.displaylistings', ['uploads' => $featured])

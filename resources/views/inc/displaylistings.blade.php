@@ -1,20 +1,20 @@
 @php $i = 0; @endphp
 @foreach($uploads as $upload)
     @if ($i % 3  == 0)
-        <div class="row my-5">
+        <div class="row my-md-5 my-sm-3">
     @endif
     @if (is_null($upload))
         @continue
     @endif
     @php $updated_at = \Carbon\Carbon::parse($upload->updated_at) @endphp
-    <div class="col" onclick="location.href='{{ route('listings.show', ['id' => $upload->id]) }}';"
+    <div class="col-lg-4 col-md-4 col-sm-12 my-md-5 my-sm-3" onclick="location.href='{{ route('listings.show', ['id' => $upload->id]) }}';"
          onmouseover="hover(document.getElementById('cover_img_{{ $upload->id }}'), {{ $upload->id }})"
          onmouseout="unhover(document.getElementById('cover_img_{{ $upload->id }}'), {{ $upload->id }})"
         style="cursor: pointer;overflow:hidden;">
-        <div class="card listing-card" style="width: 20rem !important;">
+        <div class="card listing-card" style="min-width: 20rem !important;">
             <img class="relative card-img" src="{{ route('images', ['id' => $upload->id, 'number' => 0 ]) }}"
                id="cover_img_{{ $upload->id }}"
-               style="object-fit: cover !important; width: 20rem !important; height: 12rem !important;" />
+               style="object-fit: cover !important; min-width: 20rem !important; height: 12rem !important;" />
 
             <div class="position-absolute mt-2 ml-2">
                 <span class="badge badge-success">

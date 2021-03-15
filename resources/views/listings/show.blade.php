@@ -4,10 +4,10 @@
     <div class="container"
         style="padding-top: 3rem !important; padding-left: 0.2rem !important; padding-right: 0.2rem !important;">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="card">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-8 col-sm-12">
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 @if ($featured)
                                     <div class="carousel-caption row position-absolute top-0 left-0" style="padding-bottom: 40% !important;">
@@ -63,11 +63,11 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="header h4 mt-3 mb-4">
-                                <span class="">{{ __('About this property') }}</span>
-                                <hr>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="header h4 mt-3 mb-0">
+                                <span class="ml-md-1 ml-sm-3">{{ __('About this property') }}</span>
                             </div>
+                            <hr class="mb-4">
                             <div class="text text-left font-weight-bolder h3 my-3">
                                 @if($reduced_price) <span style="color: rgb(19, 9, 9); font-weight: lighter !important;">{{ __('Reduced Price') }}</span> - @endif {{ __($house_type) }}
                             </div>
@@ -104,44 +104,44 @@
                 <div class="row mt-5 text text-left"
                     style="width: 100% !important; margin: 0 !important; background: white !important;">
                     <hr />
-                    <div class="col">
+                    <div class="col-lg- col-md col-sm-12">
                         <div class="row my-3">
-                            <div class="col-8 text lead">
+                            <div class="col-md-8 col-sm-12 text lead">
                                 <span class="text text-secondary font-weight-light">{{ __('Property Type') }}</span>
                             </div>
-                            <div class="col-4 text lead">
+                            <div class="col-md-4 col-sm-12 text lead">
                                 <span class="text text-secondary font-weight-bold">{{ __($house_type) }}</span>
                             </div>
                         </div>
                         <div class="row my-3">
-                            <div class="col-8 text lead">
+                            <div class="col-md-8 col-sm-12 text lead">
                                 <span class="text text-secondary font-weight-light">{{ __('Year Built') }}</span>
                             </div>
-                            <div class="col-4 text lead">
+                            <div class="col-md-4 col-sm-12 text lead">
                                 <span class="text text-secondary font-weight-bold">{{ $year }}</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg col-md col-sm-12">
                         <div class="row my-3">
-                            <div class="col-7 text lead">
+                            <div class="col-md-7 col-sm-12 text lead">
                                 <span class="text text-secondary font-weight-light">{{ __('Price per sqmr') }}</span>
                             </div>
-                            <div class="col-5 text lead">
+                            <div class="col-md-5 col-sm-12 text lead">
                                 <span class="text text-secondary font-weight-bold">{{ number_format(($price / 100 / $footprint), 2) }} {{ __('ETB') }}</span>
                             </div>
                         </div>
                         <div class="row my-3">
-                            <div class="col-7 text lead">
+                            <div class="col-md-7 col-sm-12 text lead">
                                 <span class="text text-secondary font-weight-light">{{ __('Status') }}</span>
                             </div>
-                            <div class="col-5 text lead">
+                            <div class="col-md-5 col-sm-12 text lead">
                                 <span class="text text-secondary font-weight-bold">{{ __($listing_type) }}</span>
                             </div>
                         </div>
                     </div>
                     @guest
-                        <div class="col col-auto align-self-center justify-content-center">
+                        <div class="col-lg col-md col-sm-12 my-4 col-auto align-self-center justify-content-center">
                             <a href="{{ route('login') }}">
                                 <button class="btn btn-lg btn-danger" style="width: fit-content !important;" type="button">
                                    {{ __('Login to see comparative analysis') }}
@@ -215,9 +215,9 @@
                     <div class="card-header">
                         <span class="lead">{{ __('Video Footage') }}</span>
                     </div>
-                    <div class="card-body">
-                        <iframe width="1090" height="409" src="https://www.youtube.com/embed/{{ $youtube_id }}"
-                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <div class="card-body" style="position: relative !important; overflow: hidden !important; width: 100% !important; padding-top: 56.25% !important;">
+                        <iframe class="responsive-iframe" src="https://www.youtube.com/embed/{{ $youtube_id }}"
+                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="position: absolute !important; top: 0 !important; left: 0 !important; bottom: 0 !important; right: 0 !important; width: 100% !important; height: 100% !important;"></iframe>
                     </div>
                 </div>
                 @auth
