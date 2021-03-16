@@ -210,8 +210,6 @@ class UploadController extends Controller
                     $query[] = ['job_finished', '=', true];
                     break;
             }
-        } else {
-            $query[] = ['job_finished', '=', false];
         }
 
         if ($request->filled('htype')) {
@@ -302,14 +300,16 @@ class UploadController extends Controller
             'id', 'beds', 'baths', 'house_type', 'footprint', 'subcity',
             'featured', 'reduced_price', 'job_finished', 'updated_at'
         ];
+
         $featured = [];
         $reduced_price = [];
+
         if (empty($query)) {
+            $query[]  = ['job_finished', '=', false];
+            $reduced_price = Upload::select($select)->where('reduced_price', 1)->where('job_finished', 0)->inRandomOrder()->limit(6)->get();
             $featured = Upload::select($select)->where('featured', 1)->where('job_finished', 0)->inRandomOrder()->limit(6)->get();
         }
-        if (empty($query)) {
-            $reduced_price = Upload::select($select)->where('reduced_price', 1)->where('job_finished', 0)->inRandomOrder()->limit(6)->get();
-        }
+
         $uploads = Upload::where($query)
             ->select($select)
             ->orderBy('updated_at', 'DESC')->paginate(15);
