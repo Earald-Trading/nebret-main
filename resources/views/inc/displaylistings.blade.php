@@ -7,7 +7,8 @@
         @continue
     @endif
     @php $updated_at = \Carbon\Carbon::parse($upload->updated_at) @endphp
-    <div class="col-lg-4 col-md-4 col-sm-12 my-md-5 my-sm-3" onclick="location.href='{{ route('listings.show', ['id' => $upload->id]) }}';"
+    <div class="col-lg-4 col-md-4 col-sm-12 my-md-5 my-sm-3">
+        <a  class="text-dark text-decoration-none" href="{{ route('listings.show', ['id' => $upload->id]) }}"
          onmouseover="hover(document.getElementById('cover_img_{{ $upload->id }}'), {{ $upload->id }})"
          onmouseout="unhover(document.getElementById('cover_img_{{ $upload->id }}'), {{ $upload->id }})"
         style="cursor: pointer;overflow:hidden;">
@@ -61,6 +62,7 @@
                 </div>
             </div>
         </div>
+    </a>
     </div>
     @if (($i + 1) % 3 == 0)
         </div>
