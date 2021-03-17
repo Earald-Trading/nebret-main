@@ -46,13 +46,15 @@ class CreateUploadsTable extends Migration
             $table->string('houseno', 10);
 
             // misc
-            $table->boolean('featured')->default(false);
+            $table->boolean('featured')->default(false)->index();
             $table->boolean('openhouse')->default(false);
             $table->boolean('newconstruction')->default(false);
-            $table->boolean('reduced_price')->default(false);
-            $table->boolean('job_finished')->default(false);
+            $table->boolean('reduced_price')->default(false)->index();
+            $table->boolean('job_finished')->default(false)->index();
 
             $table->timestamps();
+
+            $table->index('updated_at');
 
             $table->foreign('subcity')->references('state')->on('states');
             $table->foreign('listing_type')->references('type')->on('listing_types');

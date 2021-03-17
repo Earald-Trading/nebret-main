@@ -18,15 +18,11 @@ class PagesController extends Controller
             'featured', 'reduced_price', 'images', 'job_finished', 'updated_at'
         ];
 
+        $most_liked = Like::selectRaw('upload_id as id, count(upload_id) as count')->groupBy('upload_id')->orderBy('count', 'DESC')->limit(3)->get()->pluck('id');
+
         $featured =  Upload::where(['featured' => 1, 'job_finished' => false])->select($select)->inRandomOrder()->limit(3)->get();
         $reduced_price = Upload::where([ 'reduced_price' => 1, 'job_finished' => false ])->select($select)->inRandomOrder()->limit(3)->get();
-        $most_liked = DB::table('likes')
-            ->join('uploads', 'uploads.id', '=', 'likes.upload_id')
-            ->select(array_map(function ($v) {
-                return "uploads.{$v} as {$v}";
-            }, $select))
-            ->selectRaw('upload_id, count(upload_id) as count')
-            ->groupBy('upload_id', $select)->orderBy('count', 'DESC')->limit(3)->get(); //toSql();
+        $most_liked =  Upload::select($select)->find($most_liked->count() != 0 ? $most_liked->all() : null);
 
         if($request->expectsJson()) {
             return response(compact('featured', 'reduced_price', 'most_liked'), 200);
