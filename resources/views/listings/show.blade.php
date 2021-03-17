@@ -45,9 +45,9 @@
                                     </span>
                                 </div>
                                 <div class="carousel-inner">
-                                    @for ($i = 0; $i < $images; ++$i)
+                                    @for ($i = 0; $i < $images_no; ++$i)
                                         <div class="carousel-item img img-fluid listing-img-carousel @if ($i==0) active @endif"
-                                            style="background-image: url('{{ route('images', ['id' => $id, 'number' => $i]) }}')">
+                                            style="background-image: url('{{ route('images', ['path' => $images, 'number' => $i]) }}')">
                                         </div>
                                     @endfor
                                 </div>

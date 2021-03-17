@@ -25,33 +25,33 @@
     var intervalvar = 0;
     var index = 1;
 
-    function make_image_url(id, number) {
+    function make_image_url(path, number) {
         var base = window.location.protocol + "//" + window.location.host;
-        var url = new URL("/images/"+id+"/"+number, base);
+        var url = new URL("/images/"+path+"/"+number, base);
 
         return url.toString();
     }
-    function hover(element, id) {
+    function hover(element, path) {
         if (intervalvar != 0)
             return;
 
-        $(element).attr('src', make_image_url(id, index));
+        $(element).attr('src', make_image_url(path, index));
         ++index;
 
         intervalvar = setInterval(function() {
             if (index > 2)
                 index = 0;
 
-            $(element).attr('src', make_image_url(id, index));
+            $(element).attr('src', make_image_url(path, index));
             ++index;
         }, 2000);
     }
 
-    function unhover(element, id) {
+    function unhover(element, path) {
         clearInterval(intervalvar);
         intervalvar = 0;
         index = 1;
 
-        $(element).attr('src', make_image_url(id, 0));
+        $(element).attr('src', make_image_url(path, 0));
     }
 </script>

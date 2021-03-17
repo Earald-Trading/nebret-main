@@ -15,7 +15,7 @@ class PagesController extends Controller
     {
         $select = [
             'id', 'beds', 'baths', 'house_type', 'footprint', 'subcity',
-            'featured', 'reduced_price', 'job_finished', 'updated_at'
+            'featured', 'reduced_price', 'images', 'job_finished', 'updated_at'
         ];
 
         $featured =  Upload::where(['featured' => 1, 'job_finished' => false])->select($select)->inRandomOrder()->limit(3)->get();
@@ -75,28 +75,28 @@ class PagesController extends Controller
      * Get images form storage
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param string $path
      * @param int $number
      * @return \Illuminate\Http\Response
      */
-    public function image(Request $request, $id, $number = null)
+    public function image(Request $request, $path, $number = null)
     {
-        $upload = Upload::select('images')->find($id);
+        $images = storage_path("app/{$path}");
 
-        if (!$upload) {
+        if (! Storage::exists($path)) {
             abort(404);
         }
 
         if ($number == null) {
             if ($request->expectsJson()) {
                 return response([
-                    'images' => count(Storage::allFiles($upload['images']))
+                    'images' => count(Storage::allFiles($path))
                 ], 200);
             }
             $number = 0;
         }
 
-        $images = storage_path("app/{$upload->images}");
+        $images = storage_path("app/{$path}");
         foreach (glob("{$images}/{$number}.*") as $image) {
             return response()->file($image);
         }

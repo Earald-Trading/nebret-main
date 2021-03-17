@@ -9,11 +9,11 @@
     @php $updated_at = \Carbon\Carbon::parse($upload->updated_at) @endphp
     <div class="col-lg-4 col-md-4 col-sm-12 my-md-5 my-sm-3">
         <a  class="text-dark text-decoration-none" href="{{ route('listings.show', ['id' => $upload->id]) }}"
-         onmouseover="hover(document.getElementById('cover_img_{{ $upload->id }}'), {{ $upload->id }})"
-         onmouseout="unhover(document.getElementById('cover_img_{{ $upload->id }}'), {{ $upload->id }})"
+         onmouseover="hover(document.getElementById('cover_img_{{ $upload->id }}'), '{{ $upload->images }}')"
+         onmouseout="unhover(document.getElementById('cover_img_{{ $upload->id }}'), '{{ $upload->images }}')"
         style="cursor: pointer;overflow:hidden;">
         <div class="card listing-card my-3" style="min-width: 20rem !important;">
-            <img class="relative card-img" src="{{ route('images', ['id' => $upload->id, 'number' => 0 ]) }}"
+            <img class="relative card-img" src="{{ route('images', ['path' => $upload->images, 'number' => 0 ]) }}"
                id="cover_img_{{ $upload->id }}"
                style="object-fit: cover !important; min-width: 20rem !important; height: 12rem !important;" />
 

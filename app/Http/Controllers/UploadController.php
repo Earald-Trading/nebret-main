@@ -298,7 +298,7 @@ class UploadController extends Controller
         $query = $this->makeQuery($request);
         $select = [
             'id', 'beds', 'baths', 'house_type', 'footprint', 'subcity',
-            'featured', 'reduced_price', 'job_finished', 'updated_at'
+            'featured', 'reduced_price', 'images', 'job_finished', 'updated_at'
         ];
 
         $featured = [];
@@ -403,7 +403,7 @@ class UploadController extends Controller
             $upload['user_email'] = $upload->user->email;
         }
 
-        $upload['images'] = count(Storage::allFiles($upload['images']));
+        $upload['images_no'] = count(Storage::allFiles($upload['images']));
 
         $upload['liked'] = false;
         if (Auth::user() && Like::where([
