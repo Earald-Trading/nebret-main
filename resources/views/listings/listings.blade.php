@@ -4,19 +4,29 @@
     <div class="container">
         <br>
         <nav>
+            {{-- This MUST BE CHANGED if new ListingType is ADDED --}}
             <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link nav-link-browse @if(!Request::filled('type')) active @endif"
                     id="nav-all-tab" href="{{ route('listings') }}"
                     role="tab" aria-controls="nav-all" aria-selected="false">
                     {{ __('All Listings') }}
                 </a>
-
-                @foreach (\App\Models\ListingType::all('type') as $l)
-                    <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == $l->type) active @endif"
-                       id="nav-{{ $l->type }}-tab"  href="{{ route('listings', ['type' => 'rent' ]) }}" role="tab" aria-controls="nav-rent" aria-selected="true">
-                       {{ __($l->type) }}
-                    </a>
-                @endforeach
+                <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == 'rent') active @endif"
+                   id="nav-rent-tab"  href="{{ route('listings', ['type' => 'rent' ]) }}" role="tab" aria-controls="nav-rent" aria-selected="true">
+                    {{ __('For Rent') }}
+                </a>
+                <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == 'sale') active @endif"
+                   id="nav-sell-tab" href="{{ route('listings', ['type' => 'sale' ]) }}" role="tab" aria-controls="nav-sell" aria-selected="true">
+                    {{ __('For Sale') }}
+                </a>
+                <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == 'foreclosure') active @endif"
+                   id="nav-foreclosure-tab" href="{{ route('listings', ['type' => 'foreclosure' ]) }}" role="tab" aria-controls="nav-foreclosure" aria-selected="true">
+                    {{ __('Foreclosure') }}
+                </a>
+                <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == 'jointventure') active @endif"
+                   id="nav-foreclosure-tab" href="{{ route('listings', ['type' => 'jointventure' ]) }}" role="tab" aria-controls="nav-foreclosure" aria-selected="true">
+                    {{ __('Joint Venture') }}
+                </a>
                 <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == 'sold') active @endif"
                    id="nav-foreclosure-tab" href="{{ route('listings', ['type' => 'sold' ]) }}" role="tab" aria-controls="nav-foreclosure" aria-selected="true">
                     {{ __('Just Sold') }}
@@ -28,6 +38,7 @@
                 <div class="col-9">{{ __('Filter by') }}:</div>
             </div>
             <div class="row">
+                {{-- This MUST BE CHANGED if new HouseType is ADDED --}}
                 <div class="col-lg-3 col-md-3 col-sm-12">
                     <label class="label my-0" for="house_type">{{ __('House Type') }}</label>
                     <div class="dropdown my-1" id="house_type">
@@ -41,15 +52,25 @@
                             @endif
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="{{ query_remove('listings', 'htype') }}">{{ __('All') }}</a>
-                            @foreach (\App\Models\HouseType::all('type') as $h)
-                                <a class="dropdown-item" href="{{ query('listings', ['htype' => $h->type]) }}">
-                                    {{ __($h->type) }}
-                                </a>
-                            @endforeach
+                            <a class="dropdown-item" href="{{ query_remove('listings', 'htype') }}">
+                                {{ __('All') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ query('listings', ['htype' => 'Apartement']) }}">
+                                {{ __('Apartment') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ query('listings', ['htype' => 'Ground +']) }}">
+                                {{ __('Ground +') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ query('listings', ['htype' => 'Land']) }}">
+                                {{ __('Land') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ query('listings', ['htype' => 'Villa']) }}">
+                                {{ __('Villa') }}
+                            </a>
                         </div>
                     </div>
                 </div>
+                {{-- This MUST BE CHANGED if new SUBCITY is ADDED --}}
                 <div class="col-lg-3 col-md-3 col-sm-12">
                     <label class="label my-0" for="subcity">{{ __('Subcity') }}</label>
                     <div class="dropdown my-1" id="subcity">
@@ -63,12 +84,42 @@
                             @endif
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="{{ query_remove('listings', 'subcity') }}">{{ __('All') }}</a>
-                            @foreach (\App\Models\State::all('state') as $s)
-                                <a class="dropdown-item"  href="{{ query('listings', ['subcity' => $s->state]) }}">
-                                    {{ __($s->state) }}
-                                </a>
-                            @endforeach
+                            <a class="dropdown-item" href="{{ query_remove('listings', 'subcity') }}">
+                                {{ __('All') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ query('listings', ['subcity' => 'Addis Ketema']) }}">
+                               {{ __('Addis Ketema') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ query('listings', ['subcity' => 'Akaky Kaliti']) }}">
+                               {{ __('Akaky Kaliti') }}
+                            </a>
+                            <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Arada']) }}">
+                               {{ __('Arada') }}
+                            </a>
+                            <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Bole']) }}">
+                               {{ __('Bole') }}
+                            </a>
+                            <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Gullele']) }}">
+                               {{ __('Gullele') }}
+                            </a>
+                            <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Kirkos']) }}">
+                               {{ __('Kirkos') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ query('listings', ['subcity' => 'Kolfe Keranio']) }}">
+                               {{ __('Kolfe Keranio') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ query('listings', ['subcity' => 'Lemi Kura']) }}">
+                               {{ __('Lemi Kura') }}
+                            </a>
+                            <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Lideta']) }}">
+                               {{ __('Lideta') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ query('listings', ['subcity' => 'Nifas Silk-Lafto']) }}">
+                               {{ __('Nifas Silk-Lafto') }}
+                            </a>
+                            <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Yeka']) }}">
+                               {{ __('Yeka') }}
+                            </a>
                         </div>
                     </div>
                 </div>

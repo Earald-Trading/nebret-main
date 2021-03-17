@@ -210,6 +210,8 @@ class UploadController extends Controller
                     $query[] = ['job_finished', '=', true];
                     break;
             }
+        } else {
+            $query[] = ['job_finished', '=', false];
         }
 
         if ($request->filled('htype')) {
@@ -304,8 +306,9 @@ class UploadController extends Controller
         $featured = [];
         $reduced_price = [];
 
-        if (empty($query)) {
-            $query[]  = ['job_finished', '=', false];
+        // if only the job_finished query is added
+        // this must be changed if the query function is changed
+        if (count($query) == 1 && $query[0][2] == false) {
             $reduced_price = Upload::select($select)->where('reduced_price', 1)->where('job_finished', 0)->inRandomOrder()->limit(6)->get();
             $featured = Upload::select($select)->where('featured', 1)->where('job_finished', 0)->inRandomOrder()->limit(6)->get();
         }
