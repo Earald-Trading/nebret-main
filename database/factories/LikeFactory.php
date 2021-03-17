@@ -11,7 +11,7 @@ class LikeFactory extends Factory
 {
     /**
      * Combination of user_id and upload_id
-     * 
+     *
      * @var array
      */
     static $combo;

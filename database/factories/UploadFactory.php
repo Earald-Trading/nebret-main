@@ -10,6 +10,7 @@ use App\Models\Upload;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 class UploadFactory extends Factory
 {
@@ -19,6 +20,13 @@ class UploadFactory extends Factory
      * @var bool
      */
     protected static $download_run = false;
+
+    /**
+     * Images folder name
+     *
+     * @var string
+     */
+    protected static $images = false;
 
     /**
      * The name of the factory's corresponding model.
@@ -78,21 +86,26 @@ class UploadFactory extends Factory
      */
     public function configure()
     {
+        if (empty(static::$images)) {
+            static::$images = hash(
+                'sha256',
+                Str::uuid()
+            );
+        }
         $this->faker->addProvider(new \Faker\Provider\Youtube($this->faker));
         $download_dir = $this->download();
+
         return $this->afterMaking(function (Upload $upload) {
             $upload->user_id = User::inRandomOrder()->first()->id;
             $upload->admin_id = User::where('role', 'agent')->inRandomOrder()->first()->id;
             $upload->house_type = HouseType::inRandomOrder()->first()->type;
             $upload->listing_type = ListingType::inRandomOrder()->first()->type;
             $upload->subcity = State::inRandomOrder()->first()->state;
-            $upload->images = hash(
-                'sha256',
-                "{$upload['logline']} {$upload['latitude']} {$upload['longtiude']} {$upload['houseno']}"
-            );
-
+            $upload->images = static::$images;
         })->afterCreating(function (Upload $upload) use($download_dir) {
-            File::copyDirectory($download_dir, storage_path("app/{$upload->images}"));
+            if (! File::exists(storage_path("app/{$upload->images}")) ) {
+                File::copyDirectory($download_dir, storage_path("app/{$upload->images}"));
+            }
         });
     }
 
@@ -105,10 +118,10 @@ class UploadFactory extends Factory
     {
         return [
             'youtube_id' => basename($this->faker->youtubeEmbedUri),
-            'description' => $this->faker->paragraphs(2, true),
-            'description_am' => $this->faker->paragraphs(2, true),
-            'comparative_analysis' => $this->faker->paragraphs(3, true),
-            'comparative_analysis_am' => $this->faker->paragraphs(3, true),
+            'description' => $this->faker->paragraph,
+            'description_am' => $this->faker->paragraph,
+            'comparative_analysis' => $this->faker->paragraph,
+            'comparative_analysis_am' => $this->faker->paragraph,
             'beds' => random_int(1, 10),
             'baths' => random_Int(1, 8),
             'footprint' => $this->faker->randomNumber(3, false),
