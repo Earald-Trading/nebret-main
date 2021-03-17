@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Like;
 use App\Models\Upload;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class PagesController extends Controller
@@ -17,10 +18,15 @@ class PagesController extends Controller
             'featured', 'reduced_price', 'job_finished', 'updated_at'
         ];
 
-        $most_liked = Like::selectRaw('upload_id as id, count(id) as count')->groupBy('upload_id')->orderBy('count', 'DESC')->limit(3)->get()->pluck('id');
         $featured =  Upload::where(['featured' => 1, 'job_finished' => false])->select($select)->inRandomOrder()->limit(3)->get();
         $reduced_price = Upload::where([ 'reduced_price' => 1, 'job_finished' => false ])->select($select)->inRandomOrder()->limit(3)->get();
-        $most_liked =  Upload::select($select)->find($most_liked->count() != 0 ? $most_liked->all() : null);
+        $most_liked = DB::table('likes')
+            ->join('uploads', 'uploads.id', '=', 'likes.upload_id')
+            ->select(array_map(function ($v) {
+                return "uploads.{$v} as {$v}";
+            }, $select))
+            ->selectRaw('upload_id, count(upload_id) as count')
+            ->groupBy('upload_id', $select)->orderBy('count', 'DESC')->limit(3)->get(); //toSql();
 
         if($request->expectsJson()) {
             return response(compact('featured', 'reduced_price', 'most_liked'), 200);
@@ -75,7 +81,7 @@ class PagesController extends Controller
      */
     public function image(Request $request, $id, $number = null)
     {
-        $upload = Upload::find($id);
+        $upload = Upload::select('images')->find($id);
 
         if (!$upload) {
             abort(404);
