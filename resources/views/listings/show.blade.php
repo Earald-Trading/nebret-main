@@ -84,9 +84,11 @@
                                 </div>
                             </div>
                             <div class="mt-4 mb-1 mx-3">
-                                <div class="row text text-left text-secondary lead py-2">
-                                    <b class="h5 font-weight-bold">{{ __('House Area') }} - {{ $footprint }}</b>{{ __('sqmr') }}
-                                </div>
+                                @if($footprint)
+                                    <div class="row text text-left text-secondary lead py-2">
+                                        <b class="h5 font-weight-bold">{{ __('House Area') }} - {{ $footprint }}</b>{{ __('sqmr') }}
+                                    </div>
+                                @endif
                                 <div class="row text text-left text-secondary lead py-2">
                                     <b class="h5 font-weight-bold">{{ __('Total Area') }} - {{ $lot }}</b>{{ __('sqmr') }}
                                 </div>
@@ -127,9 +129,11 @@
                             <div class="col-md-7 col-sm-12 text lead">
                                 <span class="text text-secondary font-weight-light">{{ __('Price per sqmr') }}</span>
                             </div>
-                            <div class="col-md-5 col-sm-12 text lead">
-                                <span class="text text-secondary font-weight-bold">{{ number_format(($price / 100 / $footprint), 2) }} {{ __('ETB') }}</span>
-                            </div>
+                            @if ($footprint)
+                                <div class="col-md-5 col-sm-12 text lead">
+                                    <span class="text text-secondary font-weight-bold">{{ number_format(($price / 100 / $footprint), 2) }} {{ __('ETB') }}</span>
+                                </div>
+                            @endif
                         </div>
                         <div class="row my-3">
                             <div class="col-md-7 col-sm-12 text lead">
@@ -232,19 +236,19 @@
                                 {!! $comparative_analysis !!}
                             @endif
                             <br />
-                            @agent
-                                <hr />
-                                <div style="width: 100% !important; margin: auto !important;">
-                                    <div class="h5 font-weight-light">{{ __('Areal Location') }}</div>
-                                    <div>
-                                        {{--This requires google api key see https://developers.google.com/maps/documentation/embed/embedding-map#view_mode--}}
-                                        <iframe
-                                            src="https://maps.google.com/maps?q={{ $latitude }},{{ $longitude }}&z=15&output=embed"
-                                            width="800" height="360" frameborder="0" style="border:0;" allowfullscreen=""
-                                            aria-hidden="false" tabindex="0"></iframe>
-                                    </div>
-                                </div>
-                            @endagent
+                            {{--@agent--}}
+                                {{--<hr />--}}
+                                {{--<div style="width: 100% !important; margin: auto !important;">--}}
+                                    {{--<div class="h5 font-weight-light">{{ __('Areal Location') }}</div>--}}
+                                    {{--<div>--}}
+                                        {{--[>This requires google api key see https://developers.google.com/maps/documentation/embed/embedding-map#view_mode<]--}}
+                                        {{--<iframe--}}
+                                            {{--src="https://maps.google.com/maps?q={{ $latitude }},{{ $longitude }}&z=15&output=embed"--}}
+                                            {{--width="800" height="360" frameborder="0" style="border:0;" allowfullscreen=""--}}
+                                            {{--aria-hidden="false" tabindex="0"></iframe>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--@endagent--}}
                         </div>
                     </div>
                 @endguest
