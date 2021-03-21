@@ -74,7 +74,7 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="text text-left text-secondary lead"><b
-                                            class="font-weight-bold">{{ $beds }} </b> {{ __('Beds') }}
+                                            class="font-weight-bold">{{ $beds }} </b> {{ __('Bedrooms') }}
                                     </div>
                                 </div>
                                 <div class="col">

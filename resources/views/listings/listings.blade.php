@@ -124,54 +124,6 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-12">
-                    <label class="label my-0" for="bed_number">{{ __('Beds') }}</label>
-                    <div class="dropdown my-1" id="bed_number">
-                        <a class="btn btn-sm btn-outline-secondary dropdown-toggle w-100"
-                           href="#" role="button" id="dropdownMenuLink"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @if (!Request::filled('beds'))
-                              -- {{ __('Select the bed number') }} --
-                           @else
-                               @switch(Request::query('beds'))
-                                    @case(1)
-                                        1 Bed Room
-                                        @break
-                                    @case(2)
-                                        2 Bed Room
-                                        @break
-                                    @case(3)
-                                        3 Bed Room
-                                        @break
-                                    @case(4)
-                                        4 Bed Room
-                                        @break
-                                    @case(5)
-                                        5 Bed Rooms and Above
-                                        @break
-                               @endswitch
-                           @endif
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="{{ query_remove('listings', 'beds') }}">{{ __('All') }}</a>
-                            <a class="dropdown-item" href="{{ query('listings', ['beds' => 1]) }}">
-                                1 {{ __('Bed Room') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['beds' => 2]) }}">
-                                2 {{ __('Bed Rooms') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['beds' => 3]) }}">
-                                3 {{ __('Bed Rooms') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['beds' => 4]) }}">
-                                4 {{ __('Bed Rooms') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['beds' => 5]) }}">
-                                5 {{ __('Bed Rooms and Above') }}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12">
                     <label class="label my-0" for="house_area">{{ __('Area') }}</label>
                     <div class="dropdown my-1" id="house_area">
                         <a class="btn btn-sm btn-outline-secondary dropdown-toggle w-100"
@@ -215,6 +167,54 @@
                             </a>
                             <a class="dropdown-item" href="{{ query('listings', ['area' => 5]) }}">
                                {{ __('Above 400sqmr') }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <label class="label my-0" for="bed_number">{{ __('Bedrooms') }}</label>
+                    <div class="dropdown my-1" id="bed_number">
+                        <a class="btn btn-sm btn-outline-secondary dropdown-toggle w-100"
+                           href="#" role="button" id="dropdownMenuLink"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @if (!Request::filled('beds'))
+                              -- {{ __('Select the bed number') }} --
+                           @else
+                               @switch(Request::query('beds'))
+                                    @case(1)
+                                        1 Bed Room
+                                        @break
+                                    @case(2)
+                                        2 Bed Room
+                                        @break
+                                    @case(3)
+                                        3 Bed Room
+                                        @break
+                                    @case(4)
+                                        4 Bed Room
+                                        @break
+                                    @case(5)
+                                        5 Bed Rooms and Above
+                                        @break
+                               @endswitch
+                           @endif
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="{{ query_remove('listings', 'beds') }}">{{ __('All') }}</a>
+                            <a class="dropdown-item" href="{{ query('listings', ['beds' => 1]) }}">
+                                1 {{ __('Bed Room') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ query('listings', ['beds' => 2]) }}">
+                                2 {{ __('Bed Rooms') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ query('listings', ['beds' => 3]) }}">
+                                3 {{ __('Bed Rooms') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ query('listings', ['beds' => 4]) }}">
+                                4 {{ __('Bed Rooms') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ query('listings', ['beds' => 5]) }}">
+                                5 {{ __('Bed Rooms and Above') }}
                             </a>
                         </div>
                     </div>

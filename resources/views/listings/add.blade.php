@@ -54,7 +54,7 @@
                         @enderror
                     </div>
                     <div class="my-3 col">
-                        <label class="form-label">{{ __('Beds') }}</label>
+                        <label class="form-label">{{ __('Bedrooms') }}</label>
                         <input class="form-control" type="number" name="beds" id="id_beds" {{ $required }}
                             value={{ old('beds') ?? $data['beds'] ?? '' }}>
                         @error('beds')

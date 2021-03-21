@@ -50,7 +50,7 @@
             <div class="card-body">
                 <div class="card-text text-small">
                     {{--What the hell is &#x0009.--}}
-                    <b> {{ $upload->beds }} </b> <i>{{ __('Beds') }}</i> &#x0009
+                    <b> {{ $upload->beds }} </b> <i>{{ __('Bedrooms') }}</i> &#x0009
                     <b> {{ $upload->baths }}</b> <i>{{ __('Baths') }}</i> &#x0009
                     <b> {{ $upload->footprint }} </b> <i>{{ __('sqmr') }}</i>
                 </div>
