@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PagesController@index')->name('homepage');
-Route::get('/images/{path}/{number?}', 'PagesController@image')->name('images');
+Route::middleware('image.etag')->get('/images/{path}/{number?}', 'PagesController@image')->name('images');
 
 Route::get('/survey', 'PagesController@survey')->name('survey');
 
