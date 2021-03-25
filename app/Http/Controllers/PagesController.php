@@ -20,8 +20,8 @@ class PagesController extends Controller
 
         $most_liked = Like::selectRaw('upload_id as id, count(upload_id) as count')->groupBy('upload_id')->orderBy('count', 'DESC')->limit(3)->get()->pluck('id');
 
-        $featured =  Upload::where(['featured' => 1, 'job_finished' => false])->select($select)->inRandomOrder()->limit(3)->get();
-        $reduced_price = Upload::where([ 'reduced_price' => 1, 'job_finished' => false ])->select($select)->inRandomOrder()->limit(3)->get();
+        $featured =  Upload::where(['featured' => 1, 'job_finished' => false])->select($select)->orderBy('updated_at', 'DESC')->limit(3)->get();
+        $reduced_price = Upload::where([ 'reduced_price' => 1, 'job_finished' => false ])->select($select)->orderBy('updated_at', 'DESC')->limit(3)->get();
         $most_liked =  Upload::select($select)->find($most_liked->count() != 0 ? $most_liked->all() : null);
 
         if($request->expectsJson()) {

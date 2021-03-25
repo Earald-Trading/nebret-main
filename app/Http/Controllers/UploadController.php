@@ -306,8 +306,8 @@ class UploadController extends Controller
         // if only the job_finished query is added
         // this must be changed if the query function is changed
         if (count($query) == 1 && $query[0][2] == false) {
-            $reduced_price = Upload::select($select)->where('reduced_price', 1)->where('job_finished', 0)->inRandomOrder()->limit(6)->get();
-            $featured = Upload::select($select)->where('featured', 1)->where('job_finished', 0)->inRandomOrder()->limit(6)->get();
+            $reduced_price = Upload::select($select)->where('reduced_price', 1)->where('job_finished', 0)->orderBy('updated_at', 'DESC')->limit(6)->get();
+            $featured = Upload::select($select)->where('featured', 1)->where('job_finished', 0)->orderBy('updated_at', 'DESC')->limit(6)->get();
         }
 
         $uploads = Upload::where($query)
