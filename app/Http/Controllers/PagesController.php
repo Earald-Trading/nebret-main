@@ -94,7 +94,10 @@ class PagesController extends Controller
 
         $images = storage_path("app/{$path}");
         foreach (glob("{$images}/{$number}.*") as $image) {
-            return response()->file($image);
+            return response()->file($image)->setCache([
+                'last_modified' => null,
+                'max_age' => 432000
+            ]);
         }
 
         abort(404);

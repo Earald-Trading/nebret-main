@@ -19,7 +19,11 @@ class ImageEtag
         // see \Illuminate\Http\Middleware\SetCacheHeaders
         $response = $next($request);
 
-        $options['etag'] = md5($response->getContent());
+        $path = $response->getFile()->getPath();
+        $size = $response->getFile()->getSize();
+        $atime = $response->getFile()->getMtime();
+
+        $options['etag'] = md5("{$path} {$size} {$atime}");
 
         $response->setCache($options);
         $response->isNotModified($request);
