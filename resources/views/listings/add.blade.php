@@ -1,4 +1,13 @@
 @extends('layouts.app')
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 @section('content')
     @php $required = empty($data) ? 'required' : '' @endphp
@@ -26,8 +35,8 @@
 
                     <div class="my-3 col">
                         <label class="form-label">{{ __('Price') }}</label>
-                        @if ($price = intval($data['price'] ?? 0) / 100) @endif
-                        <input class="form-control" type="number" step=0.01 name="price" id="id_price" {{ $required }}
+                        @if ($price = intval($data['price'] ?? 0)) @endif
+                        <input class="form-control" type="number" name="price" id="id_price" {{ $required }}
                             value={{ old('price') ?? $price }}>
                         @error('price')
                             <span class="invalid-feedback" role="alert">

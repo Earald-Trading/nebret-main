@@ -143,6 +143,7 @@ class UploadController extends Controller
             'footprint',
             'lot',
             'year',
+            'price',
             'description',
             'description_am',
             'comparative_analysis',
@@ -165,10 +166,6 @@ class UploadController extends Controller
 
         if (isset($request['user_email'])) {
             $collection['user_id'] = User::where('email', $request['user_email'])->first()->id;
-        }
-
-        if (isset($request['price'])) {
-            $collection['price'] =  (int)((float)$request['price'] * 100);
         }
 
         if ($collection['job_finished'] ?? false) {
@@ -279,11 +276,11 @@ class UploadController extends Controller
         }
 
         if ($request->filled('min_price')) {
-            $query[] = ['price', '>=', $request->query('min_price') * 100];
+            $query[] = ['price', '>=', $request->query('min_price')];
         }
 
         if ($request->filled('max_price')) {
-            $query[] = ['price', '<', $request->query('max_price') * 100];
+            $query[] = ['price', '<', $request->query('max_price')];
         }
 
         return $query;

@@ -127,7 +127,7 @@ class UploadFactory extends Factory
             'footprint' => $this->faker->randomNumber(3, false),
             'lot' => $this->faker->randomNumber(4,false),
             'year' => $this->faker->year,
-            'price' => $this->faker->randomNumber(5, false) * 100,
+            'price' => $this->faker->randomNumber(5, false),
             'latitude' => $this->faker->latitude(8.84297, 9.08783),
             'longitude' => $this->faker->longitude(38.65345, 38.90751),
             'wereda' => $this->faker->randomNumber(2, false),

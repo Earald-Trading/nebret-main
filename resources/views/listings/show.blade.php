@@ -99,7 +99,7 @@
                                     , {{ __('Wereda') }} {{ $wereda }}, {{ $houseno }}
                                 @endagent
                             </div>
-                            <div class="text text-left text-secondary h1 mt-4 pt-2">{{ $price / 100 }} {{ __('ETB') }}</div>
+                            <div class="text text-left text-secondary h1 mt-4 pt-2">{{ $price }} {{ __('ETB') }}</div>
                         </div>
                     </div>
                 </div>
@@ -131,7 +131,7 @@
                             </div>
                             @if ($footprint)
                                 <div class="col-md-5 col-sm-12 text lead">
-                                    <span class="text text-secondary font-weight-bold">{{ number_format(($price / 100 / $footprint), 2) }} {{ __('ETB') }}</span>
+                                    <span class="text text-secondary font-weight-bold">{{ number_format(($price / $footprint), 2) }} {{ __('ETB') }}</span>
                                 </div>
                             @endif
                         </div>
