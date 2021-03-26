@@ -113,7 +113,7 @@ class UploadController extends Controller
             $hash_string
         );
 
-        while (File::exists(storage_path("app/{$folder_name}"))) {
+        while (Storage::exists("app/{$folder_name}")) {
             $folder_name = hash('sha256', Str::uuid());
         }
 
