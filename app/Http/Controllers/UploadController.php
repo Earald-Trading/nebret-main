@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use ZipArchive;
 
@@ -111,6 +112,10 @@ class UploadController extends Controller
             'sha256',
             $hash_string
         );
+
+        while (File::exists(storage_path("app/{$folder_name}"))) {
+            $folder_name = hash('sha256', Str::uuid());
+        }
 
         if (isset($request['images'])) {
             for ($i = 0; $i < $images->numFiles; ++$i) {
