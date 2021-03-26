@@ -310,7 +310,7 @@ class UploadController extends Controller
 
         // if only the job_finished query is added
         // this must be changed if the query function is changed
-        if (count($query) == 1 && $query[0][2] == false) {
+        if (count($query) == 1 && $query[0][2] == false && !$request->has('page')) {
             $reduced_price = Upload::select($select)->where('reduced_price', 1)->where('job_finished', 0)->orderBy('updated_at', 'DESC')->limit(6)->get();
             $featured = Upload::select($select)->where('featured', 1)->where('job_finished', 0)->orderBy('updated_at', 'DESC')->limit(6)->get();
         }
@@ -318,6 +318,7 @@ class UploadController extends Controller
         $uploads = Upload::where($query)
             ->select($select)
             ->orderBy('updated_at', 'DESC')->paginate(15);
+        $uploads->withQueryString();
 
         if ($request->expectsJson()) {
             return response([

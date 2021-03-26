@@ -34,243 +34,245 @@
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
-            <div class="row mt-4 mb-3">
-                <div class="col-9">{{ __('Filter by') }}:</div>
-            </div>
-            <div class="row">
-                {{-- This MUST BE CHANGED if new HouseType is ADDED --}}
-                <div class="col-lg-3 col-md-3 col-sm-12">
-                    <label class="label my-0" for="house_type">{{ __('House Type') }}</label>
-                    <div class="dropdown my-1" id="house_type">
-                        <a class="btn btn-sm btn-outline-secondary dropdown-toggle w-100"
-                           href="#" role="button" id="dropdownMenuLink"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @if (!Request::filled('htype'))
-                               -- {{ __('Select the house type') }} --
-                            @else
-                                {{ __(Request::query('htype')) }}
-                            @endif
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="{{ query_remove('listings', 'htype') }}">
-                                {{ __('All') }}
+            @if (!(Request::has('type') && Request::query('type') == 'sold'))
+                <div class="row mt-4 mb-3">
+                    <div class="col-9">{{ __('Filter by') }}:</div>
+                </div>
+                <div class="row">
+                    {{-- This MUST BE CHANGED if new HouseType is ADDED --}}
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <label class="label my-0" for="house_type">{{ __('House Type') }}</label>
+                        <div class="dropdown my-1" id="house_type">
+                            <a class="btn btn-sm btn-outline-secondary dropdown-toggle w-100"
+                               href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @if (!Request::filled('htype'))
+                                   -- {{ __('Select the house type') }} --
+                                @else
+                                    {{ __(Request::query('htype')) }}
+                                @endif
                             </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['htype' => 'Apartement']) }}">
-                                {{ __('Apartment') }}
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{{ query_remove('listings', 'htype') }}">
+                                    {{ __('All') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ query('listings', ['htype' => 'Apartement']) }}">
+                                    {{ __('Apartment') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ query('listings', ['htype' => 'Ground +']) }}">
+                                    {{ __('Ground +') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ query('listings', ['htype' => 'Land']) }}">
+                                    {{ __('Land') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ query('listings', ['htype' => 'Villa']) }}">
+                                    {{ __('Villa') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- This MUST BE CHANGED if new SUBCITY is ADDED --}}
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <label class="label my-0" for="subcity">{{ __('Subcity') }}</label>
+                        <div class="dropdown my-1" id="subcity">
+                            <a class="btn btn-sm btn-outline-secondary dropdown-toggle w-100"
+                               href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @if (!Request::filled('subcity'))
+                                   -- {{ __('Select the subcity') }} --
+                                @else
+                                    {{ __(Request::query('subcity')) }}
+                                @endif
                             </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['htype' => 'Ground +']) }}">
-                                {{ __('Ground +') }}
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{{ query_remove('listings', 'subcity') }}">
+                                    {{ __('All') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ query('listings', ['subcity' => 'Addis Ketema']) }}">
+                                   {{ __('Addis Ketema') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ query('listings', ['subcity' => 'Akaky Kaliti']) }}">
+                                   {{ __('Akaky Kaliti') }}
+                                </a>
+                                <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Arada']) }}">
+                                   {{ __('Arada') }}
+                                </a>
+                                <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Bole']) }}">
+                                   {{ __('Bole') }}
+                                </a>
+                                <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Gullele']) }}">
+                                   {{ __('Gullele') }}
+                                </a>
+                                <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Kirkos']) }}">
+                                   {{ __('Kirkos') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ query('listings', ['subcity' => 'Kolfe Keranio']) }}">
+                                   {{ __('Kolfe Keranio') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ query('listings', ['subcity' => 'Lemi Kura']) }}">
+                                   {{ __('Lemi Kura') }}
+                                </a>
+                                <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Lideta']) }}">
+                                   {{ __('Lideta') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ query('listings', ['subcity' => 'Nifas Silk-Lafto']) }}">
+                                   {{ __('Nifas Silk-Lafto') }}
+                                </a>
+                                <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Yeka']) }}">
+                                   {{ __('Yeka') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <label class="label my-0" for="house_area">{{ __('Area') }}</label>
+                        <div class="dropdown my-1" id="house_area">
+                            <a class="btn btn-sm btn-outline-secondary dropdown-toggle w-100"
+                               href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @if (!Request::filled('area'))
+                                    -- {{ __('Select the area range') }} --
+                                @else
+                                   @switch(Request::query('area'))
+                                        @case(1)
+                                            Below 100sqm
+                                            @break
+                                        @case(2)
+                                            100 - 200sqm
+                                            @break
+                                        @case(3)
+                                            200 - 300sqm
+                                            @break
+                                        @case(4)
+                                            300 - 400sqm
+                                            @break
+                                        @case(5)
+                                            Above 400sqm
+                                            @break
+                                   @endswitch
+                                @endif
                             </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['htype' => 'Land']) }}">
-                                {{ __('Land') }}
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{{ query_remove('listings', 'area') }}">{{ __('All') }}</a>
+                                <a class="dropdown-item" href="{{ query('listings', ['area' => 1]) }}">
+                                   {{ __('Below 100sqmr') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ query('listings', ['area' => 2]) }}">
+                                   {{ __('100 - 200sqmr') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ query('listings', ['area' => 3]) }}">
+                                   {{ __('200 - 300 sqmr') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ query('listings', ['area' => 4]) }}">
+                                   {{ __('300 - 400 sqmr') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ query('listings', ['area' => 5]) }}">
+                                   {{ __('Above 400sqmr') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <label class="label my-0" for="bed_number">{{ __('Bedrooms') }}</label>
+                        <div class="dropdown my-1" id="bed_number">
+                            <a class="btn btn-sm btn-outline-secondary dropdown-toggle w-100"
+                               href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @if (!Request::filled('beds'))
+                                  -- {{ __('Select the bed number') }} --
+                               @else
+                                   @switch(Request::query('beds'))
+                                        @case(1)
+                                            1 Bed Room
+                                            @break
+                                        @case(2)
+                                            2 Bed Room
+                                            @break
+                                        @case(3)
+                                            3 Bed Room
+                                            @break
+                                        @case(4)
+                                            4 Bed Room
+                                            @break
+                                        @case(5)
+                                            5 Bed Rooms and Above
+                                            @break
+                                   @endswitch
+                               @endif
                             </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['htype' => 'Villa']) }}">
-                                {{ __('Villa') }}
-                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{{ query_remove('listings', 'beds') }}">{{ __('All') }}</a>
+                                <a class="dropdown-item" href="{{ query('listings', ['beds' => 1]) }}">
+                                    1 {{ __('Bed Room') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ query('listings', ['beds' => 2]) }}">
+                                    2 {{ __('Bed Rooms') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ query('listings', ['beds' => 3]) }}">
+                                    3 {{ __('Bed Rooms') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ query('listings', ['beds' => 4]) }}">
+                                    4 {{ __('Bed Rooms') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ query('listings', ['beds' => 5]) }}">
+                                    5 {{ __('Bed Rooms and Above') }}
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                {{-- This MUST BE CHANGED if new SUBCITY is ADDED --}}
-                <div class="col-lg-3 col-md-3 col-sm-12">
-                    <label class="label my-0" for="subcity">{{ __('Subcity') }}</label>
-                    <div class="dropdown my-1" id="subcity">
-                        <a class="btn btn-sm btn-outline-secondary dropdown-toggle w-100"
-                           href="#" role="button" id="dropdownMenuLink"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @if (!Request::filled('subcity'))
-                               -- {{ __('Select the subcity') }} --
-                            @else
-                                {{ __(Request::query('subcity')) }}
-                            @endif
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="{{ query_remove('listings', 'subcity') }}">
-                                {{ __('All') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['subcity' => 'Addis Ketema']) }}">
-                               {{ __('Addis Ketema') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['subcity' => 'Akaky Kaliti']) }}">
-                               {{ __('Akaky Kaliti') }}
-                            </a>
-                            <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Arada']) }}">
-                               {{ __('Arada') }}
-                            </a>
-                            <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Bole']) }}">
-                               {{ __('Bole') }}
-                            </a>
-                            <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Gullele']) }}">
-                               {{ __('Gullele') }}
-                            </a>
-                            <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Kirkos']) }}">
-                               {{ __('Kirkos') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['subcity' => 'Kolfe Keranio']) }}">
-                               {{ __('Kolfe Keranio') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['subcity' => 'Lemi Kura']) }}">
-                               {{ __('Lemi Kura') }}
-                            </a>
-                            <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Lideta']) }}">
-                               {{ __('Lideta') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['subcity' => 'Nifas Silk-Lafto']) }}">
-                               {{ __('Nifas Silk-Lafto') }}
-                            </a>
-                            <a class="dropdown-item"  href="{{ query('listings', ['subcity' => 'Yeka']) }}">
-                               {{ __('Yeka') }}
-                            </a>
+                <div class="row justify-content-center my-3" style="width: 100% !important; margin: auto !important; padding-top: 1rem !important;">
+                    <div class="col-lg-3 col-md-3 col-sm-6 form-check">
+                        <input class="form-check-input" type="checkbox" id="filter_featured"
+                                onclick="clickablecheckbox(this, '{{ query('listings', ['featured' => 1]) }}', '{{  query_remove('listings', 'featured') }}');"
+                                @if(Request::has('featured')) checked @endif>
+                        <label class="form-check-label" for="filter_featured">{{ __('Featured') }}</label>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 form-check">
+                        <input  class="form-check-input"type="checkbox" id="filter_reduced"
+                                onclick="clickablecheckbox(this, '{{ query('listings', ['reduced' => 1]) }}', '{{  query_remove('listings', 'reduced') }}');"
+                                @if(Request::has('reduced')) checked @endif>
+                        <label class="label" for="filter_reduced">{{ __('Reduced Price') }}</label>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 form-check">
+                        <input class="form-check-input" type="checkbox" id="filter_new"
+                                onclick="clickablecheckbox(this, '{{ query('listings', ['new' => 1]) }}', '{{  query_remove('listings', 'new') }}');"
+                                @if(Request::has('new')) checked @endif>
+                        <label class="label" for="filter_new">{{ __('New Construction') }}</label>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 form-check">
+                        <input class="form-check-input" type="checkbox" id="filter_open"
+                                onclick="clickablecheckbox(this, '{{ query('listings', ['open' => 1]) }}', '{{  query_remove('listings', 'open') }}');"
+                                @if(Request::has('open')) checked @endif>
+                        <label class="label" for="filter_open">{{ __('Open House') }}</label>
+                    </div>
+                </div>
+                <div class="row justify-content-end my-3 mr-0 pr-0" style="width: auto !important; margin-right: 1rem !important;">
+                    <div class="input-group mb-3 col-lg-3 col-md-3 col-sm-3 w-100">
+                        <label class="col-form-label mr-3" for="price">{{ __('Price') }}:</label>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">{{ __('ETB') }}</span>
                         </div>
+                        <input type="number" id="min_price" class="form-control" name="price"
+                           value="{{ Request::query('min_price') ?? '' }}"
+                           placeholder="{{ __('Min') }}" aria-label="Min price">
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12">
-                    <label class="label my-0" for="house_area">{{ __('Area') }}</label>
-                    <div class="dropdown my-1" id="house_area">
-                        <a class="btn btn-sm btn-outline-secondary dropdown-toggle w-100"
-                           href="#" role="button" id="dropdownMenuLink"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @if (!Request::filled('area'))
-                                -- {{ __('Select the area range') }} --
-                            @else
-                               @switch(Request::query('area'))
-                                    @case(1)
-                                        Below 100sqm
-                                        @break
-                                    @case(2)
-                                        100 - 200sqm
-                                        @break
-                                    @case(3)
-                                        200 - 300sqm
-                                        @break
-                                    @case(4)
-                                        300 - 400sqm
-                                        @break
-                                    @case(5)
-                                        Above 400sqm
-                                        @break
-                               @endswitch
-                            @endif
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="{{ query_remove('listings', 'area') }}">{{ __('All') }}</a>
-                            <a class="dropdown-item" href="{{ query('listings', ['area' => 1]) }}">
-                               {{ __('Below 100sqmr') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['area' => 2]) }}">
-                               {{ __('100 - 200sqmr') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['area' => 3]) }}">
-                               {{ __('200 - 300 sqmr') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['area' => 4]) }}">
-                               {{ __('300 - 400 sqmr') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['area' => 5]) }}">
-                               {{ __('Above 400sqmr') }}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12">
-                    <label class="label my-0" for="bed_number">{{ __('Bedrooms') }}</label>
-                    <div class="dropdown my-1" id="bed_number">
-                        <a class="btn btn-sm btn-outline-secondary dropdown-toggle w-100"
-                           href="#" role="button" id="dropdownMenuLink"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @if (!Request::filled('beds'))
-                              -- {{ __('Select the bed number') }} --
-                           @else
-                               @switch(Request::query('beds'))
-                                    @case(1)
-                                        1 Bed Room
-                                        @break
-                                    @case(2)
-                                        2 Bed Room
-                                        @break
-                                    @case(3)
-                                        3 Bed Room
-                                        @break
-                                    @case(4)
-                                        4 Bed Room
-                                        @break
-                                    @case(5)
-                                        5 Bed Rooms and Above
-                                        @break
-                               @endswitch
-                           @endif
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="{{ query_remove('listings', 'beds') }}">{{ __('All') }}</a>
-                            <a class="dropdown-item" href="{{ query('listings', ['beds' => 1]) }}">
-                                1 {{ __('Bed Room') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['beds' => 2]) }}">
-                                2 {{ __('Bed Rooms') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['beds' => 3]) }}">
-                                3 {{ __('Bed Rooms') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['beds' => 4]) }}">
-                                4 {{ __('Bed Rooms') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ query('listings', ['beds' => 5]) }}">
-                                5 {{ __('Bed Rooms and Above') }}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center my-3" style="width: 100% !important; margin: auto !important; padding-top: 1rem !important;">
-                <div class="col-lg-3 col-md-3 col-sm-6 form-check">
-                    <input class="form-check-input" type="checkbox" id="filter_featured"
-                            onclick="clickablecheckbox(this, '{{ query('listings', ['featured' => 1]) }}', '{{  query_remove('listings', 'featured') }}');"
-                            @if(Request::has('featured')) checked @endif>
-                    <label class="form-check-label" for="filter_featured">{{ __('Featured') }}</label>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 form-check">
-                    <input  class="form-check-input"type="checkbox" id="filter_reduced"
-                            onclick="clickablecheckbox(this, '{{ query('listings', ['reduced' => 1]) }}', '{{  query_remove('listings', 'reduced') }}');"
-                            @if(Request::has('reduced')) checked @endif>
-                    <label class="label" for="filter_reduced">{{ __('Reduced Price') }}</label>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 form-check">
-                    <input class="form-check-input" type="checkbox" id="filter_new"
-                            onclick="clickablecheckbox(this, '{{ query('listings', ['new' => 1]) }}', '{{  query_remove('listings', 'new') }}');"
-                            @if(Request::has('new')) checked @endif>
-                    <label class="label" for="filter_new">{{ __('New Construction') }}</label>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 form-check">
-                    <input class="form-check-input" type="checkbox" id="filter_open"
-                            onclick="clickablecheckbox(this, '{{ query('listings', ['open' => 1]) }}', '{{  query_remove('listings', 'open') }}');"
-                            @if(Request::has('open')) checked @endif>
-                    <label class="label" for="filter_open">{{ __('Open House') }}</label>
-                </div>
-            </div>
-            <div class="row justify-content-end my-3 mr-0 pr-0" style="width: auto !important; margin-right: 1rem !important;">
-                <div class="input-group mb-3 col-lg-3 col-md-3 col-sm-3 w-100">
-                    <label class="col-form-label mr-3" for="price">{{ __('Price') }}:</label>
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">{{ __('ETB') }}</span>
-                    </div>
-                    <input type="number" id="min_price" class="form-control" name="price"
-                       value="{{ Request::query('min_price') ?? '' }}"
-                       placeholder="{{ __('Min') }}" aria-label="Min price">
-                </div>
 
-                <div class="input-group mb-3 col-lg-3 col-md-3 col-sm-3 w-100">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">{{ __('ETB') }}</span>
+                    <div class="input-group mb-3 col-lg-3 col-md-3 col-sm-3 w-100">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">{{ __('ETB') }}</span>
+                        </div>
+                        <input type="number" id="max_price" class="form-control"
+                            value="{{ Request::query('max_price') ?? '' }}"
+                            placeholder="{{ __('Max') }}" aria-label="Max price">
                     </div>
-                    <input type="number" id="max_price" class="form-control"
-                        value="{{ Request::query('max_price') ?? '' }}"
-                        placeholder="{{ __('Max') }}" aria-label="Max price">
+                    <div class="col-lg col-md col-sm-12">
+                        <button class="btn btn-secondary" onclick="filter_price();">
+                            Go
+                        </button>
+                    </div>
                 </div>
-                <div class="col-lg col-md col-sm-12">
-                    <button class="btn btn-secondary" onclick="filter_price();">
-                        Go
-                    </button>
-                </div>
-            </div>
+            @endif
             <hr>
             @include('inc.listings')
         </div>

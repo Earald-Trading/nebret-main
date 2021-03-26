@@ -1,13 +1,13 @@
 @php $i = 0; @endphp
 @foreach($uploads as $upload)
     @if ($i % 3  == 0)
-        <div class="row my-md-5 my-sm-3">
+        <div class="row">
     @endif
     @if (is_null($upload))
         @continue
     @endif
     @php $updated_at = \Carbon\Carbon::parse($upload->updated_at) @endphp
-    <div class="col-lg-4 col-md-4 col-sm-12 my-md-5 my-sm-3">
+    <div class="col-lg-4 col-md-4 col-sm-12  my-sm-3">
         <a  class="text-dark text-decoration-none" href="{{ route('listings.show', ['id' => $upload->id]) }}"
          onmouseover="hover(document.getElementById('cover_img_{{ $upload->id }}'), '{{ $upload->images }}')"
          onmouseout="unhover(document.getElementById('cover_img_{{ $upload->id }}'), '{{ $upload->images }}')"
