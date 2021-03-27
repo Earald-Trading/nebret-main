@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
+    // validation array for Register
+    static $validation_array = [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'phone' => 'numeric|nullable|unique:users|digits:9'
+    ];
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -52,13 +60,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'phone' => 'numeric|nullable|unique:users|digits:9'
-        ]);
+        return Validator::make($data, static::$validation_array);
     }
 
     /**
