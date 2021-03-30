@@ -71,22 +71,27 @@
                             <div class="text text-left font-weight-bolder h3 my-3">
                                 @if($reduced_price) <span style="color: rgb(19, 9, 9); font-weight: lighter !important;">{{ __('Reduced Price') }}</span> - @endif {{ __($house_type) }}
                             </div>
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="text text-left text-secondary lead"><b
-                                            class="font-weight-bold">{{ $beds }} </b> {{ __('Beds') }}
+                            @if ($house_type != 'Land')
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="text text-left text-secondary lead"><b
+                                                class="font-weight-bold">{{ $beds }} </b> {{ __('Beds') }}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="text text-left text-secondary lead"><b
+                                                class="font-weight-bold">{{ $baths }} </b> {{ __('Baths') }}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="text text-left text-secondary lead"><b
-                                            class="font-weight-bold">{{ $baths }} </b> {{ __('Baths') }}
-                                    </div>
-                                </div>
-                            </div>
+                            @endif
+
                             <div class="mt-4 mb-1 mx-3">
-                                <div class="row text text-left text-secondary lead py-2">
-                                    <b class="h5 font-weight-bold">{{ __('House Area') }} - {{ $footprint }}</b>{{ __('sqmr') }}
-                                </div>
+                                @if($house_type != 'Land')
+                                    <div class="row text text-left text-secondary lead py-2">
+                                        <b class="h5 font-weight-bold">{{ __('House Area') }} - {{ $footprint }}</b>{{ __('sqmr') }}
+                                    </div>
+                                @endif
                                 <div class="row text text-left text-secondary lead py-2">
                                     <b class="h5 font-weight-bold">{{ __('Total Area') }} - {{ $lot }}</b>{{ __('sqmr') }}
                                 </div>
