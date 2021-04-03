@@ -25,7 +25,7 @@
                 </a>
                 <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == 'jointventure') active @endif"
                    id="nav-foreclosure-tab" href="{{ route('listings', ['type' => 'jointventure' ]) }}" role="tab" aria-controls="nav-foreclosure" aria-selected="true">
-                    {{ __('Joint Venture') }}
+                    {{ __('Joint Development') }}
                 </a>
                 <a class="nav-item nav-link nav-link-browse @if (Request::filled('type') && Request::query('type') == 'sold') active @endif"
                    id="nav-foreclosure-tab" href="{{ route('listings', ['type' => 'sold' ]) }}" role="tab" aria-controls="nav-foreclosure" aria-selected="true">
