@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/register', 'AuthController@register')->name('api.register');
-Route::post('/login', 'AuthController@login')->name('api.register');
+Route::post('/login', 'AuthController@login')->name('api.login');
 
 Route::get('/listings', 'UploadController@index')->name('api.listings');
 Route::get('/listings/{id}', 'UploadController@show')->name('api.listings.show');
