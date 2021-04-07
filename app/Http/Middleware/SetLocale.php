@@ -17,11 +17,13 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next)
     {
-        $locale = $request->session()->get('locale', 'en');
-
-        if ($locale) {
-            App::setLocale($locale);
+        if ($request->expectsJson()) {
+            $locale = $request->input('locale', 'en');
+        } else {
+            $locale = $request->session()->get('locale', 'en');
         }
+
+        App::setLocale($locale);
 
         return $next($request);
     }

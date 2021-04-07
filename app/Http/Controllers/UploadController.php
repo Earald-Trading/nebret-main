@@ -376,6 +376,11 @@ class UploadController extends Controller
      */
     public function show(Request $request, $id)
     {
+        $user = Auth::user();
+        if ($request->expectsJson()) {
+            $user = Auth::guard('api')->user();
+        }
+
         $locale = "";
         if (app('app')->currentLocale() == "am") {
             $locale = "_am";
@@ -387,13 +392,13 @@ class UploadController extends Controller
             'newconstruction', 'reduced_price', 'job_finished', 'updated_at'
         ]);
 
-        if (Auth::user()) {
+        if ($user) {
             $fields = $fields->merge(["comparative_analysis{$locale}", 'latitude', 'longitude']);
+            if ($user->is_agent) {
+                $fields = $fields->merge(['user_id', 'wereda', 'houseno']);
+            }
         }
 
-        if (Auth::is_agent()) {
-            $fields = $fields->merge(['user_id', 'wereda', 'houseno']);
-        }
 
         $upload = Upload::select($fields->all())->find($id);
         if (!$upload) {
@@ -405,18 +410,18 @@ class UploadController extends Controller
         $upload['latitude'] = rand(1,2) == 2 ? $upload['latitude'] - 0.0001 : $upload['latitude'] + 0.0001;
         $upload['longitude'] = rand(1,2) == 2 ? $upload['longitude'] - $offset_longitude : $upload['longitude'] + $offset_longitude;
 
-        if (Auth::is_agent()) {
+        if ($user && $user->is_agent) {
             $upload['user_email'] = $upload->user->email;
         }
 
         $upload['images_no'] = count(Storage::allFiles($upload['images']));
 
         $upload['liked'] = false;
-        if (Auth::user() && Like::where([
-            'user_id' => Auth::user()->id,
+        if ($user && Like::where([
+            'user_id' => $user->id,
             'upload_id' => $id
         ])->first()) {
-            $upload['liked'] = true;
+        $upload['liked'] = true;
         }
 
         $upload['locale'] = $locale;
