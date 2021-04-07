@@ -54,7 +54,7 @@
                         <b> {{ $upload->beds }} </b> <i>{{ __('Beds') }}</i> &#x0009
                         <b> {{ $upload->baths }}</b> <i>{{ __('Baths') }}</i> &#x0009
                     @endif
-                    <b> {{ $upload->footprint }} </b> <i>{{ __('sqmr') }}</i>
+                    <b> {{ $upload->lot }} </b> <i>{{ __('sqmr') }}</i>
                 </div>
                 <div class="card-text">
                     {{ __('Location') }} {{ __('Addis Ababa') }}, {{ __($upload->subcity) }}

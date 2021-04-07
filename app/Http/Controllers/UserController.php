@@ -189,7 +189,7 @@ class UserController extends Controller
             abort(404);
         }
 
-        if (! $user->is_admin) {
+        if (!$user->is_admin) {
             Like::where('user_id', $user->id)->delete();
             $user->delete();
         }
@@ -226,11 +226,11 @@ class UserController extends Controller
                 'beds',
                 'baths',
                 'house_type',
-                'listing_type',
-                'footprint',
+                'lot',
                 'subcity',
                 'featured',
                 'reduced_price',
+                'images',
                 'job_finished',
                 'u.updated_at as updated_at'
             ])->paginate(15);
@@ -262,8 +262,8 @@ class UserController extends Controller
         }
 
         $select = [
-            'id', 'beds', 'baths', 'house_type', 'footprint', 'subcity',
-            'featured', 'reduced_price', 'job_finished', 'updated_at'
+            'id', 'beds', 'baths', 'house_type', 'lot', 'subcity',
+            'featured', 'reduced_price', 'images', 'job_finished', 'updated_at'
         ];
 
         if ($user->is_agent) {

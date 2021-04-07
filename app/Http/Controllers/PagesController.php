@@ -14,7 +14,7 @@ class PagesController extends Controller
     public function index(Request $request)
     {
         $select = [
-            'id', 'beds', 'baths', 'house_type', 'footprint', 'subcity',
+            'id', 'beds', 'baths', 'house_type', 'lot', 'subcity',
             'featured', 'reduced_price', 'images', 'job_finished', 'updated_at'
         ];
 

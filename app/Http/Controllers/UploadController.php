@@ -301,7 +301,7 @@ class UploadController extends Controller
     {
         $query = $this->makeQuery($request);
         $select = [
-            'id', 'beds', 'baths', 'house_type', 'footprint', 'subcity',
+            'id', 'beds', 'baths', 'house_type', 'lot', 'subcity',
             'featured', 'reduced_price', 'images', 'job_finished', 'updated_at'
         ];
 
