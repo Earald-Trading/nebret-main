@@ -45,6 +45,25 @@ class Upload extends Model
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'beds' => 'int',
+        'baths' => 'int',
+        'footprint' => 'int',
+        'lot' => 'int',
+        'year' => 'int',
+        'price' => 'int',
+        'featured' => 'bool',
+        'reduced_price' => 'bool',
+        'openhouse' => 'bool',
+        'newconstruction' => 'bool',
+        'job_finished' => 'bool'
+    ];
+
+    /**
      * The "booted" method of the model.
      *
      * @return void
