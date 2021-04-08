@@ -416,12 +416,12 @@ class UploadController extends Controller
 
         $upload['images_no'] = count(Storage::allFiles($upload['images']));
 
-        $upload['liked'] = false;
+        $upload['liked'] = 0;
         if ($user && Like::where([
             'user_id' => $user->id,
             'upload_id' => $id
         ])->first()) {
-        $upload['liked'] = true;
+        $upload['liked'] = 1;
         }
 
         $upload['locale'] = $locale;
