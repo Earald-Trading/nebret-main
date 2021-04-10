@@ -16,11 +16,12 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
             <!-- Slide One - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing active"
-                style="background-image: url('/images/O1.jpeg')">
+                style="background-image: url('/images/O1.jpeg');">
                 <div class="carousel-caption d-md-block">
                     <h2 class="display-4">{{ __('Find Your Dream Home') }}</h2>
                     <p class="lead">{{ __('Use our easy-to-use platform and realize your dream, all without the hustle.') }}</p>
@@ -28,7 +29,7 @@
             </div>
             <!-- Slide Two - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing"
-                style="background-image: url('/images/O2.jpeg')">
+                style="background-image: url('/images/O2.jpeg');">
                 <div class="carousel-caption d-md-block">
                     <h2 class="display-4">{{ __('Secure Your Property') }}</h2>
                     <p class="lead">{{ __('We take all burden from you and manage your property as ours.') }}</p>
@@ -36,10 +37,18 @@
             </div>
             <!-- Slide Three - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing"
-                style="background-image: url('/images/O3.jpeg')">
+                style="background-image: url('/images/O3.jpeg');">
                 <div class="carousel-caption d-md-block">
                     <h2 class="display-4">{{ __('Sell! And Easily Restock') }}</h2>
                     <p class="lead">{{ __('Use our platform to sell or rent your place. Get direct contact to your clients.') }}</p>
+                </div>
+            </div>
+            <!-- Slide Four - Set the background image for this slide in the line below -->
+            <div class="carousel-item carousel-item-landing"
+                style="background-image: url('/images/O4.png');">
+                <div class="carousel-caption d-md-block">
+                    <h2 class="display-4">{{ __('Soon on Your Phones') }}</h2>
+                    {{-- <p class="lead">{{ __('Use our platform to sell or rent your place. Get direct contact to your clients.') }}</p> --}}
                 </div>
             </div>
         </div>
