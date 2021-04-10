@@ -24,50 +24,50 @@
         </div> --}}
 
         <div class="row mt-5">
-            <div class="col-md-6 col-sm-12">
-                <img class="img-fluid" src="{{ url('images/FINAL.png') }}">
+            <div class="col-md-4 col-sm-12">
+                {{-- <img class="img-fluid" src="{{ url('images/FINAL.png') }}"> --}}
             </div>
-            <div class="col-md-6 col-sm-12 align-self-center">
+            <div class="col-md-8 col-sm-12 align-self-center">
                 <h2>{{ __('Who Are We?') }}</h2>
                 <p class="lead font-italic">{{ __('Nebret Property Management is a Asset management company founded by young ambitious entrepreneurs, Yonatan Amha and Natnael Girma.') }}</p>
             </div>
         </div>
 
         <div class="row mt-5 mb-md-0 mb-sm-5">
-            <div class="col-md-6 col-sm-12 align-self-center">
+            <div class="col-md-8 col-sm-12 align-self-center">
                 <h2>{{ __('What Do We Do?') }}</h2>
                 <p class="lead font-italic">{{ __('We created the company because they wanted to creat a solution for seller, new homeowners and other buyers that are frustrated with the system in place.') }}</p>
             </div>
-            <div class="col-md-6 col-sm-12">
-                <img class="img-fluid" src="https://images.pexels.com/photos/313691/pexels-photo-313691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+            <div class="col-md-4 col-sm-12">
+                {{-- <img class="img-fluid" src="https://images.pexels.com/photos/313691/pexels-photo-313691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"> --}}
             </div>
         </div>
 
         <div class="row mt-5">
-            <div class="col-md-6 col-sm-12">
-                <img class="img-fluid" src="https://images.pexels.com/photos/5668765/pexels-photo-5668765.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+            <div class="col-md-4 col-sm-12">
+                {{-- <img class="img-fluid" src="https://images.pexels.com/photos/5668765/pexels-photo-5668765.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"> --}}
             </div>
-            <div class="col-md-6 col-sm-12 align-self-center">
+            <div class="col-md-8 col-sm-12 align-self-center">
                 <h2>{{ __('Reliable') }}</h2>
                 <p class="lead font-italic">{{ __('Nebret PM is here to solve the struggle of buying new properties and create a simple and enjoyable experience to our clients.') }}</p>
             </div>
         </div>
 
         <div class="row mt-5 mb-md-0 mb-sm-5">
-            <div class="col-md-6 col-sm-12 align-self-center">
+            <div class="col-md-8 col-sm-12 align-self-center">
                 <h2>{{ __('Excellence') }}</h2>
                 <p class="lead font-italic">{{ __('Our company is experienced to help customers buy, sell, rent and manage assets such as commercial buildings, apartments and villas.') }}</p>
             </div>
-            <div class="col-md-6 col-sm-12">
-                <img class="img-fluid" src="https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+            <div class="col-md-4 col-sm-12">
+                {{-- <img class="img-fluid" src="https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"> --}}
             </div>
         </div>
 
         <div class="row mt-5">
-            <div class="col-md-6 col-sm-12">
-                <img class="img-fluid" src="https://images.pexels.com/photos/4491441/pexels-photo-4491441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+            <div class="col-md-4 col-sm-12">
+                {{-- <img class="img-fluid" src="https://images.pexels.com/photos/4491441/pexels-photo-4491441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"> --}}
             </div>
-            <div class="col-md-6 col-sm-12 align-self-center">
+            <div class="col-md-8 col-sm-12 align-self-center">
                 <h2>{{ __('Professional') }}</h2>
                 <p class="lead font-italic">{{ __('Nebret PM connects you to the right clients at the right time with the right price.') }}</p>
                 <p class="lead font-italic">{{ __('We work with buyers and sellers across the world who are interested to get involved in Ethiopia’s real estate market and those who want to land their next home.') }}</p>
