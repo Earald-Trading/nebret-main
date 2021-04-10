@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'PagesController@index')->name('homepage');
+Route::get('/', function () {
+    return redirect(route('listings'), 302);
+});
+Route::get('/home', 'PagesController@index')->name('homepage');
 Route::middleware('image.etag')->get('/images/{path}/{number?}', 'PagesController@image')->name('images');
 
 Route::get('/survey', 'PagesController@survey')->name('survey');
