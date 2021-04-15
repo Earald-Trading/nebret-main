@@ -235,8 +235,16 @@ class UserController extends Controller
                 'u.updated_at as updated_at'
             ])->paginate(15);
 
+
         if ($request->expectsJson()) {
-            return response($uploads, 200);
+            //dd($uploads);
+            foreach($uploads as $upload) {
+                $upload->featured = boolval($upload->featured);
+                $upload->reduced_price = boolval($upload->reduced_price);
+                $upload->job_finished = boolval($upload->job_finished);
+            }
+
+            return response(collect($uploads)->only('data', 'current_page', 'last_page', 'from', 'per_page', 'total'), 200);
         }
 
         return view('users.likes', compact('uploads', 'user'));
@@ -276,7 +284,7 @@ class UserController extends Controller
         }
 
         if ($request->expectsJson()) {
-            return response($uploads, 200);
+            return response(collect($uploads)->only('data', 'current_page', 'last_page', 'from', 'per_page', 'total'), 200);
         }
 
 
