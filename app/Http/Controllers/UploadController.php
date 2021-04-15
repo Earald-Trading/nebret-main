@@ -305,12 +305,12 @@ class UploadController extends Controller
             'featured', 'reduced_price', 'images', 'job_finished', 'updated_at'
         ];
 
-        $featured = [];
-        $reduced_price = [];
+        $featured = collect();
+        $reduced_price = collect();
 
         // if only the job_finished query is added
         // this must be changed if the query function is changed
-        if (!$request->expectsJson() || (count($query) == 1 && $query[0][2] == false && !$request->has('page'))) {
+        if (!$request->expectsJson() && count($query) == 1 && $query[0][2] == false && !$request->has('page')) {
             $reduced_price = Upload::select($select)->where('reduced_price', 1)->where('job_finished', 0)->orderBy('updated_at', 'DESC')->limit(6)->get();
             $featured = Upload::select($select)->where('featured', 1)->where('job_finished', 0)->orderBy('updated_at', 'DESC')->limit(6)->get();
         }

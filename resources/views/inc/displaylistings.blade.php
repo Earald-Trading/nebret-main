@@ -71,3 +71,7 @@
     @endif
     @php ++$i; @endphp
 @endforeach
+
+@if (($i + 1) % 3 != 0)
+    </div>
+@endif
