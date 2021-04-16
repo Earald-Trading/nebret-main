@@ -56,6 +56,7 @@ class Upload extends Model
         'lot' => 'int',
         'year' => 'int',
         'price' => 'int',
+        'wereda' => 'int',
         'featured' => 'bool',
         'reduced_price' => 'bool',
         'openhouse' => 'bool',
