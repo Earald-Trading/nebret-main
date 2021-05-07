@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ImageEtag
 {
@@ -18,6 +19,9 @@ class ImageEtag
     {
         // see \Illuminate\Http\Middleware\SetCacheHeaders
         $response = $next($request);
+
+        if ($response::class != BinaryFileResponse::class)
+            return $response;
 
         $path = $response->getFile()->getPath();
         $size = $response->getFile()->getSize();

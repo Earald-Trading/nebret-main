@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Like;
 use App\Models\Upload;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class PagesController extends Controller
