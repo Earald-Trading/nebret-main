@@ -20,7 +20,7 @@ class ImageEtag
         // see \Illuminate\Http\Middleware\SetCacheHeaders
         $response = $next($request);
 
-        if ($response::class != BinaryFileResponse::class)
+        if ($response instanceof BinaryFileResponse)
             return $response;
 
         $path = $response->getFile()->getPath();
