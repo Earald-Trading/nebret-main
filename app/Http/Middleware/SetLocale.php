@@ -18,7 +18,7 @@ class SetLocale
     public function handle(Request $request, Closure $next)
     {
         if ($request->expectsJson()) {
-            $locale = $request->input('locale', 'en');
+            $locale = $request->header('Accept-Language', 'en');
         } else {
             $locale = $request->session()->get('locale', 'en');
         }
