@@ -1,13 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
-        <div class="text-center py-2" style="background: #c1c4db !important; width: 100% !important;">
-            <span>
-               {{ __('We are collecting a survey to help us understand more about you, our customers. And we would highly appreciate it, if you would fill the form in') }}
-                <a href="{{ route('survey') }}">{{ __('this link') }}</a>
-               {{ __('Thank you and keep safe!') }}
-            </span>
+    <!--<div>-->
+    <!--    <div class="text-center py-2" style="background: #c1c4db !important; width: 100% !important;">-->
+    <!--        <span>-->
+    <!--           {{ __('We are collecting a survey to help us understand more about you, our customers. And we would highly appreciate it, if you would fill the form in') }}-->
+    <!--            <a href="{{ route('survey') }}">{{ __('this link') }}</a>-->
+    <!--           {{ __('Thank you and keep safe!') }}-->
+    <!--        </span>-->
+    <!--    </div>-->
+    <!--</div>-->
+    <div id="feedback">
+		<a href="#popup1">Quick Enquiry</a>
+	</div>
+
+    <div id="popup1" class="overlay">
+    	<div class="popup">
+            <div class="div1" style="background:#fff">
+        		
+        		<a class="close" href="#">X</a>
+                <div class="content" id="quickenquire">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd5qkjJIXQpbzCP1D6g1NfaVDKMUg--6iY9PUiU7M58aVAE6g/viewform?embedded=true" width="500" height="1400" frameborder="0" marginheight="0" marginwidth="0" class="">
+                        Loading…
+                        </iframe>
+        		</div>
+            </div>
         </div>
     </div>
     <!-- Carousel Section -->
@@ -21,7 +38,10 @@
         <div class="carousel-inner" role="listbox">
             <!-- Slide One - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing active"
-                style="background-image: url('/images/O1.jpeg');">
+                style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url('/images/O1.jpeg'); background-attachment: static;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;">
                 <div class="carousel-caption d-md-block">
                     <h2 class="display-4">{{ __('Find Your Dream Home') }}</h2>
                     <p class="lead">{{ __('Use our easy-to-use platform and realize your dream, all without the hustle.') }}</p>
@@ -29,7 +49,10 @@
             </div>
             <!-- Slide Two - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing"
-                style="background-image: url('/images/O2.jpeg');">
+                style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url('/images/O2.jpeg'); background-attachment: static;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;">
                 <div class="carousel-caption d-md-block">
                     <h2 class="display-4">{{ __('Secure Your Property') }}</h2>
                     <p class="lead">{{ __('We take all burden from you and manage your property as ours.') }}</p>
@@ -37,7 +60,10 @@
             </div>
             <!-- Slide Three - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing"
-                style="background-image: url('/images/O3.jpeg');">
+                style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url('/images/O3.jpeg'); background-attachment: static;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;">
                 <div class="carousel-caption d-md-block">
                     <h2 class="display-4">{{ __('Sell! And Easily Restock') }}</h2>
                     <p class="lead">{{ __('Use our platform to sell or rent your place. Get direct contact to your clients.') }}</p>
@@ -45,7 +71,10 @@
             </div>
             <!-- Slide Four - Set the background image for this slide in the line below -->
             <div class="carousel-item carousel-item-landing"
-                style="background-image: url('/images/O4.png');">
+                style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url('/images/O4.png'); background-attachment: static;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;">
                 <div class="carousel-caption d-md-block">
                     <h2 class="display-4">{{ __('Soon on Your Phones') }}</h2>
                     {{-- <p class="lead">{{ __('Use our platform to sell or rent your place. Get direct contact to your clients.') }}</p> --}}

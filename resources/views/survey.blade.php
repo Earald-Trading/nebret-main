@@ -2,11 +2,14 @@
 
 @section('content')
     <div class="container my-5">
-        <div class="card py-3" style="width: 70% !important; margin: auto !important;">
-            <iframe
-                src="https://docs.google.com/forms/d/e/1FAIpQLSdW5E1u80VRKVvfp3kVq1Y2UGBaOYB8G0Z_lsDR5BMMTB6bzg/viewform?embedded=true&entry"
-                width="700" height="1400" frameborder="0" marginheight="0" marginwidth="0"
-                style="width: 97% !important; margin: auto !important;">Loading…</iframe>
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-12 d-flex justify-self-center">
+                <div class="card d-flex justify-self-center">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd5qkjJIXQpbzCP1D6g1NfaVDKMUg--6iY9PUiU7M58aVAE6g/viewform?embedded=true" width="500" height="1400" frameborder="0" marginheight="0" marginwidth="0" class="">
+                        Loading…
+                        </iframe>
+                </div>  
+            </div>
         </div>
     </div>
 @endsection
