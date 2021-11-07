@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Nibret') }}</title>
+    <title>{{ config('app.name', 'Nebret') }}</title>
     <meta name="description" content="Nebret Property Management is a pioneering asset management company, coming to light young. It aims to give ease of access in the current trade of real estate business.">
     <meta name="keywords" content="nebret property management, nebret, property, management, asset, asset management, real estate, real estate, brokers, agents, real estate brokers, real estate agents, sell and buy, sell, buy, house, home, appartment, villa, town house, commerical, building, rent, local, addis ababa, addis-ababa, addisababa, ethiopia">
 

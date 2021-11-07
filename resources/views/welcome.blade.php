@@ -1,23 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <!--<div>-->
-    <!--    <div class="text-center py-2" style="background: #c1c4db !important; width: 100% !important;">-->
-    <!--        <span>-->
-    <!--           {{ __('We are collecting a survey to help us understand more about you, our customers. And we would highly appreciate it, if you would fill the form in') }}-->
-    <!--            <a href="{{ route('survey') }}">{{ __('this link') }}</a>-->
-    <!--           {{ __('Thank you and keep safe!') }}-->
-    <!--        </span>-->
-    <!--    </div>-->
-    <!--</div>-->
+    {{-- <div>
+        <div class="text-center py-2" style="background: #c1c4db !important; width: 100% !important;">
+            <span>
+               {{ __('We are collecting a survey to help us understand more about you, our customers. And we would highly appreciate it, if you would fill the form in') }}
+                <a href="{{ route('survey') }}">{{ __('this link') }}</a>
+               {{ __('Thank you and keep safe!') }}
+            </span>
+        </div>
+    </div> --}}
     <div id="feedback">
-		<a href="#popup1">Quick Enquiry</a>
+		<a href="{{ route('survey') }}">Quick Enquiry</a>
 	</div>
 
-    <div id="popup1" class="overlay">
+    {{-- <div id="popup1" class="overlay">
     	<div class="popup">
             <div class="div1" style="background:#fff">
-        		
+
         		<a class="close" href="#">X</a>
                 <div class="content" id="quickenquire">
                 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd5qkjJIXQpbzCP1D6g1NfaVDKMUg--6iY9PUiU7M58aVAE6g/viewform?embedded=true" width="500" height="1400" frameborder="0" marginheight="0" marginwidth="0" class="">
@@ -26,7 +26,7 @@
         		</div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Carousel Section -->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
