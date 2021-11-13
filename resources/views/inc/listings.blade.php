@@ -5,7 +5,7 @@
             @include('inc.displaylistings', ['uploads' => $featured])
             <hr />
         @endif
-        @if (isset($reduced_price) && !$reduced_price->isEmpty() || $reduced_price != 0)
+        @if (isset($reduced_price) && !$reduced_price->isEmpty())
             <h3>{{ __('Discounts') }}</h3>
             @include('inc.displaylistings', ['uploads' => $reduced_price])
             <hr />

@@ -104,11 +104,12 @@
                                     , {{ __('Wereda') }} {{ $wereda }}, {{ $houseno }}
                                 @endagent
                             </div>
-                            @if ($price->isEmpty() || $price != 0)
+                            <div class="text text-left text-secondary h1 mt-4 pt-2">{{ $price }} {{ __('ETB') }}</div>
+                            {{-- @if ($price->isEmpty() || $price != 0)
                                 <div class="text text-left text-secondary h1 mt-4 pt-2">{{ $price }} {{ __('ETB') }}</div>
                             @else
                             <div class="text text-left text-secondary h1 mt-4 pt-2">{{ __('Contact Agents') }}</div>
-                            @endif
+                            @endif --}}
                         </div>
                     </div>
                 </div>
